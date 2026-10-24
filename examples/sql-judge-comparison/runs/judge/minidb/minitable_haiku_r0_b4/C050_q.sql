@@ -1,0 +1,1 @@
+SELECT e.FirstName || ' ' || e.LastName AS employee_name, ROUND(COALESCE(SUM(i.Total), 0), 2) AS revenue FROM Employee e LEFT JOIN Customer c ON c.SupportRepId = e.EmployeeId LEFT JOIN Invoice i ON i.CustomerId = c.CustomerId AND strftime('%Y', i.InvoiceDate) = '2023' GROUP BY e.EmployeeId, e.FirstName, e.LastName;

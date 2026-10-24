@@ -1,0 +1,17 @@
+INSERT INTO Employee (EmployeeId, LastName, FirstName, Title, ReportsTo) VALUES (1,'Adams','Andrew','General Manager',NULL);
+INSERT INTO Employee (EmployeeId, LastName, FirstName, Title, ReportsTo) VALUES (2,'Edwards','Nancy','Sales Manager',1);
+INSERT INTO Employee (EmployeeId, LastName, FirstName, Title, ReportsTo) VALUES (3,'Peacock','Jane','Sales Support Agent',2);
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email, SupportRepId) VALUES (2,'Leonie','Kohler','b@x.com',3);
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email, SupportRepId) VALUES (3,'Francois','Tremblay','c@x.com',3);
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email, SupportRepId) VALUES (4,'Ulleval','Hansen','d@x.com',2);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (1,2,'2023-05-01 00:00:00',1.98);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (2,3,'2023-06-01 00:00:00',0.99);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (3,4,'2023-12-31 23:59:59',5.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (4,2,'2024-01-01 00:00:00',9.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (5,2,'2022-12-31 23:59:59',7.00);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (1,1,1,0.99,1);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (2,1,2,0.99,1);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (3,2,3,0.99,1);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (4,3,4,5.00,1);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (5,4,5,9.00,1);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (6,5,6,7.00,1);

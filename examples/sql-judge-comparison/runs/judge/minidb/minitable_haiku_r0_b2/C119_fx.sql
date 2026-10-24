@@ -1,0 +1,17 @@
+INSERT INTO Employee (EmployeeId, LastName, FirstName, ReportsTo) VALUES (1,'Adams','Andrew',NULL);
+INSERT INTO Employee (EmployeeId, LastName, FirstName, ReportsTo) VALUES (2,'Edwards','Nancy',1);
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email, SupportRepId) VALUES (1,'A','B','a@x.com',1);
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email, SupportRepId) VALUES (2,'C','D','c@x.com',2);
+INSERT INTO MediaType (MediaTypeId, Name) VALUES (1,'MPEG audio file');
+INSERT INTO Track (TrackId, Name, MediaTypeId, Milliseconds, UnitPrice) VALUES (1,'t1',1,1000,0.99);
+INSERT INTO Track (TrackId, Name, MediaTypeId, Milliseconds, UnitPrice) VALUES (2,'t2',1,1000,0.99);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (1,1,'2023-03-01 00:00:00',10.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (2,2,'2023-06-01 00:00:00',4.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (3,1,'2024-01-01 00:00:00',50.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (4,2,'2023-12-31 15:00:00',6.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (5,1,'2023-07-01 00:00:00',7.00);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (1,1,1,0.99,1);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (2,1,2,0.99,1);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (3,2,1,0.99,1);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (4,4,2,0.99,1);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (5,3,1,0.99,1);

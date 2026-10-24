@@ -1,0 +1,1 @@
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, UnitPrice) VALUES (1,'Long A',1,1,1,NULL,2000000,0.99),(2,'Long B',1,1,1,'Someone',1700000,0.99),(3,'Long C',2,1,1,'A',2000000,0.99),(4,'Long D',2,1,1,'B',1700000,0.99),(5,'Short E',3,1,1,NULL,1000000,0.99);

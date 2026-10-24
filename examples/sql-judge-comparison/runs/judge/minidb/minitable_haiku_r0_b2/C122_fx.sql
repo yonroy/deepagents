@@ -1,0 +1,16 @@
+INSERT INTO Artist (ArtistId, Name) VALUES (1,'Band');
+INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (1,'A1',1);
+INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (2,'A2',1);
+INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (3,'A3',1);
+INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (4,'A4',1);
+INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (5,'A5',1);
+INSERT INTO MediaType (MediaTypeId, Name) VALUES (1,'MPEG audio file');
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (1,'t1',1,1,'X',2000000,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (2,'t2',1,1,NULL,1600001,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (3,'t3',2,1,'',1800000,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (4,'t4',2,1,'Y',1800000,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (5,'t5',3,1,' ',3000000,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (6,'t6',3,1,'Z',1000000,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (7,'t7',4,1,'A',3600001,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (8,'t8',4,1,'B',1000,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (9,'t9',5,1,NULL,1000000,0.99);

@@ -1,0 +1,1 @@
+SELECT t.Name AS TrackName, COUNT(DISTINCT pt.PlaylistId) AS PlaylistCount FROM Track t JOIN PlaylistTrack pt ON pt.TrackId = t.TrackId GROUP BY t.TrackId, t.Name HAVING COUNT(DISTINCT pt.PlaylistId) > 4 ORDER BY PlaylistCount DESC;

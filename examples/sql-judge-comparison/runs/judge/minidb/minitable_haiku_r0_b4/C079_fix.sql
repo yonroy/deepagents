@@ -1,0 +1,2 @@
+INSERT INTO Employee (EmployeeId, LastName, FirstName, Title, ReportsTo) VALUES (1,'Adams','Andrew','General Manager',NULL),(2,'Edwards','Nancy','Sales Manager',1),(3,'Peacock','Jane','Sales Support Agent',2);
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email, SupportRepId) VALUES (1,'Luis','Goncalves','l@x.com',3),(2,'Leonie','Kohler','k@x.com',3),(3,'Francois','Tremblay','f@x.com',2);

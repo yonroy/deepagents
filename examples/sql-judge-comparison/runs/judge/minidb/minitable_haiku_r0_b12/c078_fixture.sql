@@ -1,0 +1,10 @@
+INSERT INTO Genre (GenreId, Name) VALUES (1, 'Rock');
+INSERT INTO Genre (GenreId, Name) VALUES (2, 'Jazz');
+INSERT INTO Genre (GenreId, Name) VALUES (3, 'Metal');
+INSERT INTO Genre (GenreId, Name) VALUES (4, 'Blues');
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (1, 'T1', NULL, 1, 1, NULL, 1000, 100, 0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (2, 'T2', NULL, 1, 1, NULL, 1000, 100, 0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (3, 'T3', NULL, 1, 2, NULL, 1000, 100, 0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (4, 'T4', NULL, 1, NULL, NULL, 1000, 100, 0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (5, 'T5', NULL, 1, 3, NULL, 1000, 100, 0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (6, 'T6', NULL, 1, 3, NULL, 1000, 100, 0.99);

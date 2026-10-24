@@ -1,0 +1,3 @@
+INSERT INTO Genre (GenreId, Name) VALUES (1,'Rock'),(2,'Jazz'),(3,'Metal'),(4,'Pop'),(5,'Blues'),(6,'Latin'),(7,'Reggae');
+INSERT INTO Track (TrackId, Name, MediaTypeId, GenreId, Milliseconds, UnitPrice) VALUES (1,'T1',1,1,200000,0.99),(2,'T2',1,2,200000,1.99),(3,'T3',1,3,200000,1.50),(4,'T4',1,4,200000,1.00),(5,'T5',1,5,200000,0.99),(6,'T6',1,6,200000,0.75),(7,'T7',1,7,200000,0.50),(8,'T8',1,NULL,200000,10.00);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (1,1,1,0.99,3),(2,1,1,0.99,1),(3,2,2,1.99,2),(4,2,3,1.50,1),(5,3,4,1.00,1),(6,3,5,0.99,1),(7,3,6,0.75,1),(8,4,7,0.50,1),(9,4,8,10.00,5);

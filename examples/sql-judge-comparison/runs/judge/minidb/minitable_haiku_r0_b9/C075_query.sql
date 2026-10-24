@@ -1,0 +1,1 @@
+SELECT ROUND(100.0 * (SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2025' THEN Total ELSE 0 END) - SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2024' THEN Total ELSE 0 END)) / SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2024' THEN Total ELSE 0 END), 2) AS pct_change FROM Invoice;

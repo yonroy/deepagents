@@ -1,0 +1,15 @@
+INSERT INTO Customer (CustomerId, FirstName, LastName, Country, Email) VALUES
+(1,'A','A','Brazil','a1@x.com'),
+(2,'B','B','Brazil','a2@x.com'),
+(3,'C','C','Brazil','a3@x.com'),
+(4,'D','D','Brazil','a4@x.com'),
+(5,'E','E','Brazil','a5@x.com'),
+(6,'F','F','Canada','a6@x.com'),
+(7,'G','G','Canada','a7@x.com'),
+(8,'H','H','Canada','a8@x.com'),
+(9,'I','I','Canada','a9@x.com'),
+(10,'J','J','Canada','a10@x.com'),
+(11,'K','K','Canada','a11@x.com'),
+(12,'L','L','Chile','a12@x.com'),
+(13,'M','M','Chile','a13@x.com'),
+(14,'N','N','Chile','a14@x.com');

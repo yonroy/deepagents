@@ -1,0 +1,14 @@
+INSERT INTO MediaType (MediaTypeId, Name) VALUES (1,'MPEG audio file');
+INSERT INTO MediaType (MediaTypeId, Name) VALUES (2,'Protected AAC audio file');
+INSERT INTO MediaType (MediaTypeId, Name) VALUES (3,'Protected MPEG-4 video file');
+INSERT INTO Track (TrackId, Name, MediaTypeId, Milliseconds, UnitPrice) VALUES (1,'T1',1,1000,0.99);
+INSERT INTO Track (TrackId, Name, MediaTypeId, Milliseconds, UnitPrice) VALUES (2,'T2',1,1000,0.99);
+INSERT INTO Track (TrackId, Name, MediaTypeId, Milliseconds, UnitPrice) VALUES (3,'T3',2,1000,0.99);
+INSERT INTO Track (TrackId, Name, MediaTypeId, Milliseconds, UnitPrice) VALUES (4,'T4',1,1000,0.99);
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email) VALUES (1,'A','B','a@x.com');
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (1,1,'2025-01-05 00:00:00',2.97);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (2,1,'2025-02-05 00:00:00',1.98);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (1,1,1,0.99,1);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (2,2,1,0.99,1);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (3,1,2,0.99,1);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (4,2,3,0.99,1);

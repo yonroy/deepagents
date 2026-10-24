@@ -1,0 +1,6 @@
+INSERT INTO Genre (GenreId, Name) VALUES (1,'Rock'),(2,'Jazz'),(3,'Metal');
+INSERT INTO MediaType (MediaTypeId, Name) VALUES (1,'MPEG audio file');
+INSERT INTO Track (TrackId, Name, MediaTypeId, GenreId, Milliseconds, UnitPrice) VALUES (1,'r1',1,1,200000,0.99),(2,'j1',1,2,200000,0.99),(3,'m1',1,3,200000,0.99);
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email) VALUES (1,'A','One','a@x.com'),(2,'B','Two','b@x.com'),(3,'C','Three','c@x.com'),(4,'D','Four','d@x.com'),(5,'E','Five','e@x.com');
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (1,1,'2025-01-01 00:00:00',0.99),(2,1,'2025-01-02 00:00:00',0.99),(3,2,'2025-01-03 00:00:00',0.99),(4,3,'2025-01-04 00:00:00',0.99),(5,4,'2025-01-05 00:00:00',0.99),(6,4,'2025-01-06 00:00:00',0.99),(7,5,'2025-01-07 00:00:00',0.99);
+INSERT INTO InvoiceLine (InvoiceLineId, InvoiceId, TrackId, UnitPrice, Quantity) VALUES (1,1,1,0.99,1),(2,2,2,0.99,1),(3,3,1,0.99,1),(4,4,2,0.99,1),(5,5,1,0.99,1),(6,6,2,0.99,1),(7,7,3,0.99,1);

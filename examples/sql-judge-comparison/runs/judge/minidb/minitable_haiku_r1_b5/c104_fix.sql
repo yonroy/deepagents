@@ -1,0 +1,1 @@
+INSERT INTO Employee (EmployeeId, LastName, FirstName, Title, ReportsTo) VALUES (1,'Adams','Andrew','General Manager',NULL),(2,'Edwards','Nancy','Sales Manager',1),(3,'Peacock','Jane','Sales Support Agent',2);

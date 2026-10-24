@@ -1,0 +1,13 @@
+INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (1,'Album One',1);
+INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (2,'Album Two',1);
+INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (3,'Album Three',1);
+INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (4,'Album Four',1);
+INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (5,'Album Five',1);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (1,'A1',1,1,NULL,2000000,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (2,'A2',1,1,'X',2000000,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (3,'B1',2,1,NULL,1000000,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (4,'B2',2,1,'Y',3000000,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (5,'C1',3,1,'Z',2000000,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (6,'C2',3,1,'W',2000000,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (7,'D1',4,1,NULL,4000000,0.99);
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, Composer, Milliseconds, UnitPrice) VALUES (8,'E1',5,1,NULL,1000000,0.99);

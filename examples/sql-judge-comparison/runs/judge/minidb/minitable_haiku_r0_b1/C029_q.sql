@@ -1,0 +1,1 @@
+SELECT strftime('%m', InvoiceDate) AS Month, ROUND(SUM(Total), 2) AS Revenue FROM Invoice WHERE InvoiceDate >= '2025-01-01' AND InvoiceDate < '2026-01-01' GROUP BY strftime('%m', InvoiceDate) ORDER BY Month;

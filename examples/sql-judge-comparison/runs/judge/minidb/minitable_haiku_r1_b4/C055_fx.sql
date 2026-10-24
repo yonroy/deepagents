@@ -1,0 +1,14 @@
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email) VALUES (1,'Ann','A','c1@x.com');
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email) VALUES (2,'Bob','B','c2@x.com');
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email) VALUES (3,'Cy','C','c3@x.com');
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email) VALUES (4,'Dee','D','c4@x.com');
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email) VALUES (5,'Eve','E','c5@x.com');
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email) VALUES (6,'Fay','F','c6@x.com');
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (1,1,'2023-03-01 00:00:00',50.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (2,1,'2024-02-01 00:00:00',10.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (3,2,'2024-05-01 00:00:00',9.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (4,3,'2024-07-01 00:00:00',8.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (5,4,'2024-09-01 00:00:00',7.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (6,5,'2024-11-01 00:00:00',6.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (7,6,'2024-12-01 00:00:00',5.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (8,6,'2025-01-01 00:00:00',100.00);

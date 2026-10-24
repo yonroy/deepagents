@@ -1,0 +1,3 @@
+INSERT INTO Employee (EmployeeId, LastName, FirstName, Title, ReportsTo) VALUES (1,'Adams','Andrew','General Manager',NULL),(2,'Edwards','Nancy','Sales Manager',1),(3,'Peacock','Jane','Sales Support Agent',2);
+INSERT INTO Customer (CustomerId, FirstName, LastName, Email, SupportRepId) VALUES (1,'Luís','Gonçalves','a@x.com',3),(2,'Leonie','Köhler','b@x.com',3),(3,'François','Tremblay','c@x.com',2),(4,'Ann','NoRep','d@x.com',NULL);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, Total) VALUES (1,1,'2023-12-31 23:59:59',10.00),(2,2,'2023-01-01 00:00:00',5.00),(3,3,'2023-06-15 12:00:00',7.50),(4,3,'2024-01-01 00:00:00',99.00),(5,3,'2022-12-31 23:59:59',50.00),(6,4,'2023-03-01 00:00:00',20.00);

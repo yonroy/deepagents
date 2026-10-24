@@ -1,0 +1,1 @@
+SELECT mt.Name AS MediaType, COUNT(DISTINCT t.TrackId) AS TrackCount FROM MediaType mt JOIN Track t ON t.MediaTypeId = mt.MediaTypeId JOIN InvoiceLine il ON il.TrackId = t.TrackId GROUP BY mt.MediaTypeId, mt.Name ORDER BY TrackCount DESC;

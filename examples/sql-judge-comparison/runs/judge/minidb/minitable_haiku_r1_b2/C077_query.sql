@@ -1,0 +1,1 @@
+SELECT COUNT(*) AS n_albums FROM ( SELECT AlbumId FROM Track GROUP BY AlbumId HAVING SUM(Milliseconds) > 3600000 AND SUM(CASE WHEN Composer = NULL THEN 1 ELSE 0 END) > 0 );

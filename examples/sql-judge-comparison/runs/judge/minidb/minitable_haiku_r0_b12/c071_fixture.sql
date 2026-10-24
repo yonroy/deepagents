@@ -1,0 +1,5 @@
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingAddress, BillingCity, BillingState, BillingCountry, BillingPostalCode, Total) VALUES (1, 1, '2021-01-01 00:00:00', NULL, NULL, NULL, NULL, NULL, 13.85);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingAddress, BillingCity, BillingState, BillingCountry, BillingPostalCode, Total) VALUES (2, 1, '2021-01-02 00:00:00', NULL, NULL, NULL, NULL, NULL, 13.86);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingAddress, BillingCity, BillingState, BillingCountry, BillingPostalCode, Total) VALUES (3, 2, '2021-01-03 00:00:00', NULL, NULL, NULL, NULL, NULL, 13.87);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingAddress, BillingCity, BillingState, BillingCountry, BillingPostalCode, Total) VALUES (4, 3, '2021-01-04 00:00:00', NULL, NULL, NULL, NULL, NULL, 5.00);
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingAddress, BillingCity, BillingState, BillingCountry, BillingPostalCode, Total) VALUES (5, 3, '2021-01-05 00:00:00', NULL, NULL, NULL, NULL, NULL, 100.00);

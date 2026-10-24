@@ -1,0 +1,1 @@
+SELECT e.FirstName || ' ' || e.LastName AS employee_name, CASE WHEN m.EmployeeId IS NULL THEN NULL ELSE m.FirstName || ' ' || m.LastName END AS manager_name FROM Employee e LEFT JOIN Employee m ON m.EmployeeId = e.ReportsTo;
