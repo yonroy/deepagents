@@ -1,0 +1,50 @@
+[
+  {"item": "C056",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ nhân viên có chức danh 'Sales Support Agent'", "s": 1},
+     {"type": "output", "text": "Họ và tên của nhân viên", "s": 1},
+     {"type": "output", "text": "Ngày vào làm (HireDate); SQL trả về BirthDate (ngày sinh) thay vì HireDate", "s": 0}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+  {"item": "C054",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ bài hát có media type 'Protected AAC audio file' (join MediaType theo MediaTypeId)", "s": 1},
+     {"type": "aggregate", "text": "Giá bán trung bình = AVG(UnitPrice) của Track", "s": 1},
+     {"type": "output", "text": "Một giá trị trung bình", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C040",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ nghệ sĩ 'AC/DC'", "s": 1},
+     {"type": "filter", "text": "Album thuộc đúng nghệ sĩ đó (Album.ArtistId = Artist.ArtistId); SQL join al.AlbumId = ar.ArtistId, sai khóa nối", "s": 0},
+     {"type": "output", "text": "Tên album (Title)", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+  {"item": "C080",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ khách hàng ở Brazil (Country = 'Brazil')", "s": 1},
+     {"type": "aggregate", "text": "Đếm số khách hàng = COUNT(*)", "s": 1},
+     {"type": "output", "text": "Một số đếm", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C071",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ hóa đơn có Total >= 13.86 (từ 13.86 trở lên)", "s": 1},
+     {"type": "aggregate", "text": "Đếm số hóa đơn = COUNT(*)", "s": 1},
+     {"type": "output", "text": "Một số đếm", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C058",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ thể loại có ít nhất một bài hát (INNER JOIN Genre-Track)", "s": 1},
+     {"type": "aggregate", "text": "Đếm thể loại khác nhau = COUNT(DISTINCT GenreId)", "s": 1},
+     {"type": "output", "text": "Một số đếm", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]

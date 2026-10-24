@@ -1,0 +1,63 @@
+[
+{"item": "C048", "requirements": [
+ {"type": "filter", "text": "Đếm nghệ sĩ chưa từng bán được bài nào, phải tính cả nghệ sĩ không có album nào", "s": 0},
+ {"type": "filter", "text": "Nghệ sĩ chưa từng bán được bài nào: không có bài nào nằm trong InvoiceLine (chuỗi Album-Track-InvoiceLine)", "s": 1},
+ {"type": "aggregate", "text": "Đếm số nghệ sĩ", "s": 1}
+], "errors": [], "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+{"item": "C016", "requirements": [
+ {"type": "filter", "text": "Chỉ lấy album của nghệ sĩ 'Iron Maiden'", "s": 1},
+ {"type": "group", "text": "Theo từng album", "s": 1},
+ {"type": "aggregate", "text": "Số bài hát của mỗi album (LEFT JOIN Track, COUNT(TrackId))", "s": 1},
+ {"type": "output", "text": "Tên album, số bài", "s": 1}
+], "errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C001", "requirements": [
+ {"type": "filter", "text": "Playlist tên 'Grunge'", "s": 1},
+ {"type": "aggregate", "text": "Đếm số bài hát trong playlist (PlaylistTrack có khóa chính kép nên không trùng)", "s": 1},
+ {"type": "output", "text": "Số bài hát", "s": 1}
+], "errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C062", "requirements": [
+ {"type": "aggregate", "text": "Giá trị hóa đơn trung bình = AVG(Total)", "s": 1},
+ {"type": "group", "text": "Theo quốc gia thanh toán (BillingCountry)", "s": 1},
+ {"type": "filter", "text": "Chỉ các nước có ít nhất 20 hóa đơn (HAVING COUNT(*)>=20)", "s": 1},
+ {"type": "output", "text": "Quốc gia, giá trị trung bình", "s": 1}
+], "errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C013", "requirements": [
+ {"type": "aggregate", "text": "Doanh thu = SUM(UnitPrice*Quantity) trên từng dòng hóa đơn", "s": 1},
+ {"type": "group", "text": "Theo thể loại (GenreId)", "s": 1},
+ {"type": "order", "text": "Sắp xếp từ cao xuống thấp theo doanh thu", "s": 0},
+ {"type": "limit", "text": "Chỉ lấy 5 thể loại có doanh thu cao nhất; SQL sắp tăng dần nên lấy 5 thể loại thấp nhất", "s": 0},
+ {"type": "output", "text": "Tên thể loại, doanh thu", "s": 1}
+], "errors": [], "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+{"item": "C121", "requirements": [
+ {"type": "aggregate", "text": "Tổng tiền chi tiêu của mỗi khách = SUM(Total)", "s": 1},
+ {"type": "group", "text": "Khách chi tiêu nhiều nhất trong TỪNG quốc gia; SQL dùng MAX toàn cục nên chỉ trả về một khách trên toàn bộ dữ liệu", "s": 0},
+ {"type": "filter", "text": "Giữ tất cả khách hòa điểm (so sánh bằng MAX)", "s": 1},
+ {"type": "output", "text": "Quốc gia, họ tên, tổng tiền", "s": 1}
+], "errors": [], "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+{"item": "C115", "requirements": [
+ {"type": "group", "text": "Theo nghệ sĩ", "s": 1},
+ {"type": "aggregate", "text": "Số album của mỗi nghệ sĩ = COUNT(AlbumId)", "s": 1},
+ {"type": "filter", "text": "Chỉ nghệ sĩ có nhiều hơn 10 album (HAVING > 10)", "s": 1},
+ {"type": "output", "text": "Tên nghệ sĩ, số album", "s": 1}
+], "errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C034", "requirements": [
+ {"type": "group", "text": "Theo bài hát (TrackId)", "s": 1},
+ {"type": "aggregate", "text": "Số playlist khác nhau = COUNT(DISTINCT PlaylistId)", "s": 1},
+ {"type": "filter", "text": "Chỉ bài nằm trong nhiều hơn 4 playlist (HAVING n>4)", "s": 1},
+ {"type": "output", "text": "Tên bài, số playlist", "s": 1}
+], "errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C006", "requirements": [
+ {"type": "filter", "text": "Lọc hóa đơn năm 2025 và năm 2024 (CASE theo InvoiceDate, so sánh chuỗi đúng với định dạng dữ liệu)", "s": 1},
+ {"type": "aggregate", "text": "Tổng tiền hóa đơn mỗi năm = SUM(Total)", "s": 1},
+ {"type": "aggregate", "text": "Phần trăm thay đổi = (2025-2024)/2024*100, dùng 100.0 tránh chia nguyên", "s": 1},
+ {"type": "output", "text": "Làm tròn 2 chữ số, một giá trị duy nhất", "s": 1}
+], "errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C100", "requirements": [
+ {"type": "aggregate", "text": "Thời lượng trung bình = AVG(Milliseconds)", "s": 1},
+ {"type": "aggregate", "text": "Đổi sang phút (/60000.0) và làm tròn 2 chữ số", "s": 1},
+ {"type": "group", "text": "Theo thể loại (GenreId)", "s": 1},
+ {"type": "order", "text": "Từ dài đến ngắn (DESC theo AVG)", "s": 1},
+ {"type": "limit", "text": "Lấy 3 thể loại", "s": 1},
+ {"type": "output", "text": "Tên thể loại, thời lượng trung bình (phút)", "s": 1}
+], "errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]

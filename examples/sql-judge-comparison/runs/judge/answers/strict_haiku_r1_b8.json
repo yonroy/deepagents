@@ -1,0 +1,97 @@
+[
+  {"item": "C034",
+   "requirements": [
+     {"type": "filter", "text": "Bài hát nằm trong nhiều hơn 4 playlist (HAVING > 4)", "s": 1},
+     {"type": "aggregate", "text": "Đếm số playlist khác nhau của mỗi bài (COUNT DISTINCT PlaylistId)", "s": 1},
+     {"type": "group", "text": "Nhóm theo bài hát", "s": 1},
+     {"type": "output", "text": "Tên bài và số playlist", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C047",
+   "requirements": [
+     {"type": "aggregate", "text": "Doanh thu bán lẻ = SUM(UnitPrice*Quantity) trên InvoiceLine", "s": 1},
+     {"type": "aggregate", "text": "Tỷ lệ phần trăm trên tổng doanh thu toàn bộ dòng hóa đơn", "s": 1},
+     {"type": "group", "text": "Theo loại media (MediaType)", "s": 1},
+     {"type": "output", "text": "Tên media và tỷ lệ phần trăm, làm tròn 2 chữ số", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C009",
+   "requirements": [
+     {"type": "aggregate", "text": "Doanh thu = SUM(UnitPrice*Quantity) theo dòng hóa đơn", "s": 1},
+     {"type": "group", "text": "Theo thể loại (Genre)", "s": 1},
+     {"type": "order", "text": "Giảm dần theo doanh thu", "s": 1},
+     {"type": "limit", "text": "Top 5", "s": 1},
+     {"type": "output", "text": "Tên thể loại và doanh thu", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C103",
+   "requirements": [
+     {"type": "filter", "text": "Hóa đơn trong năm 2024 (InvoiceDate >= 2024-01-01 và < 2025-01-01)", "s": 1},
+     {"type": "aggregate", "text": "Tổng tiền = SUM(Invoice.Total) theo khách", "s": 1},
+     {"type": "group", "text": "Theo khách hàng", "s": 1},
+     {"type": "order", "text": "Giảm dần theo tổng tiền", "s": 1},
+     {"type": "limit", "text": "Top 5", "s": 1},
+     {"type": "output", "text": "Họ tên (ghép FirstName LastName) và tổng tiền", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C065",
+   "requirements": [
+     {"type": "aggregate", "text": "Tổng chi tiêu toàn thời gian của mỗi khách = SUM(Invoice.Total)", "s": 1},
+     {"type": "group", "text": "Theo quốc gia: lấy khách có tổng chi cao nhất trong mỗi quốc gia", "s": 1},
+     {"type": "filter", "text": "Giữ tất cả khách đồng hạng (nếu hòa thì liệt kê tất cả)", "s": 1},
+     {"type": "output", "text": "Quốc gia, họ tên, tổng tiền (làm tròn 2 chữ số)", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C075",
+   "requirements": [
+     {"type": "filter", "text": "Tách hóa đơn năm 2025 và năm 2024 bằng strftime('%Y', InvoiceDate)", "s": 1},
+     {"type": "aggregate", "text": "Tổng tiền hóa đơn mỗi năm = SUM(Invoice.Total)", "s": 1},
+     {"type": "aggregate", "text": "Phần trăm thay đổi = 100*(2025-2024)/2024", "s": 1},
+     {"type": "output", "text": "Làm tròn 2 chữ số, dấu âm nghĩa là giảm", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C031",
+   "requirements": [
+     {"type": "filter", "text": "Playlist tên đúng 'Grunge'", "s": 1},
+     {"type": "aggregate", "text": "Đếm số bài hát của playlist (COUNT(*) trên PlaylistTrack); có thể đếm trùng nếu có nhiều playlist trùng tên, vì câu hỏi không nói DISTINCT (schema và câu C033 cho thấy có thể có playlist trùng tên)", "s": 0.5},
+     {"type": "output", "text": "Trả về một số đếm", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 0.5, "penalty": 1, "score": 5, "verdict": "incorrect"},
+  {"item": "C081",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ khách hàng ở Đức (Customer.Country = 'Germany'): SQL không join Customer và không có điều kiện quốc gia", "s": 0},
+     {"type": "filter", "text": "Hóa đơn trong năm 2024", "s": 1},
+     {"type": "aggregate", "text": "Doanh thu bán lẻ = SUM(UnitPrice*Quantity)", "s": 1},
+     {"type": "group", "text": "Theo nghệ sĩ", "s": 1},
+     {"type": "order", "text": "Giảm dần theo doanh thu", "s": 1},
+     {"type": "limit", "text": "Top 3", "s": 1},
+     {"type": "output", "text": "Tên nghệ sĩ và doanh thu", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+  {"item": "C033",
+   "requirements": [
+     {"type": "filter", "text": "Playlist tên 'Music' (kể cả nhiều playlist trùng tên)", "s": 1},
+     {"type": "aggregate", "text": "Đếm bài hát khác nhau (COUNT DISTINCT TrackId)", "s": 1},
+     {"type": "output", "text": "Một số đếm", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C010",
+   "requirements": [
+     {"type": "aggregate", "text": "Số khách hàng mỗi quốc gia = COUNT(*)", "s": 1},
+     {"type": "filter", "text": "Chỉ quốc gia có từ 5 khách trở lên (HAVING >= 5)", "s": 1},
+     {"type": "filter", "text": "Loại bỏ Country IS NULL", "s": 1},
+     {"type": "group", "text": "Theo quốc gia", "s": 1},
+     {"type": "output", "text": "Quốc gia và số khách hàng", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]

@@ -1,0 +1,87 @@
+[
+  {"item": "C112",
+   "requirements": [
+     {"type": "filter", "text": "Khách hàng ở Đức (Country = 'Germany')", "s": 1},
+     {"type": "filter", "text": "Hóa đơn trong năm 2024", "s": 1},
+     {"type": "aggregate", "text": "Doanh thu = SUM(UnitPrice*Quantity)", "s": 1},
+     {"type": "group", "text": "Theo nghệ sĩ", "s": 1},
+     {"type": "order", "text": "Doanh thu giảm dần", "s": 1},
+     {"type": "limit", "text": "3 nghệ sĩ", "s": 1},
+     {"type": "output", "text": "Tên nghệ sĩ, doanh thu", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C051",
+   "requirements": [
+     {"type": "filter", "text": "Tính trên toàn bộ thời gian (không lọc ngày)", "s": 1},
+     {"type": "filter", "text": "Bỏ khách không có quốc gia", "s": 1},
+     {"type": "aggregate", "text": "Tổng tiền = SUM(Invoice.Total) theo khách", "s": 1},
+     {"type": "group", "text": "Theo từng quốc gia", "s": 1},
+     {"type": "limit", "text": "Khách chi nhiều nhất mỗi quốc gia, giữ cả hòa", "s": 1},
+     {"type": "output", "text": "Quốc gia, họ tên, tổng tiền", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C007",
+   "requirements": [
+     {"type": "filter", "text": "Chức danh = 'Sales Support Agent'", "s": 1},
+     {"type": "output", "text": "Họ, tên, ngày vào làm", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C087",
+   "requirements": [
+     {"type": "filter", "text": "Khách ở Brazil (dữ liệu ghi 'Brazil', SQL ghi 'Brasil')", "s": 0},
+     {"type": "aggregate", "text": "Đếm số khách hàng", "s": 1},
+     {"type": "output", "text": "Một số đếm", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+
+  {"item": "C066",
+   "requirements": [
+     {"type": "filter", "text": "Nghệ sĩ = 'AC/DC'", "s": 1},
+     {"type": "output", "text": "Tên album", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C083",
+   "requirements": [
+     {"type": "filter", "text": "Media type = 'Protected AAC audio file'", "s": 1},
+     {"type": "aggregate", "text": "Trung bình UnitPrice của bài hát", "s": 1},
+     {"type": "output", "text": "Một giá trị trung bình", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C097",
+   "requirements": [
+     {"type": "filter", "text": "Tổng hóa đơn từ 13.86 trở lên (>=), SQL dùng >", "s": 0},
+     {"type": "aggregate", "text": "Đếm số hóa đơn", "s": 1},
+     {"type": "output", "text": "Một số đếm", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+
+  {"item": "C091",
+   "requirements": [
+     {"type": "aggregate", "text": "Đếm số thể loại khác nhau (COUNT DISTINCT GenreId), SQL đếm số bài hát", "s": 0},
+     {"type": "filter", "text": "Chỉ thể loại có ít nhất một bài hát", "s": 1},
+     {"type": "output", "text": "Một số đếm", "s": 1}
+   ],
+   "errors": ["distinct"],
+   "weakest": 0, "penalty": 0.6, "score": 0, "verdict": "incorrect"},
+
+  {"item": "C107",
+   "requirements": [
+     {"type": "order", "text": "Từ dài đến ngắn (DESC), SQL dùng ASC", "s": 0},
+     {"type": "limit", "text": "10 bài", "s": 1},
+     {"type": "output", "text": "Tên bài và thời lượng (ms)", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"}
+]

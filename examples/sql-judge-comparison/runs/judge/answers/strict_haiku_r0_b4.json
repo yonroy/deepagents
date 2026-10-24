@@ -1,0 +1,102 @@
+[
+  {"item": "C106",
+   "requirements": [
+     {"type": "output", "text": "Họ tên nhân viên (FirstName + LastName)", "s": 1},
+     {"type": "output", "text": "Họ tên người quản lý trực tiếp", "s": 1},
+     {"type": "filter", "text": "Giữ mọi nhân viên (LEFT JOIN từ Employee)", "s": 1},
+     {"type": "null", "text": "Nhân viên không có quản lý thì cột quản lý để trống", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C032",
+   "requirements": [
+     {"type": "output", "text": "Tên nhân viên", "s": 1},
+     {"type": "aggregate", "text": "Đếm số khách mỗi nhân viên phụ trách", "s": 1},
+     {"type": "filter", "text": "Giữ cả nhân viên không phụ trách khách nào (LEFT JOIN)", "s": 1},
+     {"type": "null", "text": "Nhân viên không có khách phải ghi 0; COUNT(*) đếm dòng NULL của LEFT JOIN nên ra 1", "s": 0}
+   ],
+   "errors": ["null"],
+   "weakest": 0, "penalty": 0.6, "score": 0, "verdict": "incorrect"},
+
+  {"item": "C021",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ xét bài thuộc album (AlbumId không NULL)", "s": 1},
+     {"type": "aggregate", "text": "Tổng thời lượng album > 1 giờ (SUM(Milliseconds) > 3600000)", "s": 1},
+     {"type": "filter", "text": "Album có ít nhất một bài Composer trống (NULL hoặc rỗng)", "s": 1},
+     {"type": "output", "text": "Số lượng album thỏa mãn", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C008",
+   "requirements": [
+     {"type": "output", "text": "Tên loại media và số bài hát", "s": 1},
+     {"type": "filter", "text": "Chỉ tính bài đã từng được bán (có dòng InvoiceLine)", "s": 1},
+     {"type": "aggregate", "text": "Đếm bài khác nhau (COUNT(DISTINCT TrackId))", "s": 1},
+     {"type": "group", "text": "Theo loại media", "s": 1},
+     {"type": "filter", "text": "Mỗi loại media đều có mặt, kể cả loại chưa bán bài nào (INNER JOIN có thể bỏ sót); nghi ngờ thực sự", "s": 0.5}
+   ],
+   "errors": [],
+   "weakest": 0.5, "penalty": 1, "score": 5.0, "verdict": "incorrect"},
+
+  {"item": "C096",
+   "requirements": [
+     {"type": "aggregate", "text": "Tổng SUM(Total) của hóa đơn", "s": 1},
+     {"type": "filter", "text": "Từ 2025-01-01 trở đi", "s": 1},
+     {"type": "filter", "text": "Đến hết ngày 31/3/2025; InvoiceDate có giờ nên so sánh với '2025-03-31' loại mất hóa đơn ngày 31/3", "s": 0},
+     {"type": "output", "text": "Làm tròn 2 chữ số", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+
+  {"item": "C012",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ năm 2025", "s": 1},
+     {"type": "aggregate", "text": "Tổng doanh thu mỗi tháng", "s": 1},
+     {"type": "group", "text": "Nhóm theo tháng; strftime('%d') lấy ngày trong tháng, không phải tháng", "s": 0},
+     {"type": "order", "text": "Thứ tự tháng 1 đến 12; đang sắp theo ngày", "s": 0},
+     {"type": "output", "text": "Cột tháng hiển thị đúng tháng", "s": 0}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+
+  {"item": "C119",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ hóa đơn năm 2023", "s": 1},
+     {"type": "aggregate", "text": "Doanh thu = tổng tiền hóa đơn, không bị nhân lên", "s": 0},
+     {"type": "group", "text": "Theo nhân viên hỗ trợ qua khách hàng", "s": 1},
+     {"type": "output", "text": "Họ tên nhân viên và doanh thu", "s": 1}
+   ],
+   "errors": ["fan_out"],
+   "weakest": 0, "penalty": 0.4, "score": 0, "verdict": "incorrect"},
+
+  {"item": "C037",
+   "requirements": [
+     {"type": "filter", "text": "Khách có ít nhất một bài thể loại Rock", "s": 1},
+     {"type": "filter", "text": "Khách có ít nhất một bài thể loại Jazz", "s": 1},
+     {"type": "filter", "text": "Điều kiện Rock VÀ Jazz trên cùng một khách (EXISTS theo CustomerId)", "s": 1},
+     {"type": "aggregate", "text": "Đếm số khách hàng", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C075",
+   "requirements": [
+     {"type": "aggregate", "text": "Doanh thu 2025 (SUM Total năm 2025)", "s": 1},
+     {"type": "aggregate", "text": "Doanh thu 2024 (SUM Total năm 2024)", "s": 1},
+     {"type": "aggregate", "text": "Công thức phần trăm thay đổi = 100*(2025-2024)/2024; số âm là giảm", "s": 1},
+     {"type": "output", "text": "Làm tròn 2 chữ số", "s": 1},
+     {"type": "filter", "text": "Chỉ dùng năm 2024 và 2025", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C004",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ playlist có tên 'Music' (kể cả trùng tên)", "s": 1},
+     {"type": "aggregate", "text": "Đếm số bài khác nhau; COUNT(pt.TrackId) đếm dòng, bài trùng giữa các playlist bị tính lặp", "s": 0}
+   ],
+   "errors": ["distinct"],
+   "weakest": 0, "penalty": 0.6, "score": 0, "verdict": "incorrect"}
+]

@@ -1,0 +1,148 @@
+[
+  {
+    "item": "C072",
+    "requirements": [
+      {"type": "output", "text": "Họ tên nhân viên", "s": 1},
+      {"type": "output", "text": "Họ tên người quản lý trực tiếp", "s": 1},
+      {"type": "filter", "text": "Giữ mọi nhân viên, kể cả người không có quản lý (LEFT JOIN, cột quản lý để trống)", "s": 1},
+      {"type": "filter", "text": "Ghép quản lý theo ReportsTo = EmployeeId", "s": 1}
+    ],
+    "errors": [],
+    "weakest": 1,
+    "penalty": 1,
+    "score": 10.00,
+    "verdict": "correct"
+  },
+  {
+    "item": "C026",
+    "requirements": [
+      {"type": "filter", "text": "Giữ mọi nhân viên, kể cả người không phụ trách khách nào", "s": 1},
+      {"type": "aggregate", "text": "Đếm số khách hàng phụ trách mỗi nhân viên (người không có khách ghi 0)", "s": 1},
+      {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+      {"type": "output", "text": "Tên nhân viên và số khách hàng", "s": 1}
+    ],
+    "errors": [],
+    "weakest": 1,
+    "penalty": 1,
+    "score": 10.00,
+    "verdict": "correct"
+  },
+  {
+    "item": "C046",
+    "requirements": [
+      {"type": "filter", "text": "Khách có ít nhất một bài thể loại Rock", "s": 1},
+      {"type": "filter", "text": "Khách có ít nhất một bài thể loại Jazz", "s": 1},
+      {"type": "filter", "text": "Điều kiện VÀ: khách phải thỏa cả hai (INTERSECT)", "s": 1},
+      {"type": "aggregate", "text": "Đếm số khách hàng khác nhau", "s": 1}
+    ],
+    "errors": [],
+    "weakest": 1,
+    "penalty": 1,
+    "score": 10.00,
+    "verdict": "correct"
+  },
+  {
+    "item": "C118",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ hóa đơn trong năm 2025", "s": 1},
+      {"type": "group", "text": "Nhóm theo tháng (12 nhóm, tháng 1 đến 12). Code dùng strftime('%d') nên nhóm theo ngày trong tháng (01..31), không phải tháng", "s": 0},
+      {"type": "aggregate", "text": "Tổng doanh thu (SUM Total) mỗi tháng, làm tròn 2 chữ số", "s": 1},
+      {"type": "order", "text": "Sắp xếp từ tháng 1 đến tháng 12. ORDER BY trên giá trị ngày nên thứ tự sai", "s": 0},
+      {"type": "output", "text": "Cột tháng và doanh thu. Cột tháng hiện số ngày, không phải tháng", "s": 0}
+    ],
+    "errors": [],
+    "weakest": 0,
+    "penalty": 1,
+    "score": 0.00,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C122",
+    "requirements": [
+      {"type": "aggregate", "text": "Tổng thời lượng album > 1 giờ (3600000 ms)", "s": 1},
+      {"type": "filter", "text": "Album có ít nhất một bài với Composer trống (NULL hoặc rỗng)", "s": 1},
+      {"type": "filter", "text": "Điều kiện VÀ giữa hai điều kiện trên", "s": 1},
+      {"type": "aggregate", "text": "Đếm số album thỏa điều kiện", "s": 1}
+    ],
+    "errors": [],
+    "weakest": 1,
+    "penalty": 1,
+    "score": 10.00,
+    "verdict": "correct"
+  },
+  {
+    "item": "C022",
+    "requirements": [
+      {"type": "group", "text": "Theo từng loại media", "s": 1},
+      {"type": "aggregate", "text": "Đếm bài khác nhau đã từng được bán (COUNT DISTINCT trên InvoiceLine)", "s": 1},
+      {"type": "filter", "text": "Mỗi loại media được liệt kê, kể cả loại chưa bán bài nào. JOIN trong là INNER nên có thể bỏ sót loại không có dòng bán. Nghi ngờ thật sự", "s": 0.5},
+      {"type": "output", "text": "Tên loại media và số bài", "s": 1}
+    ],
+    "errors": [],
+    "weakest": 0.5,
+    "penalty": 1,
+    "score": 5.00,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C024",
+    "requirements": [
+      {"type": "filter", "text": "Hóa đơn từ 2025-01-01 trở đi", "s": 1},
+      {"type": "filter", "text": "Bao gồm toàn bộ ngày 31/03/2025. InvoiceDate là DATETIME dạng 'YYYY-MM-DD HH:MM:SS', so sánh với '2025-03-31' loại mất hóa đơn có giờ sau 00:00:00 của ngày 31/03", "s": 0},
+      {"type": "aggregate", "text": "Tổng tiền hóa đơn (SUM Total)", "s": 1},
+      {"type": "output", "text": "Một con số doanh thu, làm tròn 2 chữ số", "s": 1}
+    ],
+    "errors": [],
+    "weakest": 0,
+    "penalty": 1,
+    "score": 0.00,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C050",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ hóa đơn năm 2023 (điều kiện đặt trong ON của LEFT JOIN)", "s": 1},
+      {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+      {"type": "filter", "text": "Giữ mọi nhân viên, kể cả người có doanh thu 0 (COALESCE)", "s": 1},
+      {"type": "aggregate", "text": "Tổng doanh thu qua các khách hàng phụ trách, không bị nhân dòng", "s": 1},
+      {"type": "output", "text": "Họ tên nhân viên và doanh thu", "s": 1}
+    ],
+    "errors": [],
+    "weakest": 1,
+    "penalty": 1,
+    "score": 10.00,
+    "verdict": "correct"
+  },
+  {
+    "item": "C070",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ hóa đơn năm 2024", "s": 1},
+      {"type": "aggregate", "text": "Tổng tiền hóa đơn mỗi khách (SUM Total)", "s": 1},
+      {"type": "group", "text": "Theo từng khách hàng", "s": 1},
+      {"type": "order", "text": "Giảm dần theo tổng tiền", "s": 1},
+      {"type": "limit", "text": "5 khách hàng", "s": 1},
+      {"type": "output", "text": "Họ tên khách và tổng tiền", "s": 1}
+    ],
+    "errors": [],
+    "weakest": 1,
+    "penalty": 1,
+    "score": 10.00,
+    "verdict": "correct"
+  },
+  {
+    "item": "C110",
+    "requirements": [
+      {"type": "aggregate", "text": "Thời lượng trung bình mỗi thể loại (AVG Milliseconds)", "s": 1},
+      {"type": "group", "text": "Theo từng thể loại", "s": 1},
+      {"type": "aggregate", "text": "Đổi sang phút. Code chia cho 1000.0 nên ra giây, không phải phút (cần 60000.0)", "s": 0},
+      {"type": "output", "text": "Làm tròn 2 chữ số", "s": 1},
+      {"type": "order", "text": "Từ dài đến ngắn theo thời lượng trung bình", "s": 1},
+      {"type": "limit", "text": "3 thể loại", "s": 1}
+    ],
+    "errors": [],
+    "weakest": 0,
+    "penalty": 1,
+    "score": 0.00,
+    "verdict": "incorrect"
+  }
+]

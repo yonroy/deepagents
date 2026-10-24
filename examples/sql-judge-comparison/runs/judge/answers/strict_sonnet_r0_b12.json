@@ -1,0 +1,32 @@
+[
+{"item": "C071",
+ "requirements": [
+  {"type": "filter", "text": "Total >= 13.86 (inclusive)", "s": 1},
+  {"type": "aggregate", "text": "COUNT of invoices", "s": 1},
+  {"type": "output", "text": "single count", "s": 1}],
+ "errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C056",
+ "requirements": [
+  {"type": "filter", "text": "Title = 'Sales Support Agent'", "s": 1},
+  {"type": "output", "text": "LastName, FirstName", "s": 1},
+  {"type": "output", "text": "hire date (HireDate), but SQL selects BirthDate", "s": 0}],
+ "errors": [], "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+{"item": "C083",
+ "requirements": [
+  {"type": "filter", "text": "MediaType Name = 'Protected AAC audio file'", "s": 1},
+  {"type": "aggregate", "text": "AVG of Track.UnitPrice", "s": 1},
+  {"type": "output", "text": "single average value", "s": 1}],
+ "errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C058",
+ "requirements": [
+  {"type": "filter", "text": "only genres having at least one track (inner join Track)", "s": 1},
+  {"type": "aggregate", "text": "count distinct genres", "s": 1},
+  {"type": "output", "text": "single count", "s": 1}],
+ "errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C087",
+ "requirements": [
+  {"type": "filter", "text": "Country = 'Brazil' but SQL uses 'Brasil'", "s": 0},
+  {"type": "aggregate", "text": "COUNT customers", "s": 1},
+  {"type": "output", "text": "single count", "s": 1}],
+ "errors": [], "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"}
+]

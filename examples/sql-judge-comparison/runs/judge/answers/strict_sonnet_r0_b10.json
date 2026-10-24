@@ -1,0 +1,45 @@
+[
+{"item": "C076", "requirements": [
+{"type": "filter", "text": "invoices in year 2024", "s": 1},
+{"type": "aggregate", "text": "total spend = SUM(Invoice.Total) per customer", "s": 1},
+{"type": "group", "text": "per customer", "s": 1},
+{"type": "order", "text": "descending by total", "s": 1},
+{"type": "limit", "text": "5", "s": 1},
+{"type": "output", "text": "full name and total", "s": 1}],
+"errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C059", "requirements": [
+{"type": "group", "text": "per artist", "s": 1},
+{"type": "aggregate", "text": "count albums", "s": 1},
+{"type": "filter", "text": "count > 10", "s": 1},
+{"type": "output", "text": "artist name and album count", "s": 1}],
+"errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C080", "requirements": [
+{"type": "filter", "text": "Country = Brazil", "s": 1},
+{"type": "aggregate", "text": "count customers", "s": 1}],
+"errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C078", "requirements": [
+{"type": "aggregate", "text": "count distinct genres", "s": 1},
+{"type": "filter", "text": "genre has at least one track (non-null GenreId in Track)", "s": 1}],
+"errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C054", "requirements": [
+{"type": "filter", "text": "media type = 'Protected AAC audio file'", "s": 1},
+{"type": "aggregate", "text": "AVG(Track.UnitPrice)", "s": 1}],
+"errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C007", "requirements": [
+{"type": "filter", "text": "Title = 'Sales Support Agent'", "s": 1},
+{"type": "output", "text": "last name, first name, hire date", "s": 1}],
+"errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C097", "requirements": [
+{"type": "filter", "text": "Total >= 13.86 (từ 13.86 trở lên, inclusive)", "s": 0},
+{"type": "aggregate", "text": "count invoices", "s": 1}],
+"errors": [], "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+{"item": "C052", "requirements": [
+{"type": "filter", "text": "artist = AC/DC", "s": 1},
+{"type": "output", "text": "album titles", "s": 1}],
+"errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+{"item": "C086", "requirements": [
+{"type": "order", "text": "by Milliseconds descending", "s": 1},
+{"type": "limit", "text": "10", "s": 1},
+{"type": "output", "text": "track name and milliseconds", "s": 1}],
+"errors": [], "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]

@@ -1,0 +1,93 @@
+[
+ {"item": "C038",
+  "requirements": [
+   {"type": "filter", "text": "Liệt kê tất cả nhân viên, kể cả người không phụ trách khách nào", "s": 0},
+   {"type": "aggregate", "text": "Số khách hàng mỗi nhân viên phụ trách = COUNT", "s": 1},
+   {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+   {"type": "output", "text": "Họ tên nhân viên, số khách", "s": 1}
+  ],
+  "errors": ["join_type"],
+  "weakest": 0, "penalty": 0.5, "score": 0, "verdict": "incorrect"},
+ {"item": "C106",
+  "requirements": [
+   {"type": "output", "text": "Họ tên mọi nhân viên", "s": 1},
+   {"type": "filter", "text": "Giữ nhân viên không có quản lý (LEFT JOIN theo ReportsTo)", "s": 1},
+   {"type": "output", "text": "Họ tên người quản lý trực tiếp", "s": 1},
+   {"type": "output", "text": "Quản lý để trống (NULL) khi không có", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C011",
+  "requirements": [
+   {"type": "filter", "text": "Hóa đơn từ 01/01/2025 đến hết 31/03/2025", "s": 1},
+   {"type": "aggregate", "text": "Tổng doanh thu = SUM(Total)", "s": 1},
+   {"type": "output", "text": "Một con số tổng doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C114",
+  "requirements": [
+   {"type": "filter", "text": "Album có tổng thời lượng trên 1 giờ (tính trên mọi bài của album)", "s": 0},
+   {"type": "filter", "text": "Album có ít nhất một bài không có Composer", "s": 1},
+   {"type": "group", "text": "Theo từng album", "s": 1},
+   {"type": "aggregate", "text": "Đếm số album thỏa cả hai điều kiện", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+ {"item": "C109",
+  "requirements": [
+   {"type": "filter", "text": "Bài thuộc thể loại Rock hoặc Jazz", "s": 1},
+   {"type": "filter", "text": "Khách đã mua CẢ Rock VÀ Jazz", "s": 0},
+   {"type": "group", "text": "Mỗi khách đếm một lần", "s": 1},
+   {"type": "aggregate", "text": "Đếm số khách hàng", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+ {"item": "C015",
+  "requirements": [
+   {"type": "group", "text": "Theo từng loại media", "s": 1},
+   {"type": "aggregate", "text": "Đếm số bài khác nhau đã từng được bán (COUNT DISTINCT TrackId)", "s": 0},
+   {"type": "output", "text": "Tên loại media, số bài", "s": 1}
+  ],
+  "errors": ["distinct"],
+  "weakest": 0, "penalty": 0.6, "score": 0, "verdict": "incorrect"},
+ {"item": "C119",
+  "requirements": [
+   {"type": "filter", "text": "Hóa đơn trong năm 2023", "s": 1},
+   {"type": "aggregate", "text": "Doanh thu = tổng tiền hóa đơn của mỗi nhân viên (không bị nhân dòng)", "s": 0},
+   {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+   {"type": "output", "text": "Họ tên nhân viên, doanh thu", "s": 1}
+  ],
+  "errors": ["fan_out"],
+  "weakest": 0, "penalty": 0.4, "score": 0, "verdict": "incorrect"},
+ {"item": "C073",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ hóa đơn năm 2025", "s": 1},
+   {"type": "group", "text": "Theo từng tháng", "s": 1},
+   {"type": "aggregate", "text": "Doanh thu = SUM(Total) mỗi tháng", "s": 1},
+   {"type": "order", "text": "Theo thứ tự tháng 1 đến 12", "s": 1},
+   {"type": "output", "text": "Tháng, doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C059",
+  "requirements": [
+   {"type": "group", "text": "Theo từng nghệ sĩ", "s": 1},
+   {"type": "aggregate", "text": "Đếm số album mỗi nghệ sĩ", "s": 1},
+   {"type": "filter", "text": "Chỉ nghệ sĩ có nhiều hơn 10 album", "s": 1},
+   {"type": "output", "text": "Tên nghệ sĩ, số album", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C039",
+  "requirements": [
+   {"type": "aggregate", "text": "Thời lượng trung bình mỗi thể loại = AVG(Milliseconds)", "s": 1},
+   {"type": "aggregate", "text": "Đổi sang phút (chia 60000)", "s": 1},
+   {"type": "aggregate", "text": "Làm tròn 2 chữ số", "s": 1},
+   {"type": "order", "text": "Từ dài đến ngắn", "s": 1},
+   {"type": "limit", "text": "3 thể loại", "s": 1},
+   {"type": "output", "text": "Tên thể loại, thời lượng phút", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]

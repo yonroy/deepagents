@@ -1,0 +1,56 @@
+[
+ {"item": "C069",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ khách hàng ở Brazil (Country = 'Brazil')", "s": 1},
+   {"type": "aggregate", "text": "Đếm số khách hàng", "s": 1},
+   {"type": "output", "text": "Một số đếm duy nhất", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C095",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ nhân viên có Title = 'Sales Support Agent'", "s": 1},
+   {"type": "output", "text": "Họ, tên, ngày vào làm (HireDate)", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C061",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ bài hát thuộc media type 'Protected AAC audio file' (SQL không có điều kiện m.Name = 'Protected AAC audio file')", "s": 0},
+   {"type": "aggregate", "text": "Giá trung bình UnitPrice, làm tròn 2 chữ số", "s": 1},
+   {"type": "output", "text": "Một giá trị trung bình", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+ {"item": "C052",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ nghệ sĩ có Name = 'AC/DC'", "s": 1},
+   {"type": "output", "text": "Tên album (Title)", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C084",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ hóa đơn có Total >= 13.86", "s": 1},
+   {"type": "aggregate", "text": "Đếm số hóa đơn", "s": 1},
+   {"type": "output", "text": "Một số đếm duy nhất", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C078",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ bài hát có thể loại (GenreId không NULL)", "s": 1},
+   {"type": "aggregate", "text": "Đếm số thể loại khác nhau (COUNT DISTINCT GenreId)", "s": 1},
+   {"type": "output", "text": "Một số đếm duy nhất", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C086",
+  "requirements": [
+   {"type": "order", "text": "Sắp xếp Milliseconds giảm dần", "s": 1},
+   {"type": "limit", "text": "Lấy 10 bài", "s": 1},
+   {"type": "output", "text": "Tên bài và Milliseconds", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]

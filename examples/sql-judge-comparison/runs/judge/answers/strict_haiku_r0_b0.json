@@ -1,0 +1,97 @@
+[
+ {"item": "C116",
+  "requirements": [
+   {"type": "output", "text": "Họ tên mỗi nhân viên", "s": 1},
+   {"type": "filter", "text": "Giữ mọi nhân viên (kể cả không có quản lý)", "s": 1},
+   {"type": "output", "text": "Họ tên người quản lý trực tiếp của mỗi nhân viên (ReportsTo)", "s": 0},
+   {"type": "null", "text": "Nhân viên không có quản lý thì cột quản lý để trống", "s": 0}
+  ],
+  "errors": [],
+  "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+ {"item": "C038",
+  "requirements": [
+   {"type": "output", "text": "Tên nhân viên", "s": 1},
+   {"type": "aggregate", "text": "Số khách hàng phụ trách (COUNT)", "s": 1},
+   {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+   {"type": "filter", "text": "Giữ cả nhân viên không phụ trách khách nào", "s": 0},
+   {"type": "output", "text": "Ghi 0 cho nhân viên không có khách", "s": 0}
+  ],
+  "errors": ["join_type"],
+  "weakest": 0, "penalty": 0.5, "score": 0, "verdict": "incorrect"},
+ {"item": "C109",
+  "requirements": [
+   {"type": "filter", "text": "Thể loại Rock hoặc Jazz", "s": 1},
+   {"type": "filter", "text": "Khách đã mua CẢ Rock VÀ Jazz", "s": 0},
+   {"type": "aggregate", "text": "Đếm số khách hàng khác nhau", "s": 1},
+   {"type": "output", "text": "Một số duy nhất", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+ {"item": "C018",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ năm 2025", "s": 1},
+   {"type": "aggregate", "text": "Tổng Total hóa đơn theo tháng", "s": 1},
+   {"type": "group", "text": "Theo từng tháng", "s": 1},
+   {"type": "order", "text": "Theo thứ tự tháng 1 đến 12", "s": 1},
+   {"type": "output", "text": "Tháng và doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C017",
+  "requirements": [
+   {"type": "filter", "text": "Quý 1 năm 2025 (từ 2025-01-01 đến trước 2025-04-01)", "s": 1},
+   {"type": "aggregate", "text": "SUM(Total) của hóa đơn", "s": 1},
+   {"type": "output", "text": "Một giá trị tổng doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C025",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ hóa đơn năm 2023", "s": 1},
+   {"type": "filter", "text": "Nhân viên -> khách phụ trách (SupportRepId) -> hóa đơn", "s": 1},
+   {"type": "aggregate", "text": "Doanh thu = tổng Total của hóa đơn, không bị nhân dòng", "s": 0},
+   {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+   {"type": "output", "text": "Họ tên nhân viên và doanh thu", "s": 1}
+  ],
+  "errors": ["fan_out"],
+  "weakest": 0, "penalty": 0.4, "score": 0, "verdict": "incorrect"},
+ {"item": "C114",
+  "requirements": [
+   {"type": "filter", "text": "Album có ít nhất một bài chưa có Composer", "s": 1},
+   {"type": "aggregate", "text": "Tổng thời lượng TOÀN album > 1 giờ", "s": 0},
+   {"type": "aggregate", "text": "Đếm số album", "s": 1},
+   {"type": "group", "text": "Theo từng album", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+ {"item": "C015",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ bài đã từng được bán (có trong InvoiceLine)", "s": 1},
+   {"type": "aggregate", "text": "Đếm số bài hát khác nhau đã bán", "s": 0},
+   {"type": "group", "text": "Theo loại media", "s": 1},
+   {"type": "output", "text": "Tên loại media và số bài", "s": 1}
+  ],
+  "errors": ["distinct"],
+  "weakest": 0, "penalty": 0.6, "score": 0, "verdict": "incorrect"},
+ {"item": "C041",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ năm 2024 và 2025", "s": 1},
+   {"type": "aggregate", "text": "Tổng doanh thu từng năm 2024 và 2025", "s": 1},
+   {"type": "aggregate", "text": "Công thức (2025 - 2024) / 2024 * 100", "s": 1},
+   {"type": "output", "text": "Làm tròn 2 chữ số", "s": 1},
+   {"type": "output", "text": "Số âm nghĩa là giảm", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C076",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ năm 2024", "s": 1},
+   {"type": "aggregate", "text": "SUM(Total) theo từng khách", "s": 1},
+   {"type": "group", "text": "Theo từng khách hàng (CustomerId)", "s": 1},
+   {"type": "order", "text": "Giảm dần theo tổng tiền", "s": 1},
+   {"type": "limit", "text": "5 khách", "s": 1},
+   {"type": "output", "text": "Họ tên và tổng tiền", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]

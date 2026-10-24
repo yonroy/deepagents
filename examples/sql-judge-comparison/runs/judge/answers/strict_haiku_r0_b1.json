@@ -1,0 +1,90 @@
+[
+ {"item": "C067",
+  "requirements": [
+    {"type": "filter", "text": "Giữ cả nhân viên không có quản lý (LEFT JOIN từ Employee e)", "s": 1},
+    {"type": "output", "text": "Họ tên nhân viên (FirstName + LastName)", "s": 1},
+    {"type": "output", "text": "Họ tên quản lý trực tiếp, để trống khi không có quản lý (NULL khi ReportsTo rỗng)", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C079",
+  "requirements": [
+    {"type": "filter", "text": "Liệt kê tất cả nhân viên (LEFT JOIN từ Employee e)", "s": 1},
+    {"type": "aggregate", "text": "Số khách hàng phụ trách của mỗi nhân viên (COUNT khách hàng thực sự)", "s": 0},
+    {"type": "output", "text": "Nhân viên không phụ trách khách nào phải ghi 0", "s": 0},
+    {"type": "output", "text": "Họ tên nhân viên", "s": 1}
+  ],
+  "errors": ["null"],
+  "weakest": 0, "penalty": 0.6, "score": 0, "verdict": "incorrect"},
+ {"item": "C094",
+  "requirements": [
+    {"type": "filter", "text": "Chỉ xét thể loại Rock hoặc Jazz", "s": 1},
+    {"type": "aggregate", "text": "Khách hàng có ít nhất một bài Rock VÀ ít nhất một bài Jazz (HAVING COUNT(DISTINCT g.Name) = 2)", "s": 1},
+    {"type": "output", "text": "Đếm số khách hàng thỏa điều kiện", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C011",
+  "requirements": [
+    {"type": "filter", "text": "Chỉ hóa đơn quý 1 năm 2025 (2025-01-01 đến trước 2025-04-01, string so sánh đúng với định dạng DATETIME)", "s": 1},
+    {"type": "aggregate", "text": "Tổng SUM(Total) của hóa đơn", "s": 1},
+    {"type": "output", "text": "Một giá trị tổng doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C060",
+  "requirements": [
+    {"type": "filter", "text": "Chỉ bài hát đã từng được bán ít nhất một lần (INNER JOIN InvoiceLine)", "s": 1},
+    {"type": "aggregate", "text": "Đếm số bài khác nhau (COUNT DISTINCT TrackId)", "s": 1},
+    {"type": "group", "text": "Theo loại media (mt.MediaTypeId, mt.Name)", "s": 1},
+    {"type": "output", "text": "Tên loại media và số bài", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C073",
+  "requirements": [
+    {"type": "filter", "text": "Chỉ hóa đơn năm 2025", "s": 1},
+    {"type": "aggregate", "text": "Tổng doanh thu SUM(Total) làm tròn 2 số", "s": 1},
+    {"type": "group", "text": "Theo từng tháng (strftime %m)", "s": 1},
+    {"type": "order", "text": "Thứ tự tháng 1 đến 12 (chuỗi '01'..'12' sắp đúng)", "s": 1},
+    {"type": "output", "text": "Tháng và doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C019",
+  "requirements": [
+    {"type": "filter", "text": "Chỉ hóa đơn năm 2023", "s": 1},
+    {"type": "aggregate", "text": "Doanh thu qua khách hàng phụ trách: SUM(Total) theo nhân viên, mỗi hóa đơn được tính một lần", "s": 1},
+    {"type": "group", "text": "Theo từng nhân viên hỗ trợ (EmployeeId)", "s": 1},
+    {"type": "output", "text": "Họ tên nhân viên và doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C057",
+  "requirements": [
+    {"type": "filter", "text": "Album có ít nhất một bài Composer trống (WHERE Composer IS NULL)", "s": 1},
+    {"type": "aggregate", "text": "Tổng thời lượng TOÀN BỘ bài của album trên 1 giờ; SQL chỉ cộng các bài có Composer trống nên sai điều kiện", "s": 0},
+    {"type": "output", "text": "Đếm số album", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+ {"item": "C108",
+  "requirements": [
+    {"type": "filter", "text": "Bỏ khách hàng không có quốc gia (Country IS NOT NULL)", "s": 1},
+    {"type": "aggregate", "text": "Số khách hàng của mỗi quốc gia (COUNT(*))", "s": 1},
+    {"type": "filter", "text": "Chỉ quốc gia có từ 5 khách hàng trở lên (HAVING >= 5)", "s": 1},
+    {"type": "output", "text": "Tên quốc gia và số khách hàng", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C085",
+  "requirements": [
+    {"type": "filter", "text": "Chỉ hóa đơn có quốc gia thanh toán (BillingCountry) không null", "s": 1},
+    {"type": "aggregate", "text": "Giá trị hóa đơn trung bình AVG(Total) theo quốc gia thanh toán", "s": 1},
+    {"type": "filter", "text": "Chỉ nước có ít nhất 20 hóa đơn (HAVING COUNT(*) >= 20)", "s": 1},
+    {"type": "group", "text": "Theo BillingCountry", "s": 1},
+    {"type": "output", "text": "Quốc gia và giá trị trung bình", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]

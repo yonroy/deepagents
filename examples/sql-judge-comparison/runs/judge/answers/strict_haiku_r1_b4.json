@@ -1,0 +1,91 @@
+[
+ {"item": "C002",
+  "requirements": [
+    {"type": "output", "text": "Họ tên mọi nhân viên", "s": 1},
+    {"type": "output", "text": "Họ tên người quản lý trực tiếp", "s": 1},
+    {"type": "filter", "text": "Giữ cả nhân viên không có quản lý", "s": 0},
+    {"type": "output", "text": "Cột quản lý để trống với nhân viên không có quản lý", "s": 0}
+  ],
+  "errors": ["join_type"],
+  "weakest": 0, "penalty": 0.5, "score": 0, "verdict": "incorrect"},
+ {"item": "C032",
+  "requirements": [
+    {"type": "output", "text": "Tên từng nhân viên", "s": 1},
+    {"type": "aggregate", "text": "Số khách hàng mỗi nhân viên phụ trách", "s": 0},
+    {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+    {"type": "filter", "text": "Giữ cả nhân viên không phụ trách khách nào (LEFT JOIN)", "s": 1},
+    {"type": "output", "text": "Nhân viên không có khách ghi 0", "s": 0}
+  ],
+  "errors": ["null"],
+  "weakest": 0, "penalty": 0.6, "score": 0, "verdict": "incorrect"},
+ {"item": "C029",
+  "requirements": [
+    {"type": "filter", "text": "Chỉ hóa đơn năm 2025", "s": 1},
+    {"type": "aggregate", "text": "Doanh thu = tổng Total", "s": 1},
+    {"type": "group", "text": "Theo từng tháng", "s": 1},
+    {"type": "order", "text": "Theo thứ tự tháng 1 đến 12", "s": 1},
+    {"type": "output", "text": "Tháng và doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C008",
+  "requirements": [
+    {"type": "filter", "text": "Chỉ bài hát đã từng được bán ít nhất một lần", "s": 1},
+    {"type": "aggregate", "text": "Đếm bài hát khác nhau", "s": 1},
+    {"type": "group", "text": "Theo loại media", "s": 1},
+    {"type": "output", "text": "Tên loại media và số bài", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C035",
+  "requirements": [
+    {"type": "filter", "text": "Có bài thuộc thể loại Rock", "s": 1},
+    {"type": "filter", "text": "Có bài thuộc thể loại Jazz", "s": 1},
+    {"type": "filter", "text": "Khách phải mua CẢ Rock VÀ Jazz", "s": 0},
+    {"type": "aggregate", "text": "Đếm số khách hàng khác nhau", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+ {"item": "C117",
+  "requirements": [
+    {"type": "filter", "text": "Quý 1 năm 2025 (tháng 1 đến hết tháng 3)", "s": 1},
+    {"type": "aggregate", "text": "Tổng tiền hóa đơn", "s": 1},
+    {"type": "output", "text": "Một giá trị tổng doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C021",
+  "requirements": [
+    {"type": "aggregate", "text": "Tổng thời lượng album > 1 giờ (3600000 ms, strict)", "s": 1},
+    {"type": "filter", "text": "Có ít nhất một bài thiếu Composer (NULL hoặc trống)", "s": 1},
+    {"type": "aggregate", "text": "Đếm số album thỏa cả hai điều kiện", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C023",
+  "requirements": [
+    {"type": "filter", "text": "Hóa đơn năm 2023", "s": 1},
+    {"type": "filter", "text": "Doanh thu qua khách hàng do nhân viên phụ trách", "s": 1},
+    {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+    {"type": "output", "text": "Họ tên nhân viên và doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C082",
+  "requirements": [
+    {"type": "group", "text": "Theo quốc gia", "s": 1},
+    {"type": "aggregate", "text": "Đếm số khách hàng mỗi nước", "s": 1},
+    {"type": "filter", "text": "Chỉ nước có từ 5 khách hàng trở lên", "s": 1},
+    {"type": "output", "text": "Quốc gia và số khách hàng", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C088",
+  "requirements": [
+    {"type": "filter", "text": "Nghệ sĩ chưa từng bán được bài hát nào", "s": 1},
+    {"type": "filter", "text": "Tính cả nghệ sĩ không có album nào", "s": 1},
+    {"type": "aggregate", "text": "Đếm số nghệ sĩ", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]
