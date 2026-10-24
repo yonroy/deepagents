@@ -1,0 +1,15 @@
+[project]
+name = "evaluator-comparison"
+version = "0.1.0"
+description = "Compare a markdown-rubric judge agent with a math-formula judge agent on a simple summarization task"
+requires-python = ">=3.11"
+dependencies = [
+    "deepagents>=0.5.0",
+    "langchain-anthropic>=1.4.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 150
