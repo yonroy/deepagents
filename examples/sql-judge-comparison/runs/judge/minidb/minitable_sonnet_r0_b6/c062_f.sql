@@ -1,0 +1,3 @@
+INSERT INTO Invoice (InvoiceId,CustomerId,InvoiceDate,BillingCountry,Total) WITH RECURSIVE n(i) AS (SELECT 1 UNION ALL SELECT i+1 FROM n WHERE i<20) SELECT i,1,'2021-01-01 00:00:00','A',CASE WHEN i=20 THEN 3 ELSE 1 END FROM n;
+INSERT INTO Invoice (InvoiceId,CustomerId,InvoiceDate,BillingCountry,Total) WITH RECURSIVE n(i) AS (SELECT 101 UNION ALL SELECT i+1 FROM n WHERE i<119) SELECT i,1,'2021-01-01 00:00:00','B',5 FROM n;
+INSERT INTO Invoice (InvoiceId,CustomerId,InvoiceDate,BillingCountry,Total) WITH RECURSIVE n(i) AS (SELECT 201 UNION ALL SELECT i+1 FROM n WHERE i<221) SELECT i,1,'2021-01-01 00:00:00','C',2 FROM n;

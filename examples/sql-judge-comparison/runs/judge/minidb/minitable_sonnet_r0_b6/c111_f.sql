@@ -1,0 +1,2 @@
+INSERT INTO Customer (CustomerId,FirstName,LastName,Country,Email) VALUES (1,'A','One','X','a'),(2,'B','Two','X','b'),(3,'C','Three','X','c'),(4,'D','Four','Y','d'),(5,'E','Five','Y','e'),(6,'F','Six','Z','f');
+INSERT INTO Invoice (InvoiceId,CustomerId,InvoiceDate,BillingCountry,Total) VALUES (1,1,'2021-01-01 00:00:00','X',10),(2,2,'2021-01-01 00:00:00','X',6),(3,2,'2021-02-01 00:00:00','X',4),(4,3,'2021-01-01 00:00:00','X',5),(5,4,'2021-01-01 00:00:00','Y',3),(6,4,'2021-01-02 00:00:00','Y',4),(7,5,'2021-01-01 00:00:00','Y',6);

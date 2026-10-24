@@ -1,0 +1,1 @@
+WITH spent AS ( SELECT c.Country, c.CustomerId, c.FirstName, c.LastName, SUM(i.Total) AS total FROM Customer c JOIN Invoice i ON i.CustomerId = c.CustomerId GROUP BY c.CustomerId ) SELECT Country, FirstName, LastName, ROUND(total, 2) AS total FROM spent s WHERE total = (SELECT MAX(total) FROM spent s2 );
