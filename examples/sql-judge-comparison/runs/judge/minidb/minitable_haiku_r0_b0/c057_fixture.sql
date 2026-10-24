@@ -1,0 +1,4 @@
+INSERT INTO Artist (ArtistId, Name) VALUES (1,'Artist A');
+INSERT INTO Album (AlbumId, Title, ArtistId) VALUES (1,'Album 1',1),(2,'Album 2',1),(3,'Album 3',1),(4,'Album 4',1),(5,'Album 5',1),(6,'Album 6',1);
+INSERT INTO MediaType (MediaTypeId, Name) VALUES (1,'MPEG audio file');
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES (1,'T1',1,1,1,'Composer X',2000000,NULL,0.99),(2,'T2',1,1,1,NULL,1700000,NULL,0.99),(3,'T3',2,1,1,'Composer Y',4000000,NULL,0.99),(4,'T4',3,1,1,NULL,1000000,NULL,0.99),(5,'T5',3,1,1,'Composer Z',1000000,NULL,0.99),(6,'T6',4,1,1,NULL,3000000,NULL,0.99),(7,'T7',4,1,1,NULL,1000000,NULL,0.99),(8,'T8',5,1,1,'Composer W',3000000,NULL,0.99),(9,'T9',5,1,1,NULL,600000,NULL,0.99),(10,'T10',6,1,1,'Composer V',3000000,NULL,0.99),(11,'T11',6,1,1,'Composer U',700001,NULL,0.99);
