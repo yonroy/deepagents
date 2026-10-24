@@ -29,6 +29,7 @@ from langchain_core.tools import tool
 
 from db import run
 from external import RUNS
+from minidb import run_on_fixture
 
 HERE = Path(__file__).parent
 MODELS = {"haiku": "anthropic:claude-haiku-5-5", "sonnet": "anthropic:claude-sonnet-5-5"}
@@ -42,6 +43,15 @@ def run_sql(sql: str) -> str:
     if res.error:
         return res.error
     return "\n".join([str(res.columns), *map(str, res.rows[:20]), f"({len(res.rows)} rows)"])
+
+
+@tool
+def run_on_minitable(fixture_sql: str, query: str) -> str:
+    """Load INSERT statements into an empty Chinook-shaped database, then run one query on it."""
+    res = run_on_fixture(fixture_sql, query)
+    if res.error:
+        return res.error
+    return "\n".join([str(res.columns), *map(str, res.rows[:50]), f"({len(res.rows)} rows)"])
 
 
 def _answer_array(text: str) -> list[dict[str, Any]]:
@@ -97,7 +107,10 @@ def judge() -> None:
             f"Bạn là giám khảo. Đọc /{judge_name}.md (hướng dẫn chấm, làm đúng theo), /schema.md và /batch.md. "
             "Chấm từng bài độc lập. Trả lời bằng đúng một mảng JSON, mỗi bài một object theo định dạng trong hướng dẫn."
         )
-        answers = _run_batch(model, files, prompt)
+        tools = [run_on_minitable] if judge_name == "minitable" else None
+        if tools:
+            prompt += " Dùng tool run_on_minitable thay cho minidb.py."
+        answers = _run_batch(model, files, prompt, tools)
         (out / f"{batch.stem}.json").write_text(json.dumps(answers, ensure_ascii=False, indent=2))
         print(f"[judge] {batch.stem}: {len(answers)} answers")
 

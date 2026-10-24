@@ -6,6 +6,7 @@ import math
 import random
 import statistics
 from collections import Counter, defaultdict
+from itertools import combinations
 from pathlib import Path
 from typing import Any
 
@@ -173,16 +174,21 @@ def write_report(candidates: list[dict[str, Any]], judgements: Judgements, path:
             f"| {judge} | {model} | {s['runs']} | {_pct(s['accuracy'])} ({_pct(lo)}–{_pct(hi)}) | {_pct(s['bug_recall'])} "
             f"| {_pct(s['false_alarm'])} | {s['auroc']:.2f} | {_pct(s['trap_fooled'])} | {_pct(s['flip_rate'])} | {s['missing']} |"
         )
-    lines += ["", "## Rubric vs công thức (McNemar, lượt chấm đầu tiên)", ""]
+    lines += ["", "## So từng cặp giám khảo (McNemar, lượt chấm đầu tiên)", ""]
     gold = {c["id"]: c["gold_correct"] for c in candidates}
+    judges = sorted({k[0] for k in m})
     for model in sorted({k[1] for k in m}):
-        if ("rubric", model) not in m or ("formula", model) not in m:
-            continue
-        ra, fa = m[("rubric", model)]["rep0"], m[("formula", model)]["rep0"]
-        both = [cid for cid in gold if ra.get(cid) is not None and fa.get(cid) is not None]
-        b = sum(ra[c] == gold[c] and fa[c] != gold[c] for c in both)
-        c_ = sum(ra[c] != gold[c] and fa[c] == gold[c] for c in both)
-        lines.append(f"- **{model}**: chỉ rubric đúng {b} bài, chỉ công thức đúng {c_} bài, p = {mcnemar_p(b, c_):.3f} (n = {len(both)})")
+        for a, b in combinations(judges, 2):
+            if (a, model) not in m or (b, model) not in m:
+                continue
+            va, vb = m[(a, model)]["rep0"], m[(b, model)]["rep0"]
+            both = [cid for cid in gold if va.get(cid) is not None and vb.get(cid) is not None]
+            only_a = sum(va[c] == gold[c] and vb[c] != gold[c] for c in both)
+            only_b = sum(va[c] != gold[c] and vb[c] == gold[c] for c in both)
+            lines.append(
+                f"- **{model}**, {a} vs {b}: chỉ {a} đúng {only_a} bài, chỉ {b} đúng {only_b} bài, "
+                f"p = {mcnemar_p(only_a, only_b):.3f} (n = {len(both)})"
+            )
     lines += [
         "",
         "## Giám khảo công thức: lỗi nằm ở đâu",

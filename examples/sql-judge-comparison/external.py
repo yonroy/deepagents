@@ -29,7 +29,7 @@ HERE = Path(__file__).parent
 RUNS = HERE / "runs"
 
 GEN_CONFIGS = ["G1", "G2", "G3"]
-JUDGES = ["rubric", "formula"]
+JUDGES = ["rubric", "formula", "minitable"]
 # (model, repeats) for the judging grid
 JUDGE_RUNS = [("haiku", 2), ("sonnet", 1)]
 
@@ -116,14 +116,14 @@ def display_sql(sql: str) -> str:
     return "\n".join([*comments, re.sub(r"\s+", " ", code).rstrip(";").strip() + ";"])
 
 
-def export_judge(batch_size: int) -> None:
+def export_judge(batch_size: int, judges: list[str]) -> None:
     candidates = json.loads((RUNS / "candidates.json").read_text())
     questions = {q["id"]: q for q in load_questions()}
     out = RUNS / "judge"
     (out / "batches").mkdir(parents=True, exist_ok=True)
     (out / "answers").mkdir(parents=True, exist_ok=True)
     names = []
-    for judge in JUDGES:
+    for judge in judges:
         for model, repeats in JUDGE_RUNS:
             for r in range(repeats):
                 rng = random.Random(f"{judge}:{model}:{r}")
@@ -155,13 +155,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("command", choices=["export-gen", "build", "export-judge", "report"])
     parser.add_argument("--batch-size", type=int, default=10)
+    parser.add_argument("--judges", default=",".join(JUDGES), help="export-judge: comma-separated judges to write batches for")
     args = parser.parse_args()
     if args.command == "export-gen":
         export_gen(args.batch_size)
     elif args.command == "build":
         build()
     elif args.command == "export-judge":
-        export_judge(args.batch_size)
+        export_judge(args.batch_size, args.judges.split(","))
     else:
         from metrics import write_report
 
