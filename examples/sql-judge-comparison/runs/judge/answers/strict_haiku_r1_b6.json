@@ -1,0 +1,93 @@
+[
+  {"item": "C105",
+   "requirements": [
+     {"type": "filter", "text": "nhiều hơn 4 playlist (HAVING COUNT > 4)", "s": 1},
+     {"type": "aggregate", "text": "đếm số playlist khác nhau (COUNT DISTINCT PlaylistId)", "s": 1},
+     {"type": "group", "text": "theo từng bài hát; SQL gom theo t.Name thay vì TrackId nên hai bài khác nhau cùng tên bị gộp", "s": 0.5},
+     {"type": "output", "text": "tên bài và số playlist", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 0.5, "penalty": 1, "score": 5.0, "verdict": "incorrect"},
+  {"item": "C027",
+   "requirements": [
+     {"type": "filter", "text": "chỉ nước có ít nhất 20 hóa đơn; SQL dùng HAVING SUM(Total) >= 20 thay vì COUNT(*) >= 20", "s": 0},
+     {"type": "aggregate", "text": "giá trị trung bình hóa đơn (AVG(Total))", "s": 1},
+     {"type": "group", "text": "theo BillingCountry", "s": 1},
+     {"type": "output", "text": "quốc gia và trung bình, làm tròn 2 chữ số", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+  {"item": "C070",
+   "requirements": [
+     {"type": "filter", "text": "năm 2024 (strftime('%Y') = '2024')", "s": 1},
+     {"type": "aggregate", "text": "tổng tiền theo khách (SUM(Total))", "s": 1},
+     {"type": "group", "text": "theo khách hàng (CustomerId)", "s": 1},
+     {"type": "order", "text": "giảm dần theo tổng tiền", "s": 1},
+     {"type": "limit", "text": "5", "s": 1},
+     {"type": "output", "text": "họ tên và tổng tiền", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C102",
+   "requirements": [
+     {"type": "filter", "text": "chỉ năm 2024 và 2025", "s": 1},
+     {"type": "aggregate", "text": "tổng doanh thu theo từng năm", "s": 1},
+     {"type": "aggregate", "text": "tỷ lệ tăng trưởng (2025 - 2024) / 2024; SQL chia cho doanh thu 2025 nên sai mẫu số", "s": 0},
+     {"type": "output", "text": "làm tròn 2 chữ số, số âm là giảm", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+  {"item": "C013",
+   "requirements": [
+     {"type": "aggregate", "text": "doanh thu = UnitPrice * Quantity theo dòng hóa đơn", "s": 1},
+     {"type": "group", "text": "theo thể loại (GenreId)", "s": 1},
+     {"type": "order", "text": "từ cao xuống thấp; SQL dùng ORDER BY revenue ASC nên lấy 5 thể loại doanh thu thấp nhất", "s": 0},
+     {"type": "limit", "text": "5", "s": 1},
+     {"type": "output", "text": "thể loại và doanh thu", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+  {"item": "C113",
+   "requirements": [
+     {"type": "aggregate", "text": "doanh thu bán lẻ = UnitPrice * Quantity", "s": 1},
+     {"type": "aggregate", "text": "mẫu số là tổng doanh thu của toàn bộ InvoiceLine", "s": 1},
+     {"type": "group", "text": "theo loại media (MediaTypeId)", "s": 1},
+     {"type": "output", "text": "tỷ lệ phần trăm làm tròn 2 chữ số, kèm tên media", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C001",
+   "requirements": [
+     {"type": "filter", "text": "playlist tên 'Grunge'", "s": 1},
+     {"type": "aggregate", "text": "đếm số bài hát (COUNT TrackId trên PlaylistTrack, PK đảm bảo không trùng)", "s": 1},
+     {"type": "output", "text": "số bài hát", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C004",
+   "requirements": [
+     {"type": "filter", "text": "playlist tên 'Music' (có thể trùng tên)", "s": 1},
+     {"type": "aggregate", "text": "số bài hát khác nhau; SQL dùng COUNT(pt.TrackId) không DISTINCT nên đếm trùng bài xuất hiện ở nhiều playlist", "s": 0},
+     {"type": "output", "text": "một con số tổng", "s": 1}
+   ],
+   "errors": ["distinct"],
+   "weakest": 0, "penalty": 0.6, "score": 0, "verdict": "incorrect"},
+  {"item": "C064",
+   "requirements": [
+     {"type": "filter", "text": "từ 5 khách hàng trở lên; SQL dùng HAVING COUNT(*) > 5 nên loại nước có đúng 5 khách", "s": 0},
+     {"type": "group", "text": "theo Country", "s": 1},
+     {"type": "aggregate", "text": "số khách hàng (COUNT(*))", "s": 1},
+     {"type": "output", "text": "quốc gia và số khách hàng", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+  {"item": "C115",
+   "requirements": [
+     {"type": "filter", "text": "nhiều hơn 10 album (HAVING COUNT > 10)", "s": 1},
+     {"type": "aggregate", "text": "số album (COUNT AlbumId)", "s": 1},
+     {"type": "group", "text": "theo nghệ sĩ (ArtistId, Name)", "s": 1},
+     {"type": "output", "text": "tên nghệ sĩ và số album", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]

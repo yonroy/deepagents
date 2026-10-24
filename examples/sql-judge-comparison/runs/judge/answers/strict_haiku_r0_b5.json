@@ -1,0 +1,91 @@
+[
+  {"item": "C002",
+   "requirements": [
+     {"type": "filter", "text": "Giữ mọi nhân viên, kể cả người không có quản lý (SQL dùng INNER JOIN nên loại họ)", "s": 0},
+     {"type": "output", "text": "Họ tên nhân viên", "s": 1},
+     {"type": "output", "text": "Họ tên người quản lý trực tiếp", "s": 1}
+   ],
+   "errors": ["join_type"],
+   "weakest": 0, "penalty": 0.5, "score": 0, "verdict": "incorrect"},
+  {"item": "C099",
+   "requirements": [
+     {"type": "filter", "text": "Liệt kê tất cả nhân viên, kể cả người không phụ trách khách nào (LEFT JOIN)", "s": 1},
+     {"type": "aggregate", "text": "Số khách hàng mỗi nhân viên phụ trách = COUNT(c.CustomerId)", "s": 1},
+     {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+     {"type": "output", "text": "Nhân viên kèm số khách; người không có khách ghi 0", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C088",
+   "requirements": [
+     {"type": "filter", "text": "Nghệ sĩ chưa từng bán được bài hát nào (không có dòng InvoiceLine nào)", "s": 1},
+     {"type": "filter", "text": "Tính cả nghệ sĩ không có album nào (NOT EXISTS xử lý đúng)", "s": 1},
+     {"type": "aggregate", "text": "Đếm số nghệ sĩ", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C042",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ album của nghệ sĩ 'Iron Maiden'", "s": 1},
+     {"type": "aggregate", "text": "Số bài hát mỗi album = COUNT(t.TrackId)", "s": 1},
+     {"type": "group", "text": "Theo từng album", "s": 1},
+     {"type": "output", "text": "Tên album và số bài", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C027",
+   "requirements": [
+     {"type": "group", "text": "Theo quốc gia thanh toán (BillingCountry)", "s": 1},
+     {"type": "aggregate", "text": "Giá trị hóa đơn trung bình = ROUND(AVG(Total), 2)", "s": 1},
+     {"type": "filter", "text": "Chỉ các nước có ít nhất 20 hóa đơn; SQL dùng HAVING SUM(Total) >= 20 nên sai điều kiện", "s": 0}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+  {"item": "C005",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ playlist tên 'Grunge'; SQL không có điều kiện p.Name = 'Grunge'", "s": 0},
+     {"type": "aggregate", "text": "Đếm số bài hát = COUNT(*) trên PlaylistTrack", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+  {"item": "C120",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ playlist tên 'Music'", "s": 1},
+     {"type": "aggregate", "text": "Số bài hát khác nhau = COUNT(DISTINCT pt.TrackId)", "s": 1},
+     {"type": "filter", "text": "Gộp các playlist trùng tên, bài trùng chỉ đếm một lần", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C103",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ hóa đơn năm 2024 (so sánh chuỗi ngày, định dạng schema cho kết quả đúng)", "s": 1},
+     {"type": "aggregate", "text": "Tổng tiền = SUM(i.Total)", "s": 1},
+     {"type": "group", "text": "Theo từng khách hàng", "s": 1},
+     {"type": "order", "text": "Giảm dần theo tổng tiền", "s": 1},
+     {"type": "limit", "text": "5 khách hàng", "s": 1},
+     {"type": "output", "text": "Họ tên khách và tổng tiền", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C044",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ nghệ sĩ có nhiều hơn 10 album; SQL đếm số dòng join với Track, không phải album", "s": 0},
+     {"type": "aggregate", "text": "Số album mỗi nghệ sĩ; COUNT(*) đang đếm bài hát (fan-out qua Track)", "s": 0},
+     {"type": "group", "text": "Theo từng nghệ sĩ", "s": 1},
+     {"type": "output", "text": "Tên nghệ sĩ và số album", "s": 1}
+   ],
+   "errors": ["fan_out"],
+   "weakest": 0, "penalty": 0.4, "score": 0, "verdict": "incorrect"},
+  {"item": "C049",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ khách hàng ở Đức (c.Country = 'Germany')", "s": 1},
+     {"type": "filter", "text": "Chỉ năm 2024 (strftime('%Y', InvoiceDate) = '2024')", "s": 1},
+     {"type": "aggregate", "text": "Doanh thu = SUM(UnitPrice * Quantity)", "s": 1},
+     {"type": "group", "text": "Theo từng nghệ sĩ", "s": 1},
+     {"type": "order", "text": "Giảm dần theo doanh thu", "s": 1},
+     {"type": "limit", "text": "3 nghệ sĩ", "s": 1},
+     {"type": "output", "text": "Tên nghệ sĩ và doanh thu", "s": 1}
+   ],
+   "errors": [],
+   "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]

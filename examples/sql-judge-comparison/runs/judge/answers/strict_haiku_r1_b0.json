@@ -1,0 +1,90 @@
+[
+ {"item": "C099",
+  "requirements": [
+   {"type": "filter", "text": "Liệt kê tất cả nhân viên, kể cả người không phụ trách khách nào", "s": 1},
+   {"type": "aggregate", "text": "Số khách hàng mỗi nhân viên phụ trách = COUNT khách hàng", "s": 1},
+   {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+   {"type": "output", "text": "Họ tên nhân viên và số khách (0 nếu không có)", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C104",
+  "requirements": [
+   {"type": "output", "text": "Họ tên mọi nhân viên", "s": 1},
+   {"type": "filter", "text": "Quản lý trực tiếp của nhân viên là Employee có EmployeeId = e.ReportsTo", "s": 0},
+   {"type": "output", "text": "Họ tên người quản lý trực tiếp", "s": 0},
+   {"type": "filter", "text": "Nhân viên không có quản lý thì cột quản lý để trống", "s": 0}
+  ],
+  "errors": [],
+  "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+ {"item": "C037",
+  "requirements": [
+   {"type": "filter", "text": "Khách đã mua ít nhất một bài thể loại Rock", "s": 1},
+   {"type": "filter", "text": "Khách đã mua ít nhất một bài thể loại Jazz", "s": 1},
+   {"type": "aggregate", "text": "Đếm số khách thỏa cả hai điều kiện", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C096",
+  "requirements": [
+   {"type": "filter", "text": "Hóa đơn trong quý 1 năm 2025 (đến hết tháng 3)", "s": 0},
+   {"type": "aggregate", "text": "Tổng Total của hóa đơn", "s": 1},
+   {"type": "output", "text": "Một giá trị doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+ {"item": "C012",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ hóa đơn năm 2025", "s": 1},
+   {"type": "group", "text": "Theo từng tháng, strftime('%d') lấy ngày thay vì tháng", "s": 0},
+   {"type": "aggregate", "text": "Tổng Total mỗi tháng", "s": 0},
+   {"type": "order", "text": "Theo thứ tự tháng 1 đến 12, ORDER BY day-of-month", "s": 0},
+   {"type": "output", "text": "Tháng và doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+ {"item": "C077",
+  "requirements": [
+   {"type": "aggregate", "text": "Album có tổng thời lượng trên 1 giờ (SUM Milliseconds > 3600000)", "s": 1},
+   {"type": "filter", "text": "Album có ít nhất một bài Composer trống; dùng Composer = NULL nên điều kiện không bao giờ đúng", "s": 0},
+   {"type": "aggregate", "text": "Đếm số album thỏa cả hai điều kiện", "s": 1}
+  ],
+  "errors": ["null"],
+  "weakest": 0, "penalty": 0.6, "score": 0, "verdict": "incorrect"},
+ {"item": "C022",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ bài đã từng được bán (INNER JOIN InvoiceLine)", "s": 1},
+   {"type": "aggregate", "text": "Đếm bài khác nhau COUNT(DISTINCT TrackId)", "s": 1},
+   {"type": "group", "text": "Theo từng loại media", "s": 1},
+   {"type": "filter", "text": "Liệt kê mỗi loại media, kể cả loại chưa có bài nào được bán; INNER JOIN có thể bỏ loại này", "s": 0.5},
+   {"type": "output", "text": "Tên loại media và số bài", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 0.5, "penalty": 1, "score": 5, "verdict": "incorrect"},
+ {"item": "C025",
+  "requirements": [
+   {"type": "filter", "text": "Hóa đơn năm 2023", "s": 1},
+   {"type": "aggregate", "text": "Doanh thu = SUM(Total) mỗi hóa đơn một lần; JOIN InvoiceLine nhân dòng hóa đơn lên", "s": 0},
+   {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+   {"type": "output", "text": "Họ tên nhân viên và doanh thu", "s": 1}
+  ],
+  "errors": ["fan_out"],
+  "weakest": 0, "penalty": 0.4, "score": 0, "verdict": "incorrect"},
+ {"item": "C045",
+  "requirements": [
+   {"type": "filter", "text": "Nghệ sĩ có nhiều hơn 10 album (HAVING > 10)", "s": 1},
+   {"type": "aggregate", "text": "Đếm album của mỗi nghệ sĩ", "s": 1},
+   {"type": "group", "text": "Theo từng nghệ sĩ", "s": 1},
+   {"type": "output", "text": "Tên nghệ sĩ và số album", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C101",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ playlist tên Grunge", "s": 1},
+   {"type": "aggregate", "text": "Đếm bài hát trong playlist (PK đảm bảo không trùng)", "s": 1},
+   {"type": "output", "text": "Một số đếm bài hát", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]

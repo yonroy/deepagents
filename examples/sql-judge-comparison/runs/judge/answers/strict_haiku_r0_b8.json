@@ -1,0 +1,94 @@
+[
+ {"item": "C014",
+  "requirements": [
+   {"type": "filter", "text": "Chi nghe si 'Iron Maiden'", "s": 1},
+   {"type": "group", "text": "Dem bai hat theo tung album", "s": 0},
+   {"type": "aggregate", "text": "COUNT so bai hat cua moi album", "s": 1},
+   {"type": "output", "text": "Ten album, so bai", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+ {"item": "C031",
+  "requirements": [
+   {"type": "filter", "text": "Playlist ten 'Grunge'", "s": 1},
+   {"type": "aggregate", "text": "Dem so bai hat trong playlist", "s": 1},
+   {"type": "output", "text": "Mot so dem", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C045",
+  "requirements": [
+   {"type": "group", "text": "Theo tung nghe si", "s": 1},
+   {"type": "aggregate", "text": "Dem so album cua moi nghe si", "s": 1},
+   {"type": "filter", "text": "Chi nghe si co nhieu hon 10 album (HAVING > 10)", "s": 1},
+   {"type": "output", "text": "Ten nghe si va so album", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C009",
+  "requirements": [
+   {"type": "aggregate", "text": "Doanh thu = SUM(UnitPrice*Quantity) theo dong hoa don", "s": 1},
+   {"type": "group", "text": "Theo the loai nhac", "s": 1},
+   {"type": "order", "text": "Giam dan theo doanh thu", "s": 1},
+   {"type": "limit", "text": "5", "s": 1},
+   {"type": "output", "text": "The loai va doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C055",
+  "requirements": [
+   {"type": "filter", "text": "Chi hoa don nam 2024 (khong co dieu kien ve InvoiceDate)", "s": 0},
+   {"type": "aggregate", "text": "Tong tien SUM(Total) theo khach", "s": 1},
+   {"type": "group", "text": "Theo tung khach hang", "s": 1},
+   {"type": "order", "text": "Giam dan theo tong tien", "s": 1},
+   {"type": "limit", "text": "5", "s": 1},
+   {"type": "output", "text": "Ho ten va tong tien", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 0, "penalty": 1, "score": 0, "verdict": "incorrect"},
+ {"item": "C051",
+  "requirements": [
+   {"type": "group", "text": "Theo tung quoc gia", "s": 1},
+   {"type": "aggregate", "text": "Tong chi tieu SUM(Total) cua tung khach, tu truoc toi nay", "s": 1},
+   {"type": "filter", "text": "Khach co quoc gia (loai NULL)", "s": 1},
+   {"type": "order", "text": "Khach chi tieu nhieu nhat moi quoc gia, giu ca hoa (RANK = 1)", "s": 1},
+   {"type": "output", "text": "Quoc gia, ho ten, tong tien", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C036",
+  "requirements": [
+   {"type": "aggregate", "text": "Dem so playlist khac nhau cua moi bai hat", "s": 1},
+   {"type": "group", "text": "Theo tung bai hat", "s": 1},
+   {"type": "filter", "text": "Chi bai hat co hon 4 playlist", "s": 1},
+   {"type": "output", "text": "Ten bai va so playlist", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C053",
+  "requirements": [
+   {"type": "filter", "text": "Nghe si chua tung ban duoc bai hat nao (NOT EXISTS qua Album, Track, InvoiceLine)", "s": 1},
+   {"type": "filter", "text": "Bao gom nghe si khong co album", "s": 1},
+   {"type": "aggregate", "text": "Dem so nghe si", "s": 1},
+   {"type": "output", "text": "Mot so dem", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C047",
+  "requirements": [
+   {"type": "aggregate", "text": "Doanh thu SUM(UnitPrice*Quantity) theo loai media", "s": 1},
+   {"type": "aggregate", "text": "Mau so la tong doanh thu toan bo dong hoa don", "s": 1},
+   {"type": "group", "text": "Theo tung loai media", "s": 1},
+   {"type": "output", "text": "Ty le phan tram lam tron 2 chu so", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C093",
+  "requirements": [
+   {"type": "filter", "text": "Chi playlist ten 'Music'", "s": 1},
+   {"type": "aggregate", "text": "Dem so bai hat khac nhau (COUNT DISTINCT TrackId)", "s": 1},
+   {"type": "output", "text": "Mot so tong", "s": 1}
+  ],
+  "errors": [],
+  "weakest": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]
