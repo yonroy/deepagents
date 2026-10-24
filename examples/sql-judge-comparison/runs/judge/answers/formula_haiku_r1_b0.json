@@ -1,0 +1,143 @@
+[
+  {
+    "item": "C002",
+    "requirements": [
+      {"type": "filter", "text": "liệt kê mọi nhân viên, kể cả nhân viên không có quản lý", "s": 0},
+      {"type": "output", "text": "họ tên nhân viên", "s": 1},
+      {"type": "output", "text": "họ tên người quản lý trực tiếp", "s": 1},
+      {"type": "output", "text": "nhân viên không có quản lý: cột quản lý để trống", "s": 0}
+    ],
+    "errors": ["join_type"],
+    "coverage": 0.5,
+    "penalty": 0.5,
+    "score": 2.5,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C079",
+    "requirements": [
+      {"type": "filter", "text": "liệt kê tất cả nhân viên", "s": 1},
+      {"type": "aggregate", "text": "số khách hàng phụ trách = đếm khách hàng", "s": 0.5},
+      {"type": "output", "text": "nhân viên không phụ trách khách nào ghi 0", "s": 0},
+      {"type": "output", "text": "họ tên nhân viên và số khách hàng", "s": 1}
+    ],
+    "errors": ["null"],
+    "coverage": 0.625,
+    "penalty": 0.6,
+    "score": 3.75,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C018",
+    "requirements": [
+      {"type": "filter", "text": "chỉ hóa đơn năm 2025", "s": 1},
+      {"type": "aggregate", "text": "doanh thu = SUM(Total)", "s": 1},
+      {"type": "group", "text": "theo từng tháng", "s": 1},
+      {"type": "order", "text": "theo thứ tự tháng 1 đến 12", "s": 1},
+      {"type": "output", "text": "tháng và doanh thu", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C117",
+    "requirements": [
+      {"type": "filter", "text": "quý 1 năm 2025 (1/1 đến hết 31/3)", "s": 1},
+      {"type": "aggregate", "text": "tổng doanh thu = SUM(Total)", "s": 1},
+      {"type": "output", "text": "một giá trị tổng doanh thu", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C057",
+    "requirements": [
+      {"type": "aggregate", "text": "tổng thời lượng album (SUM Milliseconds của mọi bài) trên 1 giờ", "s": 0},
+      {"type": "filter", "text": "album có ít nhất một bài Composer trống", "s": 1},
+      {"type": "aggregate", "text": "đếm album thỏa đồng thời cả hai điều kiện", "s": 1},
+      {"type": "output", "text": "số lượng album", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 0.75,
+    "penalty": 1,
+    "score": 7.5,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C109",
+    "requirements": [
+      {"type": "filter", "text": "bài thuộc thể loại Rock hoặc Jazz", "s": 1},
+      {"type": "filter", "text": "khách đã mua CẢ Rock VÀ Jazz", "s": 0},
+      {"type": "aggregate", "text": "đếm số khách, mỗi khách một lần", "s": 1},
+      {"type": "output", "text": "số lượng khách hàng", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 0.75,
+    "penalty": 1,
+    "score": 7.5,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C025",
+    "requirements": [
+      {"type": "filter", "text": "hóa đơn năm 2023", "s": 1},
+      {"type": "aggregate", "text": "doanh thu = tổng tiền hóa đơn (SUM Total), không bị nhân dòng", "s": 0},
+      {"type": "group", "text": "theo từng nhân viên hỗ trợ", "s": 1},
+      {"type": "output", "text": "họ tên nhân viên và doanh thu", "s": 1},
+      {"type": "filter", "text": "doanh thu đi qua các khách hàng nhân viên phụ trách", "s": 1}
+    ],
+    "errors": ["fan_out"],
+    "coverage": 0.8,
+    "penalty": 0.4,
+    "score": 3.2,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C092",
+    "requirements": [
+      {"type": "group", "text": "theo từng loại media", "s": 1},
+      {"type": "aggregate", "text": "số bài đã từng bán ít nhất một lần (đếm bài khác nhau)", "s": 0},
+      {"type": "filter", "text": "chỉ tính bài đã có trong hóa đơn", "s": 1},
+      {"type": "output", "text": "tên loại media và số bài", "s": 1}
+    ],
+    "errors": ["distinct"],
+    "coverage": 0.75,
+    "penalty": 0.6,
+    "score": 4.5,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C088",
+    "requirements": [
+      {"type": "filter", "text": "nghệ sĩ chưa từng bán bài hát nào", "s": 1},
+      {"type": "filter", "text": "tính cả nghệ sĩ không có album nào", "s": 1},
+      {"type": "aggregate", "text": "đếm số nghệ sĩ", "s": 1},
+      {"type": "output", "text": "một số lượng", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C036",
+    "requirements": [
+      {"type": "filter", "text": "bài nằm trong nhiều hơn 4 playlist", "s": 1},
+      {"type": "aggregate", "text": "đếm playlist khác nhau của mỗi bài", "s": 1},
+      {"type": "group", "text": "theo từng bài hát", "s": 1},
+      {"type": "output", "text": "tên bài và số playlist", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  }
+]

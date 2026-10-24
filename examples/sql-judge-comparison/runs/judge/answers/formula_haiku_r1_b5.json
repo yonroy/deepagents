@@ -1,0 +1,147 @@
+[
+  {
+    "item": "C106",
+    "requirements": [
+      {"type": "filter", "text": "Giữ mọi nhân viên, kể cả người không có quản lý", "s": 1},
+      {"type": "output", "text": "Họ tên nhân viên (FirstName + LastName)", "s": 1},
+      {"type": "output", "text": "Họ tên người quản lý trực tiếp (qua ReportsTo)", "s": 1},
+      {"type": "output", "text": "Cột quản lý để trống (NULL) khi nhân viên không có quản lý", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C038",
+    "requirements": [
+      {"type": "filter", "text": "Liệt kê tất cả nhân viên, kể cả người không phụ trách khách nào (ghi 0). SQL dùng JOIN trong nên loại họ khỏi kết quả", "s": 0},
+      {"type": "aggregate", "text": "Đếm số khách hàng phụ trách mỗi nhân viên (COUNT CustomerId)", "s": 1},
+      {"type": "group", "text": "Theo từng nhân viên (GROUP BY EmployeeId)", "s": 1},
+      {"type": "output", "text": "Tên nhân viên và số khách hàng", "s": 1}
+    ],
+    "errors": ["join_type"],
+    "coverage": 0.75,
+    "penalty": 0.5,
+    "score": 3.75,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C085",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ các quốc gia có ít nhất 20 hóa đơn (HAVING COUNT(*) >= 20)", "s": 1},
+      {"type": "aggregate", "text": "Giá trị hóa đơn trung bình (AVG(Total))", "s": 1},
+      {"type": "group", "text": "Theo quốc gia thanh toán (BillingCountry)", "s": 1},
+      {"type": "output", "text": "Quốc gia và giá trị trung bình", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C108",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ các quốc gia có từ 5 khách hàng trở lên (HAVING COUNT(*) >= 5)", "s": 1},
+      {"type": "aggregate", "text": "Đếm số khách hàng mỗi quốc gia", "s": 1},
+      {"type": "group", "text": "Theo quốc gia (GROUP BY Country)", "s": 1},
+      {"type": "output", "text": "Tên quốc gia và số khách hàng", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C111",
+    "requirements": [
+      {"type": "aggregate", "text": "Tổng chi tiêu của mỗi khách hàng (SUM Invoice.Total)", "s": 1},
+      {"type": "group", "text": "Theo từng quốc gia", "s": 1},
+      {"type": "filter", "text": "Chỉ khách có chi tiêu cao nhất trong quốc gia của họ", "s": 1},
+      {"type": "filter", "text": "Nếu hòa thì liệt kê tất cả (so sánh bằng MAX)", "s": 1},
+      {"type": "output", "text": "Quốc gia, họ tên và tổng tiền", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C105",
+    "requirements": [
+      {"type": "aggregate", "text": "Đếm số playlist khác nhau chứa mỗi bài (COUNT DISTINCT PlaylistId)", "s": 1},
+      {"type": "group", "text": "Theo từng bài hát. SQL GROUP BY t.Name thay vì TrackId, nên các bài trùng tên bị gộp và kết quả sai. Chỉ đúng khi tên bài là duy nhất", "s": 0.5},
+      {"type": "filter", "text": "Chỉ bài nằm trong nhiều hơn 4 playlist (HAVING > 4)", "s": 1},
+      {"type": "output", "text": "Tên bài và số playlist", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 0.875,
+    "penalty": 1,
+    "score": 8.75,
+    "verdict": "correct"
+  },
+  {
+    "item": "C068",
+    "requirements": [
+      {"type": "aggregate", "text": "Doanh thu = SUM(UnitPrice * Quantity) trên từng dòng hóa đơn", "s": 1},
+      {"type": "group", "text": "Theo thể loại (genre)", "s": 1},
+      {"type": "order", "text": "Giảm dần theo doanh thu", "s": 1},
+      {"type": "limit", "text": "5 thể loại", "s": 1},
+      {"type": "output", "text": "Tên thể loại và doanh thu", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C090",
+    "requirements": [
+      {"type": "filter", "text": "Nghệ sĩ chưa từng bán được bài hát nào (NOT EXISTS trên InvoiceLine)", "s": 1},
+      {"type": "filter", "text": "Tính cả nghệ sĩ không có album nào. SQL có EXISTS (album của nghệ sĩ) nên loại họ ra, sai yêu cầu", "s": 0},
+      {"type": "aggregate", "text": "Đếm số nghệ sĩ", "s": 1},
+      {"type": "output", "text": "Một con số đếm (n_artists)", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 0.75,
+    "penalty": 1,
+    "score": 7.5,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C039",
+    "requirements": [
+      {"type": "aggregate", "text": "Thời lượng trung bình của bài hát mỗi thể loại (AVG Milliseconds)", "s": 1},
+      {"type": "aggregate", "text": "Đổi ra phút (chia 60000)", "s": 1},
+      {"type": "aggregate", "text": "Làm tròn 2 chữ số", "s": 1},
+      {"type": "group", "text": "Theo thể loại", "s": 1},
+      {"type": "order", "text": "Từ dài đến ngắn (DESC)", "s": 1},
+      {"type": "limit", "text": "3 thể loại", "s": 1},
+      {"type": "output", "text": "Tên thể loại và thời lượng trung bình", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C045",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ nghệ sĩ có nhiều hơn 10 album (HAVING > 10)", "s": 1},
+      {"type": "aggregate", "text": "Đếm số album mỗi nghệ sĩ", "s": 1},
+      {"type": "group", "text": "Theo nghệ sĩ (ArtistId, Name)", "s": 1},
+      {"type": "output", "text": "Tên nghệ sĩ và số album", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  }
+]

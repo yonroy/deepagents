@@ -1,0 +1,7 @@
+[
+{"item": "C087", "verdict": "incorrect", "score": 1, "reason": "The filter uses Country = 'Brasil', but the data stores 'Brazil' (see Customer sample), so the count would be 0."},
+{"item": "C071", "verdict": "correct", "score": 9, "reason": "Counts invoices with Total >= 13.86, which matches 'từ 13.86 trở lên' with the correct inclusive boundary."},
+{"item": "C058", "verdict": "correct", "score": 10, "reason": "The inner join to Track with COUNT(DISTINCT GenreId) counts only genres that have at least one track."},
+{"item": "C007", "verdict": "correct", "score": 10, "reason": "Selects last name, first name and hire date from Employee filtered on Title = 'Sales Support Agent', as asked."},
+{"item": "C054", "verdict": "correct", "score": 10, "reason": "Joins Track to MediaType, filters on the exact media type name and takes AVG(UnitPrice), which answers the question."}
+]

@@ -1,0 +1,90 @@
+[
+  {"item": "C104",
+   "requirements": [
+     {"type": "filter", "text": "Liệt kê mọi nhân viên (không loại ai)", "s": 1},
+     {"type": "output", "text": "Họ tên nhân viên", "s": 1},
+     {"type": "output", "text": "Họ tên người quản lý trực tiếp (theo ReportsTo)", "s": 0},
+     {"type": "filter", "text": "Nhân viên không có quản lý thì cột quản lý để trống", "s": 0}
+   ],
+   "errors": [],
+   "coverage": 0.5, "penalty": 1, "score": 5.0, "verdict": "incorrect"},
+  {"item": "C026",
+   "requirements": [
+     {"type": "filter", "text": "Liệt kê tất cả nhân viên, kể cả người không phụ trách khách nào", "s": 1},
+     {"type": "aggregate", "text": "Đếm số khách hàng mỗi nhân viên phụ trách", "s": 1},
+     {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+     {"type": "output", "text": "Tên nhân viên và số khách (0 nếu không có)", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+  {"item": "C119",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ hóa đơn năm 2023", "s": 1},
+     {"type": "aggregate", "text": "Doanh thu = tổng tiền hóa đơn (SUM(Total), mỗi hóa đơn tính một lần)", "s": 0},
+     {"type": "group", "text": "Theo từng nhân viên hỗ trợ", "s": 1},
+     {"type": "output", "text": "Họ tên nhân viên và doanh thu", "s": 1}
+   ],
+   "errors": ["fan_out"],
+   "coverage": 0.75, "penalty": 0.4, "score": 3.0, "verdict": "incorrect"},
+  {"item": "C077",
+   "requirements": [
+     {"type": "aggregate", "text": "Album có tổng thời lượng trên 1 giờ (SUM(Milliseconds) > 3600000)", "s": 1},
+     {"type": "filter", "text": "Album có ít nhất một bài có Composer trống", "s": 0},
+     {"type": "output", "text": "Đếm số album thỏa cả hai điều kiện", "s": 1}
+   ],
+   "errors": ["null"],
+   "coverage": 0.6667, "penalty": 0.6, "score": 4.0, "verdict": "incorrect"},
+  {"item": "C017",
+   "requirements": [
+     {"type": "filter", "text": "Hóa đơn quý 1 năm 2025 (1/1 đến hết 31/3)", "s": 1},
+     {"type": "aggregate", "text": "Tổng SUM(Total)", "s": 1},
+     {"type": "output", "text": "Một giá trị tổng doanh thu", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+  {"item": "C029",
+   "requirements": [
+     {"type": "filter", "text": "Hóa đơn năm 2025", "s": 1},
+     {"type": "aggregate", "text": "Doanh thu mỗi tháng = ROUND(SUM(Total), 2)", "s": 1},
+     {"type": "group", "text": "Theo từng tháng", "s": 1},
+     {"type": "order", "text": "Thứ tự tháng 1 đến 12", "s": 1},
+     {"type": "output", "text": "Tháng và doanh thu", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+  {"item": "C037",
+   "requirements": [
+     {"type": "filter", "text": "Khách đã mua ít nhất một bài thể loại Rock", "s": 1},
+     {"type": "filter", "text": "Khách đã mua ít nhất một bài thể loại Jazz", "s": 1},
+     {"type": "filter", "text": "Thỏa cả hai điều kiện (VÀ)", "s": 1},
+     {"type": "aggregate", "text": "Đếm số khách hàng", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+  {"item": "C022",
+   "requirements": [
+     {"type": "group", "text": "Theo từng loại media", "s": 1},
+     {"type": "filter", "text": "Chỉ bài hát đã từng được bán ít nhất một lần", "s": 1},
+     {"type": "aggregate", "text": "Đếm số bài khác nhau (COUNT DISTINCT TrackId)", "s": 1},
+     {"type": "output", "text": "Tên loại media và số bài", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+  {"item": "C053",
+   "requirements": [
+     {"type": "filter", "text": "Nghệ sĩ chưa từng bán được bài hát nào", "s": 1},
+     {"type": "filter", "text": "Tính cả nghệ sĩ không có album nào", "s": 1},
+     {"type": "aggregate", "text": "Đếm số nghệ sĩ", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+  {"item": "C075",
+   "requirements": [
+     {"type": "aggregate", "text": "Doanh thu 2025 (SUM(Total) năm 2025)", "s": 1},
+     {"type": "aggregate", "text": "Doanh thu 2024 (SUM(Total) năm 2024)", "s": 1},
+     {"type": "aggregate", "text": "Phần trăm thay đổi = 100*(2025-2024)/2024", "s": 1},
+     {"type": "output", "text": "Làm tròn 2 chữ số, số âm là giảm", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"}
+]

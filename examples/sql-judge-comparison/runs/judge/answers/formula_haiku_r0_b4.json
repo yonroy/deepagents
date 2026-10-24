@@ -1,0 +1,102 @@
+[
+ {"item": "C106",
+  "requirements": [
+   {"type": "output", "text": "Họ tên nhân viên", "s": 1},
+   {"type": "output", "text": "Họ tên người quản lý trực tiếp", "s": 1},
+   {"type": "filter", "text": "Giữ mọi nhân viên, kể cả người không có quản lý (LEFT JOIN theo ReportsTo)", "s": 1},
+   {"type": "filter", "text": "Cột quản lý để trống khi nhân viên không có quản lý (trả về NULL)", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+
+ {"item": "C099",
+  "requirements": [
+   {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+   {"type": "aggregate", "text": "Đếm số khách hàng mà mỗi nhân viên phụ trách (COUNT(CustomerId))", "s": 1},
+   {"type": "filter", "text": "Liệt kê cả nhân viên không phụ trách khách nào (LEFT JOIN, ghi 0)", "s": 1},
+   {"type": "output", "text": "Thông tin nhân viên và số khách hàng", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+
+ {"item": "C050",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ tính hóa đơn năm 2023 (điều kiện nằm trong ON của LEFT JOIN Invoice, giữ nhân viên không có hóa đơn)", "s": 1},
+   {"type": "aggregate", "text": "Doanh thu = tổng tiền hóa đơn của khách do nhân viên phụ trách", "s": 1},
+   {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+   {"type": "output", "text": "Họ tên nhân viên và doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+
+ {"item": "C096",
+  "requirements": [
+   {"type": "filter", "text": "Hóa đơn từ 01/01/2025 đến hết 31/03/2025. Điều kiện InvoiceDate <= '2025-03-31' loại các hóa đơn ngày 31/03 có giờ (chuỗi datetime > '2025-03-31'), nên chỉ đúng một phần", "s": 0.5},
+   {"type": "aggregate", "text": "SUM(Total) làm tròn 2 chữ số", "s": 1},
+   {"type": "output", "text": "Một giá trị doanh thu tổng", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 0.8333, "penalty": 1.0, "score": 8.33, "verdict": "correct"},
+
+ {"item": "C029",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ năm 2025", "s": 1},
+   {"type": "aggregate", "text": "Tổng tiền hóa đơn của từng tháng", "s": 1},
+   {"type": "group", "text": "Theo tháng (strftime('%m'))", "s": 1},
+   {"type": "order", "text": "Theo thứ tự tháng 1 đến 12", "s": 1},
+   {"type": "output", "text": "Tháng và doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+
+ {"item": "C035",
+  "requirements": [
+   {"type": "filter", "text": "Khách đã mua ít nhất một bài Rock VÀ ít nhất một bài Jazz. SQL dùng WHERE g.Name IN ('Rock','Jazz') và HAVING COUNT(DISTINCT g.Name) >= 1, tức là logic OR, không phải AND", "s": 0},
+   {"type": "aggregate", "text": "Đếm số khách hàng thỏa điều kiện", "s": 1},
+   {"type": "output", "text": "Một số đếm (n_customers)", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 0.6667, "penalty": 1.0, "score": 6.67, "verdict": "incorrect"},
+
+ {"item": "C015",
+  "requirements": [
+   {"type": "group", "text": "Theo loại media", "s": 1},
+   {"type": "aggregate", "text": "Đếm bài hát khác nhau đã từng bán ít nhất một lần. COUNT(il.TrackId) đếm số dòng hóa đơn, cùng một bài bán nhiều lần bị đếm nhiều lần", "s": 0},
+   {"type": "output", "text": "Tên loại media và số bài", "s": 1}
+  ],
+  "errors": ["distinct"],
+  "coverage": 0.6667, "penalty": 0.6, "score": 4.0, "verdict": "incorrect"},
+
+ {"item": "C122",
+  "requirements": [
+   {"type": "filter", "text": "Album có tổng thời lượng trên 1 giờ (SUM(Milliseconds) > 3600000)", "s": 1},
+   {"type": "filter", "text": "Album có ít nhất một bài Composer trống (NULL hoặc TRIM = '')", "s": 1},
+   {"type": "aggregate", "text": "Đếm số album thỏa điều kiện", "s": 1},
+   {"type": "output", "text": "Một số đếm (album_count)", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+
+ {"item": "C003",
+  "requirements": [
+   {"type": "filter", "text": "Khách hàng ở Đức (Customer.Country = 'Germany')", "s": 1},
+   {"type": "filter", "text": "Chỉ năm 2024", "s": 1},
+   {"type": "aggregate", "text": "Doanh thu bán lẻ = SUM(UnitPrice * Quantity)", "s": 1},
+   {"type": "group", "text": "Theo nghệ sĩ", "s": 1},
+   {"type": "order", "text": "Giảm dần theo doanh thu", "s": 1},
+   {"type": "limit", "text": "3 nghệ sĩ", "s": 1},
+   {"type": "output", "text": "Tên nghệ sĩ và doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+
+ {"item": "C085",
+  "requirements": [
+   {"type": "group", "text": "Theo quốc gia thanh toán (BillingCountry)", "s": 1},
+   {"type": "filter", "text": "Chỉ các nước có ít nhất 20 hóa đơn (HAVING COUNT(*) >= 20)", "s": 1},
+   {"type": "aggregate", "text": "Giá trị hóa đơn trung bình = AVG(Total), làm tròn 2 chữ số", "s": 1},
+   {"type": "output", "text": "Quốc gia và giá trị trung bình", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"}
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "item": "C066",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ album của nghệ sĩ 'AC/DC' (ar.Name = 'AC/DC')", "s": 1},
+      {"type": "output", "text": "Tên album (al.Title)", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1.0,
+    "penalty": 1.0,
+    "score": 10.0,
+    "verdict": "correct"
+  },
+  {
+    "item": "C058",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ thể loại có ít nhất một bài hát (INNER JOIN Track)", "s": 1},
+      {"type": "aggregate", "text": "Đếm thể loại khác nhau (COUNT(DISTINCT g.GenreId))", "s": 1},
+      {"type": "output", "text": "Một số đếm duy nhất", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1.0,
+    "penalty": 1.0,
+    "score": 10.0,
+    "verdict": "correct"
+  },
+  {
+    "item": "C084",
+    "requirements": [
+      {"type": "filter", "text": "Hóa đơn có Total >= 13.86", "s": 1},
+      {"type": "aggregate", "text": "Đếm số hóa đơn (COUNT(*))", "s": 1},
+      {"type": "output", "text": "Một số đếm duy nhất", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1.0,
+    "penalty": 1.0,
+    "score": 10.0,
+    "verdict": "correct"
+  },
+  {
+    "item": "C069",
+    "requirements": [
+      {"type": "filter", "text": "Khách hàng ở Brazil (Country = 'Brazil')", "s": 1},
+      {"type": "aggregate", "text": "Đếm số khách hàng (COUNT(*))", "s": 1},
+      {"type": "output", "text": "Một số đếm duy nhất", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1.0,
+    "penalty": 1.0,
+    "score": 10.0,
+    "verdict": "correct"
+  },
+  {
+    "item": "C095",
+    "requirements": [
+      {"type": "filter", "text": "Nhân viên có Title = 'Sales Support Agent'", "s": 1},
+      {"type": "output", "text": "Họ (LastName), tên (FirstName), ngày vào làm (HireDate)", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1.0,
+    "penalty": 1.0,
+    "score": 10.0,
+    "verdict": "correct"
+  }
+]

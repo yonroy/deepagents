@@ -1,0 +1,149 @@
+[
+  {
+    "item": "C055",
+    "requirements": [
+      {"type": "filter", "text": "chỉ hóa đơn năm 2024", "s": 0},
+      {"type": "aggregate", "text": "tổng tiền = SUM(Total)", "s": 1},
+      {"type": "group", "text": "theo khách hàng", "s": 1},
+      {"type": "order", "text": "giảm dần theo tổng tiền", "s": 1},
+      {"type": "limit", "text": "5", "s": 1},
+      {"type": "output", "text": "họ tên và tổng tiền", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 0.8333,
+    "penalty": 1,
+    "score": 8.33,
+    "verdict": "correct"
+  },
+  {
+    "item": "C082",
+    "requirements": [
+      {"type": "aggregate", "text": "số khách hàng của từng nước = COUNT khách hàng", "s": 1},
+      {"type": "filter", "text": "chỉ quốc gia có từ 5 khách hàng trở lên", "s": 1},
+      {"type": "group", "text": "theo quốc gia", "s": 1},
+      {"type": "output", "text": "tên quốc gia và số khách hàng", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C065",
+    "requirements": [
+      {"type": "aggregate", "text": "tổng chi tiêu từng khách = SUM(Total)", "s": 1},
+      {"type": "group", "text": "theo quốc gia", "s": 1},
+      {"type": "filter", "text": "chỉ khách chi tiêu nhiều nhất trong từng quốc gia", "s": 1},
+      {"type": "filter", "text": "nếu hòa thì liệt kê tất cả", "s": 1},
+      {"type": "output", "text": "quốc gia, họ tên, tổng tiền", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C042",
+    "requirements": [
+      {"type": "filter", "text": "chỉ nghệ sĩ 'Iron Maiden'", "s": 1},
+      {"type": "aggregate", "text": "số bài hát = COUNT bài hát", "s": 1},
+      {"type": "group", "text": "theo album", "s": 1},
+      {"type": "output", "text": "tên album và số bài", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C089",
+    "requirements": [
+      {"type": "aggregate", "text": "doanh thu = SUM(UnitPrice*Quantity) trên từng dòng hóa đơn", "s": 0},
+      {"type": "group", "text": "theo thể loại", "s": 1},
+      {"type": "order", "text": "từ cao xuống thấp theo doanh thu", "s": 1},
+      {"type": "limit", "text": "5", "s": 1},
+      {"type": "output", "text": "thể loại và doanh thu", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 0.8,
+    "penalty": 1,
+    "score": 8.0,
+    "verdict": "correct"
+  },
+  {
+    "item": "C101",
+    "requirements": [
+      {"type": "filter", "text": "chỉ playlist tên 'Grunge'", "s": 1},
+      {"type": "aggregate", "text": "số bài hát = COUNT bài hát trong playlist", "s": 1},
+      {"type": "output", "text": "số bài hát", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C074",
+    "requirements": [
+      {"type": "aggregate", "text": "doanh thu từng dòng = UnitPrice*Quantity, cộng theo loại media", "s": 1},
+      {"type": "aggregate", "text": "tỷ lệ trên tổng doanh thu toàn bộ dòng hóa đơn", "s": 1},
+      {"type": "group", "text": "theo loại media", "s": 1},
+      {"type": "output", "text": "làm tròn 2 chữ số", "s": 1},
+      {"type": "output", "text": "tên media và tỷ lệ phần trăm", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C081",
+    "requirements": [
+      {"type": "filter", "text": "chỉ khách hàng ở Đức (Germany)", "s": 0},
+      {"type": "filter", "text": "chỉ năm 2024", "s": 1},
+      {"type": "aggregate", "text": "doanh thu = SUM(UnitPrice*Quantity)", "s": 1},
+      {"type": "group", "text": "theo nghệ sĩ", "s": 1},
+      {"type": "order", "text": "từ cao xuống thấp theo doanh thu", "s": 1},
+      {"type": "limit", "text": "3", "s": 1},
+      {"type": "output", "text": "tên nghệ sĩ và doanh thu", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 0.8571,
+    "penalty": 1,
+    "score": 8.57,
+    "verdict": "correct"
+  },
+  {
+    "item": "C034",
+    "requirements": [
+      {"type": "aggregate", "text": "số playlist khác nhau chứa bài hát", "s": 1},
+      {"type": "filter", "text": "chỉ bài hát có nhiều hơn 4 playlist", "s": 1},
+      {"type": "group", "text": "theo bài hát", "s": 1},
+      {"type": "output", "text": "tên bài và số playlist", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C041",
+    "requirements": [
+      {"type": "filter", "text": "chỉ hóa đơn năm 2024 và 2025", "s": 1},
+      {"type": "aggregate", "text": "doanh thu từng năm = SUM(Total)", "s": 1},
+      {"type": "aggregate", "text": "phần trăm thay đổi = (2025 - 2024) / 2024 * 100", "s": 1},
+      {"type": "output", "text": "làm tròn 2 chữ số, số âm nghĩa là giảm", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  }
+]

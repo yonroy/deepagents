@@ -1,0 +1,140 @@
+[
+  {
+    "item": "C067",
+    "requirements": [
+      {"type": "filter", "text": "Giữ mọi nhân viên, kể cả người không có quản lý", "s": 1},
+      {"type": "output", "text": "Họ tên nhân viên", "s": 1},
+      {"type": "output", "text": "Họ tên người quản lý trực tiếp; để trống nếu không có", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C079",
+    "requirements": [
+      {"type": "filter", "text": "Liệt kê tất cả nhân viên, kể cả người không phụ trách khách nào", "s": 1},
+      {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+      {"type": "aggregate", "text": "Đếm số khách hàng phụ trách của mỗi nhân viên", "s": 0.5},
+      {"type": "aggregate", "text": "Nhân viên không phụ trách khách nào ghi 0", "s": 0},
+      {"type": "output", "text": "Họ tên và số khách hàng", "s": 1}
+    ],
+    "errors": ["null"],
+    "coverage": 0.7,
+    "penalty": 0.6,
+    "score": 4.2,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C012",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ hóa đơn trong năm 2025", "s": 1},
+      {"type": "aggregate", "text": "Doanh thu = tổng Total", "s": 1},
+      {"type": "group", "text": "Theo từng tháng; SQL nhóm theo ngày trong tháng (strftime '%d')", "s": 0},
+      {"type": "order", "text": "Thứ tự tháng 1 đến 12; SQL sắp theo ngày", "s": 0},
+      {"type": "output", "text": "Cột tháng và doanh thu; cột tháng hiện chứa số ngày", "s": 0.5}
+    ],
+    "errors": [],
+    "coverage": 0.5,
+    "penalty": 1,
+    "score": 5,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C060",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ bài hát đã từng được bán ít nhất một lần", "s": 1},
+      {"type": "aggregate", "text": "Đếm số bài hát khác nhau (COUNT DISTINCT)", "s": 1},
+      {"type": "group", "text": "Theo từng loại media", "s": 1},
+      {"type": "output", "text": "Tên loại media và số bài", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C019",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ hóa đơn năm 2023", "s": 1},
+      {"type": "aggregate", "text": "Doanh thu = tổng Total", "s": 1},
+      {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+      {"type": "filter", "text": "Doanh thu gán cho nhân viên qua khách hàng họ phụ trách", "s": 1},
+      {"type": "output", "text": "Họ tên nhân viên và doanh thu", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C011",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ hóa đơn từ 01/01/2025 đến hết 31/03/2025", "s": 1},
+      {"type": "aggregate", "text": "Tổng doanh thu = SUM(Total)", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C109",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ bài thuộc thể loại Rock hoặc Jazz", "s": 1},
+      {"type": "filter", "text": "Khách phải đã mua cả Rock VÀ Jazz", "s": 0},
+      {"type": "aggregate", "text": "Đếm số khách hàng thỏa điều kiện", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 0.6667,
+    "penalty": 1,
+    "score": 6.67,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C114",
+    "requirements": [
+      {"type": "filter", "text": "Album có ít nhất một bài thiếu Composer", "s": 1},
+      {"type": "aggregate", "text": "Tổng thời lượng của album trên mọi bài; SQL chỉ cộng các bài thiếu Composer", "s": 0},
+      {"type": "aggregate", "text": "Đếm số album thỏa cả hai điều kiện", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 0.6667,
+    "penalty": 1,
+    "score": 6.67,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C100",
+    "requirements": [
+      {"type": "aggregate", "text": "Thời lượng trung bình mỗi thể loại (AVG Milliseconds)", "s": 1},
+      {"type": "aggregate", "text": "Quy đổi ra phút, làm tròn 2 chữ số", "s": 1},
+      {"type": "group", "text": "Theo từng thể loại", "s": 1},
+      {"type": "order", "text": "Từ dài đến ngắn", "s": 1},
+      {"type": "limit", "text": "3 thể loại", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C048",
+    "requirements": [
+      {"type": "filter", "text": "Nghệ sĩ chưa từng bán được bài hát nào", "s": 1},
+      {"type": "filter", "text": "Tính cả nghệ sĩ không có album nào; SQL chỉ xét nghệ sĩ có album (EXISTS)", "s": 0},
+      {"type": "aggregate", "text": "Đếm số nghệ sĩ", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 0.6667,
+    "penalty": 1,
+    "score": 6.67,
+    "verdict": "incorrect"
+  }
+]

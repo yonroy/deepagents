@@ -1,0 +1,93 @@
+[
+  {"item": "C072",
+   "requirements": [
+     {"type": "filter", "text": "giữ mọi nhân viên, kể cả người không có quản lý", "s": 1},
+     {"type": "output", "text": "họ tên nhân viên", "s": 1},
+     {"type": "output", "text": "họ tên người quản lý trực tiếp (self-join qua ReportsTo)", "s": 1},
+     {"type": "output", "text": "cột quản lý để trống khi nhân viên không có quản lý", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C099",
+   "requirements": [
+     {"type": "filter", "text": "liệt kê mọi nhân viên, kể cả người không phụ trách khách nào", "s": 1},
+     {"type": "aggregate", "text": "đếm số khách hàng phụ trách mỗi nhân viên", "s": 1},
+     {"type": "group", "text": "theo từng nhân viên", "s": 1},
+     {"type": "output", "text": "số khách; người không có khách ghi 0", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C114",
+   "requirements": [
+     {"type": "filter", "text": "album có ít nhất một bài Composer trống", "s": 1},
+     {"type": "aggregate", "text": "tổng thời lượng album (tính trên tất cả bài của album) > 1 giờ", "s": 0},
+     {"type": "output", "text": "số album", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.6667, "penalty": 1, "score": 6.67, "verdict": "incorrect"},
+  {"item": "C008",
+   "requirements": [
+     {"type": "filter", "text": "chỉ tính bài đã từng được bán (có dòng InvoiceLine)", "s": 1},
+     {"type": "aggregate", "text": "đếm bài hát khác nhau", "s": 1},
+     {"type": "group", "text": "theo loại media", "s": 1},
+     {"type": "output", "text": "tên loại media, số bài", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C073",
+   "requirements": [
+     {"type": "filter", "text": "chỉ năm 2025", "s": 1},
+     {"type": "aggregate", "text": "SUM(Total) doanh thu theo tháng", "s": 1},
+     {"type": "group", "text": "theo tháng", "s": 1},
+     {"type": "order", "text": "theo thứ tự tháng 1 đến 12", "s": 1},
+     {"type": "output", "text": "tháng, doanh thu", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C011",
+   "requirements": [
+     {"type": "filter", "text": "quý 1 năm 2025: từ 2025-01-01 đến hết 2025-03-31", "s": 1},
+     {"type": "aggregate", "text": "SUM(Total) tổng doanh thu hóa đơn", "s": 1},
+     {"type": "output", "text": "một con số tổng", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C046",
+   "requirements": [
+     {"type": "filter", "text": "khách đã mua ít nhất một bài thể loại Rock", "s": 1},
+     {"type": "filter", "text": "khách đã mua ít nhất một bài thể loại Jazz", "s": 1},
+     {"type": "filter", "text": "điều kiện VÀ: thỏa cả hai thể loại (INTERSECT)", "s": 1},
+     {"type": "aggregate", "text": "đếm khách hàng khác nhau", "s": 1},
+     {"type": "output", "text": "số khách hàng", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C050",
+   "requirements": [
+     {"type": "filter", "text": "hóa đơn của năm 2023", "s": 1},
+     {"type": "aggregate", "text": "SUM(Total) doanh thu qua khách hàng nhân viên phụ trách", "s": 1},
+     {"type": "group", "text": "theo từng nhân viên", "s": 1},
+     {"type": "output", "text": "họ tên nhân viên và doanh thu", "s": 1},
+     {"type": "filter", "text": "chỉ nhân viên hỗ trợ (đang phụ trách khách); SQL cũng liệt kê nhân viên không phụ trách khách với doanh thu 0", "s": 0.5}
+   ],
+   "errors": [],
+   "coverage": 0.9, "penalty": 1, "score": 9, "verdict": "correct"},
+  {"item": "C062",
+   "requirements": [
+     {"type": "group", "text": "theo quốc gia thanh toán (BillingCountry)", "s": 1},
+     {"type": "aggregate", "text": "AVG(Total) giá trị hóa đơn trung bình", "s": 1},
+     {"type": "filter", "text": "chỉ quốc gia có ít nhất 20 hóa đơn (HAVING COUNT(*) >= 20)", "s": 1},
+     {"type": "output", "text": "quốc gia, giá trị trung bình", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C044",
+   "requirements": [
+     {"type": "group", "text": "theo nghệ sĩ", "s": 1},
+     {"type": "aggregate", "text": "đếm số album khác nhau của nghệ sĩ", "s": 0},
+     {"type": "filter", "text": "chỉ nghệ sĩ có nhiều hơn 10 album", "s": 0},
+     {"type": "output", "text": "tên nghệ sĩ và số album", "s": 0.5}
+   ],
+   "errors": ["fan_out"],
+   "coverage": 0.375, "penalty": 0.4, "score": 1.5, "verdict": "incorrect"}
+]

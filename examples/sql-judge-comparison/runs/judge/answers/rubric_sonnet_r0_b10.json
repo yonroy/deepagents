@@ -1,0 +1,12 @@
+[
+{"item": "C064", "verdict": "incorrect", "score": 2, "reason": "Question asks for 5 or more customers but HAVING uses > 5, so countries with exactly 5 customers are dropped."},
+{"item": "C075", "verdict": "correct", "score": 9, "reason": "Conditional sums for 2025 and 2024 give the percent change (new-old)/old, rounded to 2 digits with float division; correct."},
+{"item": "C044", "verdict": "incorrect", "score": 1, "reason": "Joining Track multiplies rows, so COUNT(*) counts tracks rather than albums (needs COUNT(DISTINCT AlbumId)); albums without tracks are also lost."},
+{"item": "C080", "verdict": "correct", "score": 10, "reason": "Simple count of customers with Country = 'Brazil'."},
+{"item": "C097", "verdict": "incorrect", "score": 2, "reason": "'từ 13.86 trở lên' means >= 13.86, but the query uses > so invoices of exactly 13.86 are excluded."},
+{"item": "C083", "verdict": "correct", "score": 10, "reason": "Correct join to MediaType, filter by name, AVG of Track.UnitPrice."},
+{"item": "C078", "verdict": "correct", "score": 10, "reason": "COUNT(DISTINCT GenreId) over Track ignoring NULLs counts genres that have at least one track."},
+{"item": "C056", "verdict": "incorrect", "score": 1, "reason": "Selects BirthDate instead of HireDate, so it returns the wrong column for 'ngày vào làm'."},
+{"item": "C052", "verdict": "correct", "score": 10, "reason": "Correct join Album-Artist filtered by Name 'AC/DC', returns album titles."},
+{"item": "C107", "verdict": "incorrect", "score": 1, "reason": "ORDER BY Milliseconds ASC returns the 10 shortest tracks, but the question wants the longest first (DESC)."}
+]

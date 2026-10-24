@@ -1,0 +1,12 @@
+[
+{"item": "C099", "verdict": "correct", "score": 10, "reason": "LEFT JOIN from Employee to Customer with COUNT(c.CustomerId) gives 0 for employees without customers and groups by employee."},
+{"item": "C104", "verdict": "incorrect", "score": 1, "reason": "The self-join condition is reversed (m.ReportsTo = e.EmployeeId), so m is a subordinate of e, not the manager; it also drops the blank-manager semantics for employees without a manager."},
+{"item": "C050", "verdict": "correct", "score": 9, "reason": "The 2023 filter sits in the LEFT JOIN ON clause so all employees are kept, and SUM(Total) is not multiplied by other joins; COALESCE gives 0 where there is no revenue."},
+{"item": "C008", "verdict": "correct", "score": 9, "reason": "Inner joins through InvoiceLine keep only sold tracks, and COUNT(DISTINCT TrackId) per media type is correct."},
+{"item": "C035", "verdict": "incorrect", "score": 2, "reason": "HAVING COUNT(DISTINCT g.Name) >= 1 counts customers who bought Rock OR Jazz; it should require = 2."},
+{"item": "C077", "verdict": "incorrect", "score": 1, "reason": "Composer = NULL is never true, so the second condition always fails and the count is 0; it should use IS NULL."},
+{"item": "C017", "verdict": "correct", "score": 9, "reason": "Half-open date range covers 1 Jan to 31 Mar 2025 inclusive and sums Invoice.Total correctly."},
+{"item": "C073", "verdict": "correct", "score": 9, "reason": "Filters year 2025, groups by month and orders by the zero-padded month string, which sorts correctly 01 to 12."},
+{"item": "C090", "verdict": "incorrect", "score": 2, "reason": "The extra EXISTS on Album excludes artists with no albums, though the question explicitly says to include them."},
+{"item": "C033", "verdict": "correct", "score": 9, "reason": "Joins PlaylistTrack to all playlists named 'Music' and counts distinct TrackId, handling duplicate-named playlists."}
+]

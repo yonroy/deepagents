@@ -1,0 +1,144 @@
+[
+  {
+    "item": "C116",
+    "requirements": [
+      {"type": "filter", "text": "Giữ mọi nhân viên, kể cả người không có quản lý", "s": 1},
+      {"type": "output", "text": "Họ tên nhân viên", "s": 1},
+      {"type": "output", "text": "Họ tên người quản lý trực tiếp (join đang ghép ngược: m.ReportsTo = e.EmployeeId trả về cấp dưới, không phải quản lý)", "s": 0},
+      {"type": "output", "text": "Cột quản lý để trống khi nhân viên không có quản lý (nhân viên cấp cao nhất nhận cấp dưới thay vì NULL)", "s": 0}
+    ],
+    "errors": [],
+    "coverage": 0.5,
+    "penalty": 1,
+    "score": 5.0,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C020",
+    "requirements": [
+      {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+      {"type": "aggregate", "text": "Đếm số khách hàng phụ trách (COUNT(c.CustomerId))", "s": 1},
+      {"type": "filter", "text": "Giữ nhân viên không phụ trách khách nào (LEFT JOIN), ghi 0", "s": 1},
+      {"type": "output", "text": "Tên nhân viên và số khách hàng", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10.0,
+    "verdict": "correct"
+  },
+  {
+    "item": "C021",
+    "requirements": [
+      {"type": "aggregate", "text": "Tổng thời lượng album > 1 giờ (SUM(Milliseconds) > 3600000)", "s": 1},
+      {"type": "filter", "text": "Album có ít nhất một bài có Composer trống", "s": 1},
+      {"type": "aggregate", "text": "Đếm số album thỏa cả hai điều kiện", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10.0,
+    "verdict": "correct"
+  },
+  {
+    "item": "C012",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ năm 2025", "s": 1},
+      {"type": "aggregate", "text": "Doanh thu = SUM(Total) theo tháng, làm tròn", "s": 1},
+      {"type": "group", "text": "Theo từng tháng (strftime('%d') nhóm theo ngày trong tháng, không phải tháng)", "s": 0},
+      {"type": "output", "text": "Cột tháng (1-12) và doanh thu (cột month hiện ra số ngày 01-31)", "s": 0},
+      {"type": "order", "text": "Theo thứ tự tháng 1 đến 12 (ORDER BY theo ngày)", "s": 0}
+    ],
+    "errors": [],
+    "coverage": 0.4,
+    "penalty": 1,
+    "score": 4.0,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C096",
+    "requirements": [
+      {"type": "filter", "text": "Từ đầu quý 1 (InvoiceDate >= 2025-01-01)", "s": 1},
+      {"type": "filter", "text": "Đến hết tháng 3 (so sánh chuỗi với '2025-03-31' loại hóa đơn trong ngày 31/03 có giờ khác 00:00:00; đúng nếu dữ liệu đều 00:00:00)", "s": 0.5},
+      {"type": "aggregate", "text": "SUM(Total) làm tròn 2 chữ số", "s": 1},
+      {"type": "output", "text": "Một con số tổng doanh thu", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 0.875,
+    "penalty": 1,
+    "score": 8.75,
+    "verdict": "correct"
+  },
+  {
+    "item": "C023",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ năm 2023", "s": 1},
+      {"type": "join", "text": "Đi qua Customer.SupportRepId để gắn khách với nhân viên phụ trách", "s": 1},
+      {"type": "aggregate", "text": "SUM(Total) của hóa đơn các khách hàng được phụ trách", "s": 1},
+      {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+      {"type": "output", "text": "Họ tên nhân viên và doanh thu", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10.0,
+    "verdict": "correct"
+  },
+  {
+    "item": "C094",
+    "requirements": [
+      {"type": "filter", "text": "Bài thuộc thể loại Rock hoặc Jazz", "s": 1},
+      {"type": "filter", "text": "Khách đã mua CẢ Rock VÀ Jazz (HAVING COUNT(DISTINCT g.Name) = 2)", "s": 1},
+      {"type": "aggregate", "text": "Đếm số khách hàng", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10.0,
+    "verdict": "correct"
+  },
+  {
+    "item": "C015",
+    "requirements": [
+      {"type": "filter", "text": "Bài đã từng được bán (có trong InvoiceLine)", "s": 1},
+      {"type": "aggregate", "text": "Đếm bài hát khác nhau (COUNT(il.TrackId) không DISTINCT, đếm số dòng bán)", "s": 0},
+      {"type": "group", "text": "Theo loại media", "s": 1},
+      {"type": "output", "text": "Tên loại media và số bài", "s": 1}
+    ],
+    "errors": ["distinct"],
+    "coverage": 0.75,
+    "penalty": 0.6,
+    "score": 4.5,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C001",
+    "requirements": [
+      {"type": "filter", "text": "Playlist tên 'Grunge'", "s": 1},
+      {"type": "aggregate", "text": "Đếm bài hát trong playlist", "s": 1},
+      {"type": "output", "text": "Một con số", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10.0,
+    "verdict": "correct"
+  },
+  {
+    "item": "C081",
+    "requirements": [
+      {"type": "filter", "text": "Khách hàng ở Đức (không có điều kiện Customer.Country hoặc BillingCountry)", "s": 0},
+      {"type": "filter", "text": "Năm 2024", "s": 1},
+      {"type": "aggregate", "text": "Doanh thu bán lẻ = SUM(UnitPrice * Quantity)", "s": 1},
+      {"type": "group", "text": "Theo nghệ sĩ", "s": 1},
+      {"type": "order", "text": "Giảm dần theo doanh thu", "s": 1},
+      {"type": "limit", "text": "3", "s": 1},
+      {"type": "output", "text": "Tên nghệ sĩ và doanh thu", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 0.8571,
+    "penalty": 1,
+    "score": 8.57,
+    "verdict": "correct"
+  }
+]

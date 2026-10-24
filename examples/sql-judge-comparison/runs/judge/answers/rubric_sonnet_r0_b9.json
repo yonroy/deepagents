@@ -1,0 +1,12 @@
+[
+{"item": "C074", "verdict": "correct", "score": 9, "reason": "Revenue per media type divided by total InvoiceLine revenue, grouped by MediaTypeId with Name selected, rounded to 2 places; correct."},
+{"item": "C082", "verdict": "correct", "score": 9, "reason": "Groups customers by Country with HAVING COUNT(*) >= 5 and returns the counts; correct."},
+{"item": "C053", "verdict": "correct", "score": 9, "reason": "NOT EXISTS over Album-Track-InvoiceLine counts artists with no sold tracks, including artists with no albums; correct."},
+{"item": "C041", "verdict": "correct", "score": 9, "reason": "Computes (2025 - 2024)/2024 of Invoice.Total using conditional sums, times 100, rounded to 2 places; correct."},
+{"item": "C098", "verdict": "correct", "score": 9, "reason": "Counts distinct playlists per track and keeps those above 4, returning track name and count; correct."},
+{"item": "C059", "verdict": "correct", "score": 9, "reason": "Counts albums per artist grouped by ArtistId with HAVING n>10 (alias is valid in SQLite); correct."},
+{"item": "C081", "verdict": "incorrect", "score": 2, "reason": "The query has no filter for customers in Germany (no join to Customer or BillingCountry), so it ranks artists by worldwide 2024 revenue."},
+{"item": "C014", "verdict": "incorrect", "score": 2, "reason": "GROUP BY ar.ArtistId collapses all Iron Maiden albums into one row, so it does not give a track count per album as asked."},
+{"item": "C101", "verdict": "correct", "score": 9, "reason": "Counts PlaylistTrack rows for the playlist named 'Grunge'; correct."},
+{"item": "C040", "verdict": "incorrect", "score": 1, "reason": "The join condition ar.ArtistId = al.AlbumId is wrong (should be al.ArtistId), so it returns the wrong albums."}
+]

@@ -1,0 +1,92 @@
+[
+  {"item": "C002",
+   "requirements": [
+     {"type": "output", "text": "họ tên nhân viên (FirstName, LastName)", "s": 1},
+     {"type": "output", "text": "họ tên người quản lý trực tiếp", "s": 1},
+     {"type": "filter", "text": "giữ cả nhân viên không có quản lý (cột quản lý để trống)", "s": 0}
+   ],
+   "errors": ["join_type"],
+   "coverage": 0.67, "penalty": 0.5, "score": 3.33, "verdict": "incorrect"},
+  {"item": "C026",
+   "requirements": [
+     {"type": "group", "text": "theo từng nhân viên", "s": 1},
+     {"type": "aggregate", "text": "đếm số khách hàng phụ trách (COUNT)", "s": 1},
+     {"type": "filter", "text": "liệt kê tất cả nhân viên, kể cả không phụ trách khách nào", "s": 1},
+     {"type": "output", "text": "mã và tên nhân viên, số khách hàng", "s": 1},
+     {"type": "aggregate", "text": "ghi 0 cho nhân viên không có khách", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+  {"item": "C098",
+   "requirements": [
+     {"type": "aggregate", "text": "đếm số playlist khác nhau chứa bài hát (COUNT DISTINCT)", "s": 1},
+     {"type": "filter", "text": "chỉ bài hát nằm trong nhiều hơn 4 playlist", "s": 1},
+     {"type": "output", "text": "tên bài hát và số playlist", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+  {"item": "C010",
+   "requirements": [
+     {"type": "group", "text": "theo quốc gia", "s": 1},
+     {"type": "aggregate", "text": "đếm số khách hàng mỗi nước", "s": 1},
+     {"type": "filter", "text": "chỉ nước có từ 5 khách hàng trở lên", "s": 1},
+     {"type": "output", "text": "quốc gia và số khách hàng", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+  {"item": "C120",
+   "requirements": [
+     {"type": "filter", "text": "chỉ playlist có tên 'Music' (kể cả trùng tên)", "s": 1},
+     {"type": "aggregate", "text": "đếm số bài hát khác nhau (COUNT DISTINCT TrackId)", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+  {"item": "C110",
+   "requirements": [
+     {"type": "aggregate", "text": "thời lượng trung bình theo thể loại (AVG Milliseconds)", "s": 1},
+     {"type": "aggregate", "text": "đổi đơn vị sang phút (chia 60000, SQL chia 1000 ra giây)", "s": 0},
+     {"type": "output", "text": "làm tròn 2 chữ số", "s": 1},
+     {"type": "order", "text": "từ dài đến ngắn (DESC)", "s": 1},
+     {"type": "limit", "text": "3 thể loại", "s": 1},
+     {"type": "output", "text": "tên thể loại và thời lượng trung bình", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.83, "penalty": 1.0, "score": 8.33, "verdict": "correct"},
+  {"item": "C027",
+   "requirements": [
+     {"type": "aggregate", "text": "giá trị hóa đơn trung bình AVG(Total)", "s": 1},
+     {"type": "group", "text": "theo quốc gia thanh toán (BillingCountry)", "s": 1},
+     {"type": "filter", "text": "chỉ nước có ít nhất 20 hóa đơn (COUNT >= 20)", "s": 0},
+     {"type": "output", "text": "quốc gia và giá trị trung bình", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.75, "penalty": 1.0, "score": 7.5, "verdict": "incorrect"},
+  {"item": "C111",
+   "requirements": [
+     {"type": "aggregate", "text": "tổng chi tiêu mỗi khách hàng (SUM Total)", "s": 1},
+     {"type": "group", "text": "khách hàng chi nhiều nhất theo từng quốc gia", "s": 1},
+     {"type": "filter", "text": "liệt kê tất cả khi hòa", "s": 1},
+     {"type": "output", "text": "quốc gia, họ tên và tổng tiền", "s": 1},
+     {"type": "output", "text": "họ tên ghép từ FirstName và LastName", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+  {"item": "C059",
+   "requirements": [
+     {"type": "group", "text": "theo từng nghệ sĩ", "s": 1},
+     {"type": "aggregate", "text": "đếm số album mỗi nghệ sĩ", "s": 1},
+     {"type": "filter", "text": "chỉ nghệ sĩ có nhiều hơn 10 album", "s": 1},
+     {"type": "output", "text": "tên nghệ sĩ và số album", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+  {"item": "C090",
+   "requirements": [
+     {"type": "aggregate", "text": "đếm số nghệ sĩ", "s": 1},
+     {"type": "filter", "text": "nghệ sĩ chưa từng bán được bài hát nào (NOT EXISTS hóa đơn)", "s": 1},
+     {"type": "filter", "text": "tính cả nghệ sĩ không có album nào", "s": 0},
+     {"type": "output", "text": "một số đếm duy nhất", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.75, "penalty": 1.0, "score": 7.5, "verdict": "incorrect"}
+]

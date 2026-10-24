@@ -1,0 +1,53 @@
+[
+ {"item": "C083",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ bài hát có media type 'Protected AAC audio file'", "s": 1},
+   {"type": "aggregate", "text": "Giá bán trung bình = AVG(Track.UnitPrice)", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C080",
+  "requirements": [
+   {"type": "filter", "text": "Khách hàng có Country = 'Brazil'", "s": 1},
+   {"type": "aggregate", "text": "Đếm số khách hàng", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C052",
+  "requirements": [
+   {"type": "filter", "text": "Album của nghệ sĩ 'AC/DC'", "s": 1},
+   {"type": "output", "text": "Tên album (Album.Title)", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C078",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ thể loại có ít nhất một bài hát (GenreId không NULL)", "s": 1},
+   {"type": "aggregate", "text": "Đếm thể loại khác nhau: COUNT(DISTINCT GenreId)", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C097",
+  "requirements": [
+   {"type": "filter", "text": "Hóa đơn có tổng tiền từ 13.86 trở lên (Total >= 13.86)", "s": 0},
+   {"type": "aggregate", "text": "Đếm số hóa đơn", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 0.5, "penalty": 1, "score": 5, "verdict": "incorrect"},
+ {"item": "C007",
+  "requirements": [
+   {"type": "filter", "text": "Nhân viên có Title = 'Sales Support Agent'", "s": 1},
+   {"type": "output", "text": "Họ, tên, ngày vào làm (LastName, FirstName, HireDate)", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C107",
+  "requirements": [
+   {"type": "order", "text": "Sắp xếp theo thời lượng giảm dần (dài đến ngắn)", "s": 0},
+   {"type": "limit", "text": "10 bài", "s": 1},
+   {"type": "output", "text": "Tên bài và Milliseconds", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 0.67, "penalty": 1, "score": 6.67, "verdict": "incorrect"}
+]
+</content>

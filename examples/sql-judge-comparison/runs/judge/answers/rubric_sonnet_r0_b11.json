@@ -1,0 +1,9 @@
+[
+{"item": "C061", "verdict": "incorrect", "score": 1, "reason": "Joins MediaType but has no filter on m.Name = 'Protected AAC audio file', so it returns the average price over all tracks."},
+{"item": "C069", "verdict": "correct", "score": 10, "reason": "COUNT(*) on Customer filtered by Country='Brazil' answers the question exactly."},
+{"item": "C066", "verdict": "correct", "score": 10, "reason": "Album joined to Artist on ArtistId with Name='AC/DC' returns the album titles correctly."},
+{"item": "C084", "verdict": "correct", "score": 10, "reason": "Counts invoices with Total >= 13.86; the inclusive bound matches 'từ 13.86 trở lên'."},
+{"item": "C091", "verdict": "incorrect", "score": 1, "reason": "COUNT(GenreId) counts every track with a non-null genre, not distinct genres; it needs COUNT(DISTINCT GenreId)."},
+{"item": "C095", "verdict": "correct", "score": 10, "reason": "Selects LastName, FirstName and HireDate from Employee filtered by Title='Sales Support Agent', as asked."},
+{"item": "C086", "verdict": "correct", "score": 10, "reason": "Selects Name and Milliseconds ordered descending with LIMIT 10, giving the 10 longest tracks."}
+]

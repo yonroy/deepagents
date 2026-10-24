@@ -1,0 +1,12 @@
+[
+{"item": "C032", "verdict": "incorrect", "score": 2, "reason": "COUNT(*) after LEFT JOIN counts the NULL-extended row, so employees with no customers show 1 instead of 0; should be COUNT(c.CustomerId)."},
+{"item": "C106", "verdict": "correct", "score": 10, "reason": "Self LEFT JOIN on ReportsTo keeps all employees and gives NULL manager name for those without a manager."},
+{"item": "C103", "verdict": "correct", "score": 9, "reason": "Correct 2024 date range, SUM of Total grouped by customer, ordered DESC, LIMIT 5."},
+{"item": "C062", "verdict": "correct", "score": 10, "reason": "Groups by BillingCountry, AVG(Total), HAVING COUNT(*)>=20 matches 'at least 20 invoices'."},
+{"item": "C036", "verdict": "correct", "score": 10, "reason": "Counts distinct playlists per track, HAVING > 4, returns track name and count."},
+{"item": "C065", "verdict": "correct", "score": 9, "reason": "Per-customer totals, window MAX per country, keeps all tied customers; outputs country, name, total."},
+{"item": "C042", "verdict": "correct", "score": 10, "reason": "Filters artist Iron Maiden, counts tracks per album with LEFT JOIN, grouped by album."},
+{"item": "C039", "verdict": "correct", "score": 10, "reason": "AVG milliseconds / 60000.0 rounded to 2, ordered DESC, LIMIT 3, grouped by genre."},
+{"item": "C108", "verdict": "correct", "score": 10, "reason": "Counts customers per country with HAVING >= 5; correct output columns."},
+{"item": "C005", "verdict": "incorrect", "score": 1, "reason": "No filter on Playlist.Name = 'Grunge', so it counts all PlaylistTrack rows across every playlist."}
+]

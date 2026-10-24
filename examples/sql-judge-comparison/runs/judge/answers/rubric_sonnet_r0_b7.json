@@ -1,0 +1,12 @@
+[
+{"item": "C121", "verdict": "incorrect", "score": 1, "reason": "The WHERE compares total to the global MAX(total) over all customers, not the max within each country, so it returns at most the single top spender overall instead of one per country."},
+{"item": "C113", "verdict": "correct", "score": 9, "reason": "Revenue is summed per media type via InvoiceLine, Track and MediaType, divided by the total revenue and rounded to 2 places. Grouping and the 100.0 float division are correct."},
+{"item": "C076", "verdict": "correct", "score": 9, "reason": "Filters 2024 with a correct half-open date range, sums Invoice.Total per customer, orders descending and limits to 5. Name and total are both returned."},
+{"item": "C063", "verdict": "correct", "score": 9, "reason": "Groups by BillingCountry, averages Total, and keeps countries with at least 20 invoices (HAVING COUNT(*) >= 20). Output and ordering are fine."},
+{"item": "C034", "verdict": "correct", "score": 9, "reason": "Counts distinct playlists per track, groups by TrackId and keeps those with more than 4. Returns the track name and the count."},
+{"item": "C003", "verdict": "correct", "score": 9, "reason": "Joins invoice lines through tracks, albums and artists, filters customers in Germany and year 2024, sums UnitPrice*Quantity per artist, orders descending and takes the top 3."},
+{"item": "C031", "verdict": "correct", "score": 9, "reason": "Counts PlaylistTrack rows for the playlist named 'Grunge' through a join on Playlist. This gives the number of tracks in it."},
+{"item": "C045", "verdict": "correct", "score": 9, "reason": "Counts albums per artist and keeps artists with more than 10. Returns the artist name and the album count."},
+{"item": "C089", "verdict": "incorrect", "score": 1, "reason": "Uses AVG of line revenue per genre instead of SUM, so it ranks genres by average line value and the totals are wrong."},
+{"item": "C030", "verdict": "correct", "score": 9, "reason": "Averages Milliseconds per genre, converts to minutes with a float divisor, rounds to 2 places, orders descending and takes the top 3."}
+]

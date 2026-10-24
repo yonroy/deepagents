@@ -1,0 +1,12 @@
+[
+{"item": "C038", "verdict": "incorrect", "score": 2, "reason": "Inner JOIN drops employees with no customers, but the question requires listing all employees with 0; a LEFT JOIN is needed."},
+{"item": "C072", "verdict": "correct", "score": 9, "reason": "Self LEFT JOIN on ReportsTo keeps employees without a manager, whose manager is NULL."},
+{"item": "C023", "verdict": "correct", "score": 9, "reason": "Joins Employee, Customer and Invoice correctly, filters 2023 with proper boundaries, and sums Total per employee."},
+{"item": "C094", "verdict": "correct", "score": 9, "reason": "Filters to Rock and Jazz, groups by customer, and requires COUNT(DISTINCT genre name) = 2, which implements 'both'. The outer COUNT is correct."},
+{"item": "C022", "verdict": "correct", "score": 9, "reason": "Inner joins through InvoiceLine restrict to sold tracks, and COUNT DISTINCT TrackId per media type is correct."},
+{"item": "C122", "verdict": "correct", "score": 9, "reason": "Total duration > 3,600,000 ms and an EXISTS check for a NULL or empty Composer are both correct."},
+{"item": "C117", "verdict": "correct", "score": 10, "reason": "SUM(Total) over a half-open date range covering Jan 1 to Mar 31 2025 is correct."},
+{"item": "C018", "verdict": "correct", "score": 8, "reason": "Correct year filter and grouping by month, ordered 01 to 12; a month with no invoices would be absent, which is unlikely to matter."},
+{"item": "C016", "verdict": "correct", "score": 9, "reason": "Filters albums by artist name, LEFT JOIN on tracks and COUNT(t.TrackId) give correct counts per album."},
+{"item": "C006", "verdict": "correct", "score": 9, "reason": "Percentage change (2025 - 2024) / 2024 * 100 with float division and ROUND to 2 decimals is correct."}
+]

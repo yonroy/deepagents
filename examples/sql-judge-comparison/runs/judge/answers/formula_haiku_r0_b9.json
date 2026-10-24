@@ -1,0 +1,99 @@
+[
+ {"item": "C070",
+  "requirements": [
+   {"type": "filter", "text": "chi tiêu trong năm 2024", "s": 1},
+   {"type": "aggregate", "text": "tổng tiền = SUM(Total) của khách", "s": 1},
+   {"type": "group", "text": "theo khách hàng", "s": 1},
+   {"type": "order", "text": "giảm dần theo tổng tiền", "s": 1},
+   {"type": "limit", "text": "5 khách", "s": 1},
+   {"type": "output", "text": "họ tên và tổng tiền", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+ {"item": "C043",
+  "requirements": [
+   {"type": "filter", "text": "nghệ sĩ 'Iron Maiden'", "s": 1},
+   {"type": "aggregate", "text": "đếm số bài hát của mỗi album", "s": 1},
+   {"type": "group", "text": "theo album", "s": 1},
+   {"type": "output", "text": "tên album và số bài", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+ {"item": "C049",
+  "requirements": [
+   {"type": "filter", "text": "khách hàng ở Đức", "s": 1},
+   {"type": "filter", "text": "năm 2024", "s": 1},
+   {"type": "aggregate", "text": "doanh thu = SUM(UnitPrice*Quantity)", "s": 1},
+   {"type": "group", "text": "theo nghệ sĩ", "s": 1},
+   {"type": "order", "text": "giảm dần theo doanh thu", "s": 1},
+   {"type": "limit", "text": "3 nghệ sĩ", "s": 1},
+   {"type": "output", "text": "tên nghệ sĩ và doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+ {"item": "C051",
+  "requirements": [
+   {"type": "aggregate", "text": "tổng chi tiêu từ trước đến nay = SUM(Total) theo khách", "s": 1},
+   {"type": "group", "text": "theo khách trong từng quốc gia", "s": 1},
+   {"type": "filter", "text": "khách chi tiêu nhiều nhất trong mỗi quốc gia (rank 1)", "s": 1},
+   {"type": "filter", "text": "giữ tất cả khi hòa (RANK, không ROW_NUMBER)", "s": 1},
+   {"type": "output", "text": "quốc gia, họ tên và tổng tiền", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+ {"item": "C004",
+  "requirements": [
+   {"type": "filter", "text": "playlist tên 'Music'", "s": 1},
+   {"type": "aggregate", "text": "đếm số bài hát KHÁC NHAU (distinct TrackId)", "s": 0},
+   {"type": "output", "text": "một số tổng", "s": 1}
+  ],
+  "errors": ["distinct"],
+  "coverage": 0.6667, "penalty": 0.6, "score": 4.0, "verdict": "incorrect"},
+ {"item": "C047",
+  "requirements": [
+   {"type": "aggregate", "text": "doanh thu bán lẻ mỗi loại media = SUM(UnitPrice*Quantity)", "s": 1},
+   {"type": "aggregate", "text": "tỷ lệ phần trăm trên tổng doanh thu", "s": 1},
+   {"type": "group", "text": "theo loại media", "s": 1},
+   {"type": "output", "text": "làm tròn 2 chữ số", "s": 1},
+   {"type": "output", "text": "tên loại media và tỷ lệ %", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+ {"item": "C031",
+  "requirements": [
+   {"type": "filter", "text": "playlist tên 'Grunge'", "s": 1},
+   {"type": "aggregate", "text": "đếm số bài hát", "s": 1},
+   {"type": "output", "text": "một số đếm", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+ {"item": "C045",
+  "requirements": [
+   {"type": "filter", "text": "nghệ sĩ có nhiều hơn 10 album (HAVING)", "s": 1},
+   {"type": "aggregate", "text": "đếm số album của mỗi nghệ sĩ", "s": 1},
+   {"type": "group", "text": "theo nghệ sĩ", "s": 1},
+   {"type": "output", "text": "tên nghệ sĩ và số album", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+ {"item": "C088",
+  "requirements": [
+   {"type": "filter", "text": "nghệ sĩ chưa từng bán được bài hát nào", "s": 1},
+   {"type": "filter", "text": "gồm cả nghệ sĩ không có album nào", "s": 1},
+   {"type": "aggregate", "text": "đếm số nghệ sĩ", "s": 1},
+   {"type": "output", "text": "một số đếm", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"},
+ {"item": "C030",
+  "requirements": [
+   {"type": "aggregate", "text": "thời lượng trung bình mỗi thể loại = AVG(Milliseconds)", "s": 1},
+   {"type": "aggregate", "text": "đổi sang phút (/60000.0)", "s": 1},
+   {"type": "group", "text": "theo thể loại", "s": 1},
+   {"type": "output", "text": "làm tròn 2 chữ số", "s": 1},
+   {"type": "order", "text": "từ dài đến ngắn", "s": 1},
+   {"type": "limit", "text": "3 thể loại", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1.0, "penalty": 1.0, "score": 10.0, "verdict": "correct"}
+]

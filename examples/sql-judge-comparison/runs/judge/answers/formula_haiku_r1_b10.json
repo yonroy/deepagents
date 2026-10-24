@@ -1,0 +1,99 @@
+[
+  {"item": "C003",
+   "requirements": [
+     {"type": "filter", "text": "Khách hàng ở Đức (Country = 'Germany')", "s": 1},
+     {"type": "filter", "text": "Chỉ năm 2024", "s": 1},
+     {"type": "aggregate", "text": "Doanh thu = SUM(UnitPrice*Quantity)", "s": 1},
+     {"type": "group", "text": "Theo nghệ sĩ", "s": 1},
+     {"type": "order", "text": "Giảm dần theo doanh thu", "s": 1},
+     {"type": "limit", "text": "3 nghệ sĩ", "s": 1},
+     {"type": "output", "text": "Tên nghệ sĩ, doanh thu", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C103",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ năm 2024 (InvoiceDate trong [2024-01-01, 2025-01-01))", "s": 1},
+     {"type": "aggregate", "text": "Tổng tiền = SUM(Invoice.Total) theo khách", "s": 1},
+     {"type": "group", "text": "Theo khách hàng", "s": 1},
+     {"type": "order", "text": "Từ cao xuống thấp theo tổng tiền", "s": 1},
+     {"type": "limit", "text": "5 khách hàng", "s": 1},
+     {"type": "output", "text": "Họ tên và tổng tiền", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C010",
+   "requirements": [
+     {"type": "aggregate", "text": "Đếm số khách hàng theo quốc gia", "s": 1},
+     {"type": "group", "text": "Theo quốc gia", "s": 1},
+     {"type": "filter", "text": "Chỉ quốc gia có từ 5 khách hàng trở lên (HAVING COUNT >= 5)", "s": 1},
+     {"type": "output", "text": "Tên quốc gia và số khách hàng", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C061",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ bài có media type 'Protected AAC audio file' (SQL không có WHERE theo MediaType.Name)", "s": 0},
+     {"type": "aggregate", "text": "Giá trung bình = AVG(UnitPrice)", "s": 1},
+     {"type": "output", "text": "Một giá trị giá trung bình", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.6667, "penalty": 1, "score": 6.67, "verdict": "incorrect"},
+
+  {"item": "C087",
+   "requirements": [
+     {"type": "filter", "text": "Khách hàng ở Brazil (SQL dùng 'Brasil', dữ liệu là 'Brazil')", "s": 0},
+     {"type": "aggregate", "text": "Đếm số khách hàng = COUNT", "s": 1},
+     {"type": "output", "text": "Một số đếm được", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.6667, "penalty": 1, "score": 6.67, "verdict": "incorrect"},
+
+  {"item": "C071",
+   "requirements": [
+     {"type": "filter", "text": "Tổng tiền >= 13.86", "s": 1},
+     {"type": "aggregate", "text": "Đếm số hóa đơn = COUNT", "s": 1},
+     {"type": "output", "text": "Một số đếm được", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C091",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ thể loại có ít nhất một bài hát (SQL đếm từ Track, không từ Genre)", "s": 0.5},
+     {"type": "aggregate", "text": "Đếm số thể loại KHÁC NHAU = COUNT(DISTINCT GenreId)", "s": 0},
+     {"type": "output", "text": "Một số đếm được", "s": 1}
+   ],
+   "errors": ["distinct"],
+   "coverage": 0.5, "penalty": 0.6, "score": 3.0, "verdict": "incorrect"},
+
+  {"item": "C040",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ nghệ sĩ 'AC/DC' (join sai khóa nên lọc sai)", "s": 0},
+     {"type": "output", "text": "Nối album với nghệ sĩ qua Album.ArtistId = Artist.ArtistId", "s": 0},
+     {"type": "output", "text": "Tên album (al.Title)", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.3333, "penalty": 1, "score": 3.33, "verdict": "incorrect"},
+
+  {"item": "C056",
+   "requirements": [
+     {"type": "filter", "text": "Chức danh 'Sales Support Agent'", "s": 1},
+     {"type": "output", "text": "Họ và tên", "s": 1},
+     {"type": "output", "text": "Ngày vào làm (HireDate); SQL trả về BirthDate", "s": 0}
+   ],
+   "errors": [],
+   "coverage": 0.6667, "penalty": 1, "score": 6.67, "verdict": "incorrect"},
+
+  {"item": "C086",
+   "requirements": [
+     {"type": "order", "text": "Dài đến ngắn theo Milliseconds", "s": 1},
+     {"type": "limit", "text": "10 bài", "s": 1},
+     {"type": "output", "text": "Tên bài và thời lượng (ms)", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]

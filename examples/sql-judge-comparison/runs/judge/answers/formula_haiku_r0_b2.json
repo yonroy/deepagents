@@ -1,0 +1,96 @@
+[
+ {"item": "C104",
+  "requirements": [
+   {"type": "output", "text": "Họ tên mọi nhân viên", "s": 1},
+   {"type": "filter", "text": "Giữ mọi nhân viên, kể cả nhân viên không có quản lý", "s": 1},
+   {"type": "filter", "text": "Quản lý trực tiếp là người mà nhân viên ReportsTo (chiều join đúng)", "s": 0},
+   {"type": "output", "text": "Họ tên người quản lý trực tiếp", "s": 0},
+   {"type": "output", "text": "Cột quản lý để trống khi nhân viên không có quản lý", "s": 0}
+  ],
+  "errors": [],
+  "coverage": 0.4, "penalty": 1, "score": 4.0, "verdict": "incorrect"},
+ {"item": "C032",
+  "requirements": [
+   {"type": "output", "text": "Họ tên nhân viên", "s": 1},
+   {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+   {"type": "aggregate", "text": "Số khách hàng phụ trách (đếm khách)", "s": 1},
+   {"type": "filter", "text": "Giữ cả nhân viên không phụ trách khách nào", "s": 1},
+   {"type": "aggregate", "text": "Nhân viên không có khách phải ghi 0", "s": 0}
+  ],
+  "errors": ["null"],
+  "coverage": 0.8, "penalty": 0.6, "score": 4.8, "verdict": "incorrect"},
+ {"item": "C018",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ hóa đơn năm 2025", "s": 1},
+   {"type": "aggregate", "text": "Doanh thu = SUM(Total)", "s": 1},
+   {"type": "group", "text": "Theo từng tháng", "s": 1},
+   {"type": "order", "text": "Thứ tự tháng 1 đến 12", "s": 1},
+   {"type": "output", "text": "Tháng và doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+ {"item": "C025",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ hóa đơn năm 2023", "s": 1},
+   {"type": "aggregate", "text": "Doanh thu = tổng tiền hóa đơn, mỗi hóa đơn tính một lần", "s": 0},
+   {"type": "group", "text": "Theo từng nhân viên hỗ trợ", "s": 1},
+   {"type": "filter", "text": "Doanh thu qua khách hàng nhân viên phụ trách", "s": 1},
+   {"type": "output", "text": "Họ tên nhân viên và doanh thu", "s": 1}
+  ],
+  "errors": ["fan_out"],
+  "coverage": 0.8, "penalty": 0.4, "score": 3.2, "verdict": "incorrect"},
+ {"item": "C037",
+  "requirements": [
+   {"type": "filter", "text": "Khách đã mua ít nhất một bài Rock", "s": 1},
+   {"type": "filter", "text": "Khách đã mua ít nhất một bài Jazz", "s": 1},
+   {"type": "aggregate", "text": "Đếm số khách hàng thỏa cả hai điều kiện", "s": 1},
+   {"type": "output", "text": "Một con số kết quả", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+ {"item": "C022",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ bài hát đã từng được bán ít nhất một lần", "s": 1},
+   {"type": "aggregate", "text": "Đếm số bài hát khác nhau", "s": 1},
+   {"type": "group", "text": "Theo từng loại media", "s": 1},
+   {"type": "output", "text": "Tên loại media và số bài", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+ {"item": "C017",
+  "requirements": [
+   {"type": "filter", "text": "Từ 1/1/2025", "s": 1},
+   {"type": "filter", "text": "Đến hết 31/3/2025", "s": 1},
+   {"type": "aggregate", "text": "Tổng SUM(Total)", "s": 1},
+   {"type": "output", "text": "Một con số tổng doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+ {"item": "C021",
+  "requirements": [
+   {"type": "group", "text": "Tính theo từng album", "s": 1},
+   {"type": "aggregate", "text": "Tổng thời lượng album trên 1 giờ (3600000 ms)", "s": 1},
+   {"type": "filter", "text": "Album có ít nhất một bài thiếu Composer (NULL hoặc trống)", "s": 1},
+   {"type": "aggregate", "text": "Đếm số album thỏa cả hai điều kiện", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+ {"item": "C006",
+  "requirements": [
+   {"type": "filter", "text": "Doanh thu năm 2025", "s": 1},
+   {"type": "filter", "text": "Doanh thu năm 2024", "s": 1},
+   {"type": "aggregate", "text": "Công thức phần trăm thay đổi (2025 - 2024) / 2024 * 100", "s": 1},
+   {"type": "output", "text": "Làm tròn 2 chữ số, dấu âm nghĩa là giảm", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+ {"item": "C113",
+  "requirements": [
+   {"type": "aggregate", "text": "Doanh thu bán lẻ = UnitPrice * Quantity trên InvoiceLine", "s": 1},
+   {"type": "aggregate", "text": "Mẫu số là tổng doanh thu của toàn bộ InvoiceLine", "s": 1},
+   {"type": "group", "text": "Theo từng loại media", "s": 1},
+   {"type": "output", "text": "Tên loại media và tỷ lệ phần trăm làm tròn 2 chữ số", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"}
+]

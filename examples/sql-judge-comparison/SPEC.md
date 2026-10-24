@@ -1,6 +1,7 @@
 # SPEC: So sánh giám khảo rubric vs công thức trên Text-to-SQL
 
-> Trạng thái: **chờ duyệt**. Chưa có code. Các mục cần bạn quyết định nằm ở §9.
+> Trạng thái: **đã duyệt (theo đề xuất ở §9) và đã thực hiện**. Kết quả và các điểm lệch so với spec: xem README.md.
+> Lệch so với spec: 122 candidate thay vì ~150 (trùng SQL được gộp); 34 lỗi cố ý + 9 bẫy; bỏ `wrong_col` quốc gia và `agg_fn` thiếu Quantity vì dữ liệu Chinook làm chúng không đổi kết quả; so khớp chấp nhận cột họ tên ghép; generate.py gộp vào flow.py.
 
 ## 1. Mục tiêu
 

@@ -1,0 +1,12 @@
+[
+{"item":"C026","verdict":"correct","score":9,"reason":"LEFT JOIN from Employee with COUNT(c.CustomerId) gives 0 for employees without customers; grouping is correct."},
+{"item":"C067","verdict":"correct","score":10,"reason":"Self LEFT JOIN on ReportsTo keeps all employees and yields NULL manager for those without one."},
+{"item":"C046","verdict":"correct","score":10,"reason":"INTERSECT of customers who bought Rock and customers who bought Jazz, then COUNT, is exactly 'both'."},
+{"item":"C021","verdict":"correct","score":9,"reason":"Groups tracks by album, requires SUM(Milliseconds)>3600000 and at least one NULL/empty Composer; counts albums correctly."},
+{"item":"C118","verdict":"incorrect","score":1,"reason":"strftime('%d') returns the day of month, not the month ('%m'), so groups are by day, not by month; the comment is wrong."},
+{"item":"C025","verdict":"incorrect","score":2,"reason":"Joining InvoiceLine multiplies each invoice row by its line count before SUM(i.Total), inflating revenue."},
+{"item":"C024","verdict":"incorrect","score":2,"reason":"InvoiceDate <= '2025-03-31' excludes invoices on 2025-03-31 since '2025-03-31 00:00:00' > '2025-03-31' as a string, so the last day is lost."},
+{"item":"C015","verdict":"incorrect","score":2,"reason":"COUNT(il.TrackId) counts invoice lines, not distinct sold tracks; it needs COUNT(DISTINCT il.TrackId)."},
+{"item":"C088","verdict":"correct","score":9,"reason":"NOT EXISTS over Album-Track-InvoiceLine correctly counts artists with no sales, including those with no albums."},
+{"item":"C027","verdict":"incorrect","score":1,"reason":"HAVING uses SUM(Total)>=20 instead of COUNT(*)>=20 invoices, so the wrong countries are filtered."}
+]

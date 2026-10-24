@@ -1,0 +1,12 @@
+[
+{"item": "C020", "verdict": "correct", "score": 9, "reason": "LEFT JOIN from Employee with COUNT(c.CustomerId) gives 0 for employees without customers; groups by employee. Correct."},
+{"item": "C116", "verdict": "incorrect", "score": 1, "reason": "Join condition is reversed (m.ReportsTo = e.EmployeeId), so the 'manager' columns show subordinates; employees get duplicated/misassigned and the wrong relation is produced."},
+{"item": "C037", "verdict": "correct", "score": 9, "reason": "Two EXISTS subqueries correctly require both a Rock and a Jazz purchase per customer; COUNT(*) is right."},
+{"item": "C012", "verdict": "incorrect", "score": 1, "reason": "strftime('%d') extracts day of month, not month ('%m'), so it groups revenue by day instead of by month."},
+{"item": "C114", "verdict": "incorrect", "score": 2, "reason": "WHERE Composer IS NULL filters tracks before SUM, so the duration only counts tracks without composer rather than the whole album's duration."},
+{"item": "C119", "verdict": "incorrect", "score": 1, "reason": "Joining InvoiceLine multiplies each invoice row by its line count before SUM(i.Total), inflating revenue."},
+{"item": "C092", "verdict": "incorrect", "score": 2, "reason": "COUNT(il.TrackId) counts invoice lines, not distinct tracks sold; a track sold multiple times is counted repeatedly (needs COUNT(DISTINCT)). The comment's claim is wrong."},
+{"item": "C011", "verdict": "correct", "score": 9, "reason": "SUM(Total) over the correct half-open range for Q1 2025."},
+{"item": "C009", "verdict": "correct", "score": 9, "reason": "Correct joins, revenue = UnitPrice*Quantity per line, grouped by genre, ordered desc, LIMIT 5."},
+{"item": "C055", "verdict": "incorrect", "score": 1, "reason": "No filter on InvoiceDate for 2024, so it ranks customers by all-time spending."}
+]

@@ -1,0 +1,104 @@
+[
+  {"item": "C051",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ xét khách hàng có quốc gia (Country không NULL)", "s": 1},
+     {"type": "aggregate", "text": "Tổng tiền = SUM(Invoice.Total) theo khách", "s": 1},
+     {"type": "group", "text": "Theo từng quốc gia", "s": 1},
+     {"type": "limit", "text": "Khách chi nhiều nhất trong mỗi quốc gia, giữ hòa (RANK = 1)", "s": 1},
+     {"type": "output", "text": "Quốc gia, họ tên, tổng tiền (làm tròn 2 chữ số)", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C043",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ nghệ sĩ 'Iron Maiden'", "s": 1},
+     {"type": "aggregate", "text": "Đếm số bài hát (COUNT TrackId) của mỗi album", "s": 1},
+     {"type": "group", "text": "Theo từng album", "s": 1},
+     {"type": "output", "text": "Tên album, số bài", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C006",
+   "requirements": [
+     {"type": "filter", "text": "Hóa đơn năm 2025", "s": 1},
+     {"type": "filter", "text": "Hóa đơn năm 2024", "s": 1},
+     {"type": "aggregate", "text": "Tổng doanh thu theo từng năm = SUM(Total)", "s": 1},
+     {"type": "aggregate", "text": "Phần trăm thay đổi = (2025-2024)/2024 * 100, số âm là giảm", "s": 1},
+     {"type": "output", "text": "Làm tròn 2 chữ số", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C093",
+   "requirements": [
+     {"type": "filter", "text": "Playlist có tên 'Music' (kể cả trùng tên)", "s": 1},
+     {"type": "aggregate", "text": "Đếm số bài hát khác nhau (COUNT DISTINCT TrackId)", "s": 1},
+     {"type": "output", "text": "Một số duy nhất", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C063",
+   "requirements": [
+     {"type": "group", "text": "Theo quốc gia thanh toán (BillingCountry)", "s": 1},
+     {"type": "aggregate", "text": "Giá trị hóa đơn trung bình = AVG(Total)", "s": 1},
+     {"type": "filter", "text": "Chỉ nước có ít nhất 20 hóa đơn (HAVING COUNT >= 20)", "s": 1},
+     {"type": "output", "text": "Làm tròn 2 chữ số, quốc gia và giá trị trung bình", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C100",
+   "requirements": [
+     {"type": "aggregate", "text": "Thời lượng trung bình của mỗi thể loại = AVG(Milliseconds)", "s": 1},
+     {"type": "aggregate", "text": "Đổi sang phút (chia 60000.0)", "s": 1},
+     {"type": "output", "text": "Làm tròn 2 chữ số", "s": 1},
+     {"type": "order", "text": "Từ dài đến ngắn (DESC)", "s": 1},
+     {"type": "limit", "text": "3 thể loại", "s": 1},
+     {"type": "output", "text": "Tên thể loại và số phút", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C028",
+   "requirements": [
+     {"type": "aggregate", "text": "Doanh thu bán lẻ của mỗi loại media = SUM(UnitPrice*Quantity)", "s": 1},
+     {"type": "group", "text": "Theo từng loại media", "s": 1},
+     {"type": "aggregate", "text": "Tỷ lệ phần trăm trên tổng doanh thu", "s": 0},
+     {"type": "output", "text": "Làm tròn 2 chữ số (kết quả hiện là số nguyên do CAST AS INTEGER và chia nguyên)", "s": 0},
+     {"type": "output", "text": "Tên media và tỷ lệ", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.6, "penalty": 1, "score": 6, "verdict": "incorrect"},
+
+  {"item": "C034",
+   "requirements": [
+     {"type": "group", "text": "Theo từng bài hát", "s": 1},
+     {"type": "aggregate", "text": "Đếm số playlist khác nhau (COUNT DISTINCT PlaylistId)", "s": 1},
+     {"type": "filter", "text": "Nhiều hơn 4 playlist (HAVING > 4)", "s": 1},
+     {"type": "output", "text": "Tên bài và số playlist", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C059",
+   "requirements": [
+     {"type": "group", "text": "Theo từng nghệ sĩ", "s": 1},
+     {"type": "aggregate", "text": "Đếm số album của mỗi nghệ sĩ", "s": 1},
+     {"type": "filter", "text": "Nhiều hơn 10 album (HAVING > 10)", "s": 1},
+     {"type": "output", "text": "Tên nghệ sĩ và số album", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+
+  {"item": "C048",
+   "requirements": [
+     {"type": "filter", "text": "Nghệ sĩ chưa từng bán được bài hát nào (NOT EXISTS hóa đơn qua album/track)", "s": 1},
+     {"type": "filter", "text": "Bao gồm cả nghệ sĩ không có album nào (SQL có EXISTS album nên loại họ ra)", "s": 0},
+     {"type": "aggregate", "text": "Đếm số nghệ sĩ", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.6667, "penalty": 1, "score": 6.67, "verdict": "incorrect"}
+]

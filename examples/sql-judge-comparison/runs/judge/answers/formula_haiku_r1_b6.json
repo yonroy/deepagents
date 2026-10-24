@@ -1,0 +1,102 @@
+[
+ {"item": "C121",
+  "requirements": [
+   {"type": "aggregate", "text": "Tổng tiền chi tiêu của từng khách = SUM(Invoice.Total)", "s": 1},
+   {"type": "group", "text": "Theo từng quốc gia", "s": 0},
+   {"type": "filter", "text": "Chỉ giữ khách chi nhiều nhất trong quốc gia của họ (MAX theo từng nước)", "s": 0},
+   {"type": "filter", "text": "Hòa thì liệt kê tất cả khách có tổng tiền bằng max", "s": 0.5},
+   {"type": "output", "text": "Quốc gia, họ tên, tổng tiền (làm tròn)", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 0.5, "penalty": 1, "score": 5.0, "verdict": "incorrect"},
+ {"item": "C042",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ nghệ sĩ 'Iron Maiden'", "s": 1},
+   {"type": "group", "text": "Theo từng album", "s": 1},
+   {"type": "aggregate", "text": "Số bài hát của album (COUNT tracks, giữ album không có bài)", "s": 1},
+   {"type": "output", "text": "Tên album, số bài", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+ {"item": "C110",
+  "requirements": [
+   {"type": "aggregate", "text": "Thời lượng trung bình bài hát của từng thể loại = AVG(Milliseconds)", "s": 1},
+   {"type": "group", "text": "Theo từng thể loại", "s": 1},
+   {"type": "aggregate", "text": "Đơn vị tính bằng phút (Milliseconds / 60000), SQL chia 1000 nên ra giây", "s": 0},
+   {"type": "aggregate", "text": "Làm tròn 2 chữ số", "s": 1},
+   {"type": "order", "text": "Từ dài đến ngắn (giảm dần theo thời lượng)", "s": 1},
+   {"type": "limit", "text": "3 thể loại", "s": 1},
+   {"type": "output", "text": "Tên thể loại, thời lượng trung bình", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 0.857143, "penalty": 1, "score": 8.57, "verdict": "correct"},
+ {"item": "C102",
+  "requirements": [
+   {"type": "aggregate", "text": "Doanh thu năm 2025 = SUM(Total) lọc năm 2025", "s": 1},
+   {"type": "aggregate", "text": "Doanh thu năm 2024 = SUM(Total) lọc năm 2024", "s": 1},
+   {"type": "aggregate", "text": "Phần trăm thay đổi = (2025 - 2024) / 2024 * 100; SQL chia cho 2025", "s": 0},
+   {"type": "aggregate", "text": "Làm tròn 2 chữ số", "s": 1},
+   {"type": "output", "text": "Một giá trị phần trăm, âm nghĩa là giảm", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 0.8, "penalty": 1, "score": 8.0, "verdict": "correct"},
+ {"item": "C027",
+  "requirements": [
+   {"type": "group", "text": "Theo quốc gia thanh toán (BillingCountry)", "s": 1},
+   {"type": "aggregate", "text": "Giá trị hóa đơn trung bình = AVG(Total)", "s": 1},
+   {"type": "filter", "text": "Chỉ nước có ít nhất 20 hóa đơn (COUNT >= 20); SQL dùng SUM(Total) >= 20", "s": 0},
+   {"type": "aggregate", "text": "Làm tròn 2 chữ số", "s": 1},
+   {"type": "output", "text": "Quốc gia, giá trị trung bình", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 0.8, "penalty": 1, "score": 8.0, "verdict": "correct"},
+ {"item": "C013",
+  "requirements": [
+   {"type": "aggregate", "text": "Doanh thu bán lẻ = SUM(UnitPrice * Quantity) trên từng dòng hóa đơn", "s": 1},
+   {"type": "group", "text": "Theo thể loại (qua Track -> Genre)", "s": 1},
+   {"type": "order", "text": "Từ cao xuống thấp; SQL dùng ORDER BY revenue ASC", "s": 0},
+   {"type": "limit", "text": "5 thể loại", "s": 1},
+   {"type": "output", "text": "Tên thể loại, doanh thu (làm tròn)", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 0.8, "penalty": 1, "score": 8.0, "verdict": "correct"},
+ {"item": "C113",
+  "requirements": [
+   {"type": "aggregate", "text": "Doanh thu bán lẻ từng dòng = UnitPrice * Quantity", "s": 1},
+   {"type": "group", "text": "Theo từng loại media", "s": 1},
+   {"type": "aggregate", "text": "Tỷ lệ % trên tổng doanh thu toàn bộ InvoiceLine", "s": 1},
+   {"type": "aggregate", "text": "Mẫu số là tổng doanh thu toàn bộ dòng hóa đơn", "s": 1},
+   {"type": "aggregate", "text": "Làm tròn 2 chữ số", "s": 1},
+   {"type": "output", "text": "Tên loại media, tỷ lệ %", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+ {"item": "C033",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ playlist có tên 'Music' (kể cả trùng tên)", "s": 1},
+   {"type": "aggregate", "text": "Đếm bài hát khác nhau (COUNT DISTINCT TrackId)", "s": 1},
+   {"type": "aggregate", "text": "Kết quả là một con số tổng", "s": 1},
+   {"type": "output", "text": "Số bài hát", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+ {"item": "C070",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ hóa đơn năm 2024", "s": 1},
+   {"type": "aggregate", "text": "Tổng tiền chi tiêu = SUM(Total) theo khách", "s": 1},
+   {"type": "group", "text": "Theo từng khách hàng", "s": 1},
+   {"type": "order", "text": "Từ cao xuống thấp", "s": 1},
+   {"type": "limit", "text": "5 khách hàng", "s": 1},
+   {"type": "output", "text": "Họ tên, tổng tiền", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+ {"item": "C005",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ playlist tên 'Grunge'; SQL không có điều kiện lọc p.Name", "s": 0},
+   {"type": "aggregate", "text": "Đếm số bài hát COUNT", "s": 1},
+   {"type": "output", "text": "Số bài hát (n_tracks)", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 0.666667, "penalty": 1, "score": 6.67, "verdict": "incorrect"}
+]

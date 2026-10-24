@@ -1,0 +1,58 @@
+[
+  {"item": "C091",
+   "requirements": [
+     {"type": "aggregate", "text": "Đếm số thể loại khác nhau (COUNT DISTINCT GenreId)", "s": 0},
+     {"type": "filter", "text": "Chỉ tính thể loại có ít nhất một bài hát", "s": 1},
+     {"type": "output", "text": "Trả về một số đếm thể loại", "s": 1}
+   ],
+   "errors": ["distinct"],
+   "coverage": 0.6667, "penalty": 0.6, "score": 4.0, "verdict": "incorrect"},
+  {"item": "C087",
+   "requirements": [
+     {"type": "filter", "text": "Khách hàng ở Brazil (Country = 'Brazil')", "s": 0},
+     {"type": "aggregate", "text": "Đếm số khách hàng", "s": 1},
+     {"type": "output", "text": "Trả về một số đếm", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.6667, "penalty": 1, "score": 6.67, "verdict": "incorrect"},
+  {"item": "C056",
+   "requirements": [
+     {"type": "filter", "text": "Nhân viên có Title = 'Sales Support Agent'", "s": 1},
+     {"type": "output", "text": "Trả về họ và tên (LastName, FirstName)", "s": 1},
+     {"type": "output", "text": "Trả về ngày vào làm (HireDate)", "s": 0}
+   ],
+   "errors": [],
+   "coverage": 0.6667, "penalty": 1, "score": 6.67, "verdict": "incorrect"},
+  {"item": "C083",
+   "requirements": [
+     {"type": "filter", "text": "Media type = 'Protected AAC audio file'", "s": 1},
+     {"type": "aggregate", "text": "AVG(UnitPrice) của bài hát", "s": 1},
+     {"type": "output", "text": "Trả về một giá trị trung bình", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+  {"item": "C097",
+   "requirements": [
+     {"type": "filter", "text": "Tổng tiền hóa đơn từ 13.86 trở lên (Total >= 13.86)", "s": 0},
+     {"type": "aggregate", "text": "Đếm số hóa đơn", "s": 1},
+     {"type": "output", "text": "Trả về một số đếm", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.6667, "penalty": 1, "score": 6.67, "verdict": "incorrect"},
+  {"item": "C052",
+   "requirements": [
+     {"type": "filter", "text": "Nghệ sĩ có Name = 'AC/DC'", "s": 1},
+     {"type": "output", "text": "Trả về tên album (Title)", "s": 1},
+     {"type": "output", "text": "Liệt kê tất cả album của nghệ sĩ", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"},
+  {"item": "C086",
+   "requirements": [
+     {"type": "order", "text": "Sắp xếp theo thời lượng giảm dần (Milliseconds DESC)", "s": 1},
+     {"type": "limit", "text": "Giới hạn 10 bài", "s": 1},
+     {"type": "output", "text": "Trả về tên bài và thời lượng (ms)", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10.0, "verdict": "correct"}
+]

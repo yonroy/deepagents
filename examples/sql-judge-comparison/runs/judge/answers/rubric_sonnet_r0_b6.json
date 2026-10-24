@@ -1,0 +1,12 @@
+[
+{"item":"C111","verdict":"correct","score":9,"reason":"Groups per customer, then keeps customers whose total equals the max in their country, so ties are included; outputs country, name and total."},
+{"item":"C070","verdict":"correct","score":9,"reason":"Filters 2024 by strftime year, sums per customer, orders descending and limits to 5 with name and total."},
+{"item":"C102","verdict":"incorrect","score":2,"reason":"The percentage change is divided by the 2025 total instead of the 2024 baseline, so the result is wrong."},
+{"item":"C068","verdict":"correct","score":9,"reason":"Joins InvoiceLine, Track and Genre, sums UnitPrice*Quantity per genre, orders descending and limits to 5."},
+{"item":"C043","verdict":"correct","score":9,"reason":"Filters to Iron Maiden's albums and counts tracks per album, with a LEFT JOIN so albums with no tracks still appear."},
+{"item":"C100","verdict":"correct","score":9,"reason":"Averages Milliseconds per genre, divides by 60000.0 and rounds to 2 places, orders by the average descending and limits to 3."},
+{"item":"C001","verdict":"correct","score":8,"reason":"Counts PlaylistTrack rows for the playlist named Grunge; the name is normally unique, so the count is right."},
+{"item":"C004","verdict":"incorrect","score":2,"reason":"The question asks for distinct tracks across all playlists named Music, but the query uses COUNT without DISTINCT. Tracks in more than one Music playlist are counted twice."},
+{"item":"C047","verdict":"correct","score":9,"reason":"Revenue per media type is divided by the total InvoiceLine revenue, times 100 and rounded to 2 places."},
+{"item":"C049","verdict":"correct","score":9,"reason":"Joins customer to artist through invoice lines, filters Germany and 2024, sums revenue per artist, orders descending and limits to 3."}
+]

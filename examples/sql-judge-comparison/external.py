@@ -143,7 +143,10 @@ def load_judgements() -> dict[tuple[str, str, int], dict[str, dict[str, Any]]]:
     for path in sorted((RUNS / "judge" / "answers").glob("*.json")):
         judge, model, rep, _ = path.stem.split("_")
         bucket = out.setdefault((judge, model, int(rep[1:])), {})
-        for a in json.loads(path.read_text()):
+        text = path.read_text()
+        # Take the first JSON array; a few agents appended stray text after it.
+        answers, _ = json.JSONDecoder().raw_decode(text[text.index("[") :])
+        for a in answers:
             bucket[a["item"]] = a
     return out
 

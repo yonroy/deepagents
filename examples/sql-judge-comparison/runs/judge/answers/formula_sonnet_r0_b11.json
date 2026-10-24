@@ -1,0 +1,9 @@
+[
+{"item":"C056","requirements":[{"type":"filter","text":"Title = 'Sales Support Agent'","s":1},{"type":"output","text":"LastName, FirstName","s":1},{"type":"output","text":"HireDate (ngày vào làm)","s":0}],"errors":[],"coverage":0.67,"penalty":1,"score":6.7,"verdict":"incorrect"},
+{"item":"C078","requirements":[{"type":"aggregate","text":"COUNT DISTINCT GenreId","s":1},{"type":"filter","text":"only genres having at least one track (from Track, non-NULL)","s":1}],"errors":[],"coverage":1,"penalty":1,"score":10,"verdict":"correct"},
+{"item":"C061","requirements":[{"type":"filter","text":"MediaType.Name = 'Protected AAC audio file'","s":0},{"type":"aggregate","text":"AVG(Track.UnitPrice)","s":1},{"type":"output","text":"single average value","s":1}],"errors":[],"coverage":0.67,"penalty":1,"score":6.7,"verdict":"incorrect"},
+{"item":"C084","requirements":[{"type":"filter","text":"Total >= 13.86","s":1},{"type":"aggregate","text":"COUNT invoices","s":1}],"errors":[],"coverage":1,"penalty":1,"score":10,"verdict":"correct"},
+{"item":"C040","requirements":[{"type":"filter","text":"Artist.Name = 'AC/DC'","s":1},{"type":"filter","text":"albums linked to artist via Album.ArtistId = Artist.ArtistId","s":0},{"type":"output","text":"Album Title","s":1}],"errors":[],"coverage":0.67,"penalty":1,"score":6.7,"verdict":"incorrect"},
+{"item":"C080","requirements":[{"type":"filter","text":"Country = 'Brazil'","s":1},{"type":"aggregate","text":"COUNT customers","s":1}],"errors":[],"coverage":1,"penalty":1,"score":10,"verdict":"correct"},
+{"item":"C086","requirements":[{"type":"output","text":"Name, Milliseconds","s":1},{"type":"order","text":"Milliseconds DESC","s":1},{"type":"limit","text":"10","s":1}],"errors":[],"coverage":1,"penalty":1,"score":10,"verdict":"correct"}
+]

@@ -1,0 +1,12 @@
+[
+{"item": "C028", "verdict": "incorrect", "score": 2, "reason": "Casting the sums to INTEGER before dividing truncates the values and makes the division integer division, so the percentages are wrong (mostly 0 or 100 times a rounded ratio)."},
+{"item": "C085", "verdict": "correct", "score": 9, "reason": "AVG(Total) per BillingCountry with HAVING COUNT(*) >= 20 matches the question; the rounding and ordering are fine."},
+{"item": "C093", "verdict": "correct", "score": 9, "reason": "Joins PlaylistTrack to every playlist named 'Music' and counts DISTINCT TrackId, so duplicate playlist names are handled."},
+{"item": "C010", "verdict": "correct", "score": 9, "reason": "Groups customers by Country, filters HAVING COUNT(*) >= 5, and returns the count per country."},
+{"item": "C048", "verdict": "incorrect", "score": 2, "reason": "The EXISTS clause on Album drops artists with no albums, but the question says to include them, so the count is too low."},
+{"item": "C115", "verdict": "correct", "score": 9, "reason": "Groups by artist, counts albums, and filters HAVING > 10; it returns the name and the album count."},
+{"item": "C051", "verdict": "correct", "score": 9, "reason": "Sums Total per customer and uses RANK() per Country, so ties are all listed; it returns the country, full name and total."},
+{"item": "C105", "verdict": "incorrect", "score": 3, "reason": "Groups by t.Name rather than TrackId, so distinct tracks that share a name get merged and their playlists are combined, which can wrongly push them over 4."},
+{"item": "C013", "verdict": "incorrect", "score": 1, "reason": "ORDER BY revenue ASC returns the 5 lowest-revenue genres, but the question asks for the highest, from high to low."},
+{"item": "C112", "verdict": "correct", "score": 9, "reason": "Joins down to Artist, filters Germany customers and the year 2024 with correct bounds, sums by artist, and takes the top 3 by DESC."}
+]

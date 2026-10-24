@@ -1,0 +1,98 @@
+[
+  {"item": "C014",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ nghệ sĩ 'Iron Maiden'", "s": 1},
+     {"type": "group", "text": "Theo từng album", "s": 0},
+     {"type": "aggregate", "text": "Đếm số bài hát của từng album", "s": 0},
+     {"type": "output", "text": "Tên album, số bài", "s": 0.5}
+   ],
+   "errors": [],
+   "coverage": 0.375, "penalty": 1, "score": 3.75, "verdict": "incorrect"},
+  {"item": "C120",
+   "requirements": [
+     {"type": "filter", "text": "Playlist tên 'Music', gồm cả playlist trùng tên", "s": 1},
+     {"type": "aggregate", "text": "COUNT DISTINCT TrackId", "s": 1},
+     {"type": "output", "text": "Một số duy nhất", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C049",
+   "requirements": [
+     {"type": "filter", "text": "Khách hàng ở Đức", "s": 1},
+     {"type": "filter", "text": "Năm 2024", "s": 1},
+     {"type": "aggregate", "text": "Doanh thu = SUM(UnitPrice*Quantity)", "s": 1},
+     {"type": "group", "text": "Theo nghệ sĩ", "s": 1},
+     {"type": "order", "text": "Doanh thu giảm dần", "s": 1},
+     {"type": "limit", "text": "3", "s": 1},
+     {"type": "output", "text": "Tên nghệ sĩ, doanh thu", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C055",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ năm 2024", "s": 0},
+     {"type": "aggregate", "text": "Tổng tiền = SUM(Total)", "s": 1},
+     {"type": "group", "text": "Theo khách hàng", "s": 1},
+     {"type": "order", "text": "Giảm dần theo tổng tiền", "s": 1},
+     {"type": "limit", "text": "5", "s": 1},
+     {"type": "output", "text": "Họ tên, tổng tiền", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.83, "penalty": 1, "score": 8.33, "verdict": "correct"},
+  {"item": "C101",
+   "requirements": [
+     {"type": "filter", "text": "Playlist tên 'Grunge'", "s": 1},
+     {"type": "aggregate", "text": "Đếm số bài hát", "s": 1},
+     {"type": "output", "text": "Một số duy nhất", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C064",
+   "requirements": [
+     {"type": "filter", "text": "Quốc gia có từ 5 khách hàng trở lên (>= 5)", "s": 0},
+     {"type": "group", "text": "Theo quốc gia", "s": 1},
+     {"type": "aggregate", "text": "Số khách hàng COUNT", "s": 1},
+     {"type": "output", "text": "Quốc gia và số khách hàng", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.75, "penalty": 1, "score": 7.5, "verdict": "incorrect"},
+  {"item": "C047",
+   "requirements": [
+     {"type": "aggregate", "text": "Doanh thu bán lẻ theo loại media = SUM(UnitPrice*Quantity)", "s": 1},
+     {"type": "aggregate", "text": "Phần trăm trên tổng doanh thu", "s": 1},
+     {"type": "group", "text": "Theo loại media", "s": 1},
+     {"type": "output", "text": "Tên media, tỷ lệ phần trăm", "s": 1},
+     {"type": "order", "text": "Sắp xếp (không yêu cầu, giữ nguyên hợp lý)", "s": 1},
+     {"type": "output", "text": "Làm tròn 2 chữ số", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C030",
+   "requirements": [
+     {"type": "aggregate", "text": "Thời lượng trung bình AVG(Milliseconds)", "s": 1},
+     {"type": "aggregate", "text": "Đổi sang phút (/60000)", "s": 1},
+     {"type": "group", "text": "Theo thể loại", "s": 1},
+     {"type": "order", "text": "Từ dài đến ngắn", "s": 1},
+     {"type": "limit", "text": "3", "s": 1},
+     {"type": "output", "text": "Tên thể loại, thời lượng phút làm tròn 2 chữ số", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C065",
+   "requirements": [
+     {"type": "aggregate", "text": "Tổng chi tiêu trọn đời của từng khách = SUM(Total)", "s": 1},
+     {"type": "group", "text": "Với mỗi quốc gia, khách chi nhiều nhất", "s": 1},
+     {"type": "filter", "text": "Giữ tất cả khách khi hòa", "s": 1},
+     {"type": "output", "text": "Quốc gia, họ tên, tổng tiền", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C054",
+   "requirements": [
+     {"type": "filter", "text": "Loại media 'Protected AAC audio file'", "s": 1},
+     {"type": "aggregate", "text": "Giá trung bình AVG(UnitPrice)", "s": 1},
+     {"type": "output", "text": "Một giá trị duy nhất", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"}
+]

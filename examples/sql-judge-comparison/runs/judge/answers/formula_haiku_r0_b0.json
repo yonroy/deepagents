@@ -1,0 +1,144 @@
+[
+  {
+    "item": "C072",
+    "requirements": [
+      {"type": "filter", "text": "Giữ mọi nhân viên, kể cả người không có quản lý (LEFT JOIN)", "s": 1},
+      {"type": "output", "text": "Họ tên nhân viên", "s": 1},
+      {"type": "output", "text": "Họ tên người quản lý trực tiếp, để trống nếu không có", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C038",
+    "requirements": [
+      {"type": "filter", "text": "Liệt kê cả nhân viên không phụ trách khách nào (ghi 0)", "s": 0},
+      {"type": "aggregate", "text": "Đếm số khách hàng mỗi nhân viên phụ trách", "s": 1},
+      {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+      {"type": "output", "text": "Tên nhân viên và số khách hàng", "s": 1}
+    ],
+    "errors": ["join_type"],
+    "coverage": 0.75,
+    "penalty": 0.5,
+    "score": 3.75,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C119",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ hóa đơn năm 2023", "s": 1},
+      {"type": "filter", "text": "Đi qua nhân viên -> khách hàng -> hóa đơn", "s": 1},
+      {"type": "aggregate", "text": "Doanh thu = tổng tiền hóa đơn (SUM(i.Total)), tính đúng một lần mỗi hóa đơn", "s": 0},
+      {"type": "group", "text": "Theo từng nhân viên", "s": 1},
+      {"type": "output", "text": "Họ tên nhân viên và doanh thu", "s": 1}
+    ],
+    "errors": ["fan_out"],
+    "coverage": 0.8,
+    "penalty": 0.4,
+    "score": 3.2,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C008",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ bài hát đã từng được bán ít nhất một lần", "s": 1},
+      {"type": "aggregate", "text": "Đếm số bài hát khác nhau", "s": 1},
+      {"type": "group", "text": "Theo loại media", "s": 1},
+      {"type": "output", "text": "Tên loại media và số bài", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C073",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ năm 2025", "s": 1},
+      {"type": "aggregate", "text": "Doanh thu = tổng tiền hóa đơn theo tháng", "s": 1},
+      {"type": "group", "text": "Theo từng tháng", "s": 1},
+      {"type": "order", "text": "Thứ tự tháng 1 đến 12", "s": 1},
+      {"type": "output", "text": "Tháng và doanh thu", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C057",
+    "requirements": [
+      {"type": "aggregate", "text": "Tổng thời lượng toàn bộ bài trong album > 1 giờ", "s": 0},
+      {"type": "filter", "text": "Album có ít nhất một bài không có Composer", "s": 1},
+      {"type": "aggregate", "text": "Đếm số album", "s": 1},
+      {"type": "filter", "text": "Composer trống: xử lý cả NULL và chuỗi rỗng (SQL chỉ kiểm tra IS NULL)", "s": 0.5}
+    ],
+    "errors": [],
+    "coverage": 0.625,
+    "penalty": 1,
+    "score": 6.25,
+    "verdict": "incorrect"
+  },
+  {
+    "item": "C094",
+    "requirements": [
+      {"type": "filter", "text": "Chỉ bài thuộc thể loại Rock hoặc Jazz", "s": 1},
+      {"type": "filter", "text": "Đi qua hóa đơn -> dòng hàng -> bài -> thể loại", "s": 1},
+      {"type": "filter", "text": "Khách có ít nhất một bài Rock VÀ một bài Jazz", "s": 1},
+      {"type": "aggregate", "text": "Đếm số khách hàng khác nhau", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C024",
+    "requirements": [
+      {"type": "filter", "text": "Q1/2025 (1/1 đến hết 31/3). SQL dùng InvoiceDate <= '2025-03-31' nên bỏ hóa đơn có giờ trong ngày 31/3 nếu cột có thời gian; đúng với dữ liệu hiện tại (giờ 00:00:00)", "s": 0.5},
+      {"type": "aggregate", "text": "Tổng tiền hóa đơn", "s": 1},
+      {"type": "output", "text": "Một con số doanh thu", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 0.8333,
+    "penalty": 1,
+    "score": 8.33,
+    "verdict": "correct"
+  },
+  {
+    "item": "C009",
+    "requirements": [
+      {"type": "aggregate", "text": "Doanh thu = UnitPrice * Quantity trên từng dòng", "s": 1},
+      {"type": "group", "text": "Theo thể loại", "s": 1},
+      {"type": "order", "text": "Giảm dần theo doanh thu", "s": 1},
+      {"type": "limit", "text": "5 thể loại", "s": 1},
+      {"type": "output", "text": "Tên thể loại và doanh thu", "s": 1}
+    ],
+    "errors": [],
+    "coverage": 1,
+    "penalty": 1,
+    "score": 10,
+    "verdict": "correct"
+  },
+  {
+    "item": "C028",
+    "requirements": [
+      {"type": "aggregate", "text": "Doanh thu bán lẻ mỗi loại media (UnitPrice * Quantity)", "s": 1},
+      {"type": "aggregate", "text": "Tổng doanh thu bán lẻ làm mẫu số", "s": 1},
+      {"type": "aggregate", "text": "Tỷ lệ phần trăm = doanh thu loại / tổng, dùng số thực", "s": 0},
+      {"type": "group", "text": "Theo loại media", "s": 1},
+      {"type": "output", "text": "Tên loại media và tỷ lệ % làm tròn 2 chữ số", "s": 0}
+    ],
+    "errors": [],
+    "coverage": 0.6,
+    "penalty": 1,
+    "score": 6,
+    "verdict": "incorrect"
+  }
+]

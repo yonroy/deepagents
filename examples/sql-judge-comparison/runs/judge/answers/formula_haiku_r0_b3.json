@@ -1,0 +1,92 @@
+[
+ {"item": "C116",
+  "requirements": [
+   {"type": "output", "text": "Họ tên mọi nhân viên", "s": 1},
+   {"type": "output", "text": "Họ tên người quản lý trực tiếp", "s": 0},
+   {"type": "filter", "text": "Ghép đúng nhân viên với quản lý trực tiếp qua ReportsTo; nhân viên không có quản lý thì cột quản lý trống", "s": 0}
+  ],
+  "errors": [],
+  "coverage": 0.3333, "penalty": 1, "score": 3.33, "verdict": "incorrect"},
+ {"item": "C020",
+  "requirements": [
+   {"type": "output", "text": "Liệt kê tất cả nhân viên", "s": 1},
+   {"type": "aggregate", "text": "Đếm số khách hàng mỗi nhân viên phụ trách", "s": 1},
+   {"type": "group", "text": "Nhóm theo nhân viên", "s": 1},
+   {"type": "join_type", "text": "Giữ nhân viên không phụ trách khách nào", "s": 1},
+   {"type": "aggregate", "text": "Nhân viên không phụ trách khách thì ghi 0", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C118",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ hóa đơn năm 2025", "s": 1},
+   {"type": "aggregate", "text": "Doanh thu = SUM(Total)", "s": 1},
+   {"type": "group", "text": "Nhóm theo tháng (strftime '%d' trả về ngày, không phải tháng)", "s": 0},
+   {"type": "order", "text": "Sắp theo tháng 1 đến 12 (thực tế sắp theo ngày)", "s": 0},
+   {"type": "output", "text": "Cột tháng và doanh thu (cột tháng chứa số ngày)", "s": 0}
+  ],
+  "errors": [],
+  "coverage": 0.4, "penalty": 1, "score": 4.0, "verdict": "incorrect"},
+ {"item": "C023",
+  "requirements": [
+   {"type": "filter", "text": "Hóa đơn năm 2023", "s": 1},
+   {"type": "aggregate", "text": "Doanh thu = SUM(Total) qua khách hàng nhân viên phụ trách", "s": 1},
+   {"type": "group", "text": "Nhóm theo nhân viên", "s": 1},
+   {"type": "output", "text": "Họ tên nhân viên và doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C117",
+  "requirements": [
+   {"type": "filter", "text": "Hóa đơn quý 1 năm 2025 (1/1 đến hết 31/3)", "s": 1},
+   {"type": "aggregate", "text": "Tổng doanh thu = SUM(Total)", "s": 1},
+   {"type": "output", "text": "Một giá trị tổng doanh thu", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C046",
+  "requirements": [
+   {"type": "filter", "text": "Khách đã mua bài thể loại Rock", "s": 1},
+   {"type": "filter", "text": "Khách đã mua bài thể loại Jazz", "s": 1},
+   {"type": "filter", "text": "Thỏa cả hai điều kiện (VÀ), dùng INTERSECT", "s": 1},
+   {"type": "aggregate", "text": "Đếm số khách hàng khác nhau", "s": 1},
+   {"type": "output", "text": "Một số đếm", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+ {"item": "C092",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ bài đã từng được bán (qua InvoiceLine)", "s": 1},
+   {"type": "group", "text": "Nhóm theo loại media", "s": 1},
+   {"type": "output", "text": "Tên loại media và số bài", "s": 1},
+   {"type": "distinct", "text": "Đếm số bài khác nhau, không đếm dòng bán (COUNT(il.TrackId) đếm trùng bài bán nhiều lần)", "s": 0}
+  ],
+  "errors": ["distinct"],
+  "coverage": 0.75, "penalty": 0.6, "score": 4.5, "verdict": "incorrect"},
+ {"item": "C077",
+  "requirements": [
+   {"type": "aggregate", "text": "Tổng thời lượng album > 1 giờ (SUM(Milliseconds) > 3600000)", "s": 1},
+   {"type": "filter", "text": "Album có ít nhất một bài Composer trống", "s": 0},
+   {"type": "group", "text": "Nhóm theo album", "s": 1},
+   {"type": "output", "text": "Đếm số album thỏa cả hai điều kiện", "s": 1}
+  ],
+  "errors": ["null"],
+  "coverage": 0.75, "penalty": 0.6, "score": 4.5, "verdict": "incorrect"},
+ {"item": "C102",
+  "requirements": [
+   {"type": "aggregate", "text": "Doanh thu năm 2025", "s": 1},
+   {"type": "aggregate", "text": "Doanh thu năm 2024", "s": 1},
+   {"type": "aggregate", "text": "Tỷ lệ tăng trưởng = (2025 - 2024) / 2024 * 100 (SQL chia cho doanh thu 2025)", "s": 0},
+   {"type": "output", "text": "Làm tròn 2 chữ số", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 0.75, "penalty": 1, "score": 7.5, "verdict": "incorrect"},
+ {"item": "C005",
+  "requirements": [
+   {"type": "filter", "text": "Chỉ playlist tên 'Grunge' (không có WHERE p.Name = 'Grunge')", "s": 0},
+   {"type": "aggregate", "text": "Đếm số bài hát trong playlist", "s": 1},
+   {"type": "output", "text": "Một số đếm", "s": 1}
+  ],
+  "errors": [],
+  "coverage": 0.6667, "penalty": 1, "score": 6.67, "verdict": "incorrect"}
+]

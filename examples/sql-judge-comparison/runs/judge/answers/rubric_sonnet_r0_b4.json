@@ -1,0 +1,12 @@
+[
+{"item":"C079","verdict":"incorrect","score":2,"reason":"COUNT(*) with LEFT JOIN counts 1 for employees with no customers instead of 0; should be COUNT(c.CustomerId)."},
+{"item":"C002","verdict":"incorrect","score":2,"reason":"Inner JOIN drops employees with no manager (ReportsTo NULL); a LEFT JOIN is required to keep them with blank manager."},
+{"item":"C109","verdict":"incorrect","score":1,"reason":"HAVING COUNT(DISTINCT g.Name) >= 1 counts customers who bought Rock OR Jazz; it needs = 2 to require both genres."},
+{"item":"C029","verdict":"correct","score":9,"reason":"Filters 2025 correctly, groups by month, sums Total and orders by month ascending."},
+{"item":"C019","verdict":"correct","score":9,"reason":"Joins Employee-Customer-Invoice once, filters year 2023, sums Total per employee with name and revenue."},
+{"item":"C096","verdict":"incorrect","score":3,"reason":"InvoiceDate <= '2025-03-31' excludes invoices on March 31 because stored values have a time part ('2025-03-31 00:00:00' > '2025-03-31'); should use < '2025-04-01'."},
+{"item":"C057","verdict":"incorrect","score":2,"reason":"WHERE Composer IS NULL is applied before SUM, so only the duration of tracks without composer is summed instead of the album's total duration."},
+{"item":"C060","verdict":"correct","score":9,"reason":"Joins MediaType-Track-InvoiceLine and counts DISTINCT sold tracks per media type; correct."},
+{"item":"C110","verdict":"incorrect","score":1,"reason":"Divides milliseconds by 1000 giving seconds, not minutes; should divide by 60000."},
+{"item":"C120","verdict":"correct","score":9,"reason":"Joins playlists named 'Music' to PlaylistTrack and counts distinct TrackId across all of them, handling duplicate names."}
+]
