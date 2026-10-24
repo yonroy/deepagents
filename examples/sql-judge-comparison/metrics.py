@@ -12,6 +12,7 @@ from typing import Any
 
 from mutate import load_questions
 
+FORMULA_JUDGES = ("formula", "strict")
 PENALTY = {"invalid": 1.0, "fan_out": 0.6, "join_type": 0.5, "distinct": 0.4, "null": 0.4}
 Judgements = dict[tuple[str, str, int], dict[str, dict[str, Any]]]
 
@@ -52,17 +53,22 @@ def bootstrap_ci(hits: dict[str, list[bool]], n_boot: int = 2000, seed: int = 0)
     return stats[int(0.025 * n_boot)], stats[int(0.975 * n_boot)]
 
 
-def formula_checks(answer: dict[str, Any]) -> tuple[bool, bool]:
-    """(arithmetic error, verdict breaks the stated rule) for one formula answer."""
+def formula_checks(answer: dict[str, Any], judge: str = "formula") -> tuple[bool, bool]:
+    """(arithmetic error, verdict breaks the stated rule) for one formula/strict answer."""
     reqs = answer.get("requirements") or []
+    errors = answer.get("errors") or []
     try:
-        coverage = sum(float(r["s"]) for r in reqs) / len(reqs)
-        penalty = math.prod(1 - PENALTY.get(e, 0.0) for e in answer.get("errors") or [])
-        expected = round(10 * coverage * penalty, 2)
+        scores = [float(r["s"]) for r in reqs]
+        base = min(scores) if judge == "strict" else sum(scores) / len(scores)
+        penalty = math.prod(1 - PENALTY.get(e, 0.0) for e in errors)
+        expected = round(10 * base * penalty, 2)
         arith_err = abs(expected - float(answer["score"])) > 0.05
     except (KeyError, TypeError, ValueError, ZeroDivisionError):
         return True, True
-    rule_ok = float(answer["score"]) >= 8 and "invalid" not in (answer.get("errors") or [])
+    if judge == "strict":
+        rule_ok = all(x == 1 for x in scores) and not errors
+    else:
+        rule_ok = float(answer["score"]) >= 8 and "invalid" not in errors
     return arith_err, rule_ok != (answer.get("verdict") == "correct")
 
 
@@ -104,8 +110,8 @@ def summarize(candidates: list[dict[str, Any]], judgements: Judgements) -> dict[
                     scores[cid].append(float(a["score"]))
                 except (KeyError, TypeError, ValueError):
                     pass
-                if key[0] == "formula":
-                    e1, e2 = formula_checks(a)
+                if key[0] in FORMULA_JUDGES:
+                    e1, e2 = formula_checks(a, key[0])
                     arith += e1
                     rule += e2
                     req_recall.append(requirement_recall(a, gold_reqs[c["qid"]]))
@@ -146,8 +152,8 @@ def summarize(candidates: list[dict[str, Any]], judgements: Judgements) -> dict[
             "auroc": auroc([statistics.mean(scores[c]) for c in with_score], [by_id[c]["gold_correct"] for c in with_score]),
             "trap_fooled": rate(lambda v: v, [c for c in candidates if c["source"] == "T"]),
             "flip_rate": sum(len(set(v)) > 1 for v in multi) / len(multi) if multi else float("nan"),
-            "arith_err": arith / n_runs if key[0] == "formula" and n_runs else float("nan"),
-            "rule_break": rule / n_runs if key[0] == "formula" and n_runs else float("nan"),
+            "arith_err": arith / n_runs if key[0] in FORMULA_JUDGES and n_runs else float("nan"),
+            "rule_break": rule / n_runs if key[0] in FORMULA_JUDGES and n_runs else float("nan"),
             "req_recall": statistics.mean(req_recall) if req_recall else float("nan"),
             "groups": groups,
             "rep0": {cid: says_correct(a) for cid, a in reps.get(0, {}).items()},
@@ -193,12 +199,12 @@ def write_report(candidates: list[dict[str, Any]], judgements: Judgements, path:
         "",
         "## Giám khảo công thức: lỗi nằm ở đâu",
         "",
-        "| Model | Liệt kê yêu cầu (so với gold, xấp xỉ) | Tính sai | Verdict trái quy tắc |",
-        "|---|---|---|---|",
+        "| Giám khảo | Model | Liệt kê yêu cầu (so với gold, xấp xỉ) | Tính sai | Verdict trái quy tắc |",
+        "|---|---|---|---|---|",
     ]
     for (judge, model), s in m.items():
-        if judge == "formula":
-            lines.append(f"| {model} | {_pct(s['req_recall'])} | {_pct(s['arith_err'])} | {_pct(s['rule_break'])} |")
+        if judge in FORMULA_JUDGES:
+            lines.append(f"| {judge} | {model} | {_pct(s['req_recall'])} | {_pct(s['arith_err'])} | {_pct(s['rule_break'])} |")
     for label, title in [("source", "Accuracy theo nguồn bài"), ("level", "Accuracy theo độ khó"), ("op", "Accuracy theo loại lỗi cố ý (M + T)")]:
         keys = sorted({k for s in m.values() for k in s["groups"][label]})
         lines += ["", f"## {title}", "", "| | " + " | ".join(f"{j} {mo}" for j, mo in m) + " | n |", "|---|" + "---|" * (len(m) + 1)]

@@ -24,10 +24,10 @@
 
 ## Giám khảo công thức: lỗi nằm ở đâu
 
-| Model | Liệt kê yêu cầu (so với gold, xấp xỉ) | Tính sai | Verdict trái quy tắc |
-|---|---|---|---|
-| haiku | 97% | 0% | 0% |
-| sonnet | 99% | 0% | 0% |
+| Giám khảo | Model | Liệt kê yêu cầu (so với gold, xấp xỉ) | Tính sai | Verdict trái quy tắc |
+|---|---|---|---|---|
+| formula | haiku | 97% | 0% | 0% |
+| formula | sonnet | 99% | 0% | 0% |
 
 ## Accuracy theo nguồn bài
 

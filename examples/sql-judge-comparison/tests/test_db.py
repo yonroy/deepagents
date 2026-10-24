@@ -63,3 +63,15 @@ def test_full_name_column_matches_first_last():
     assert not matches(gold, r(["name", "n"], [("Jane Peacock", 0), ("Andrew Adams", 21)]), order_matters=False)
     two = r(["f", "l", "mf", "ml"], [("Nancy", "Edwards", "Andrew", "Adams"), ("Andrew", "Adams", None, None)])
     assert matches(two, r(["e", "m"], [("Nancy Edwards", "Andrew Adams"), ("Andrew Adams", None)]), order_matters=False)
+
+
+def test_formula_checks_mean_vs_strict():
+    from metrics import formula_checks
+
+    reqs = [{"type": "filter", "s": 1}, {"type": "filter", "s": 0}, {"type": "output", "s": 1}]
+    mean_ok = {"requirements": reqs, "errors": [], "score": 6.67, "verdict": "incorrect"}
+    assert formula_checks(mean_ok, "formula") == (False, False)
+    strict_ok = {"requirements": reqs, "errors": [], "score": 0, "verdict": "incorrect"}
+    assert formula_checks(strict_ok, "strict") == (False, False)
+    strict_wrong_verdict = {**strict_ok, "verdict": "correct"}
+    assert formula_checks(strict_wrong_verdict, "strict") == (False, True)

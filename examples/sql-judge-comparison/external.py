@@ -29,7 +29,7 @@ HERE = Path(__file__).parent
 RUNS = HERE / "runs"
 
 GEN_CONFIGS = ["G1", "G2", "G3"]
-JUDGES = ["rubric", "formula", "minitable"]
+JUDGES = ["rubric", "formula", "minitable", "strict"]
 # (model, repeats) for the judging grid
 JUDGE_RUNS = [("haiku", 2), ("sonnet", 1)]
 
