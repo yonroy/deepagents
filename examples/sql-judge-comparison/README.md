@@ -11,7 +11,7 @@ quả với SQL chuẩn ([`db.py`](db.py)).
 ## Kết quả
 
 122 câu SQL cho 30 câu hỏi tiếng Việt: 78 đúng, 44 sai theo kết quả chạy. 78 batch
-giám khảo, toàn bộ là sub-agent Claude chỉ được dùng Read/Write. Lịch sử thao tác đã
+giám khảo rubric/formula (cộng 39 batch minitable ở mục dưới), toàn bộ là sub-agent Claude chỉ được dùng Read/Write. Lịch sử thao tác đã
 được kiểm tra: 234/234 lượt đọc đều nằm trong 3 file cho phép, không ai đọc đáp án.
 Báo cáo đầy đủ ở [`runs/report.md`](runs/report.md).
 
@@ -56,6 +56,49 @@ Chỉ cần đổi sang quy tắc "**mọi yêu cầu phải đạt**", công th
 duy nhất ở C050, là ca biên giới bên dưới). Bài học: với nhiệm vụ đúng/sai nhị phân,
 **hàm gộp phải là AND (min), không phải trung bình**.
 
+## Giám khảo thứ ba: `minitable` (tự dựng mini bảng SQL)
+
+Giám khảo [`judges/minitable.md`](judges/minitable.md) không đọc rubric hay công thức. Nó
+**tự hiểu bài toán bằng dữ liệu**: dựng một database SQLite *rỗng* có schema Chinook
+([`minidb.py`](minidb.py), không có dòng dữ liệu thật nào), tự chèn 3–10 dòng mỗi bảng chứa
+các ca biên (hóa đơn nhiều dòng, NULL, ngày cuối kỳ có giờ, tên trùng, hoà điểm…), **tự tính tay
+đáp án mong đợi trước**, rồi mới chạy SQL ứng viên trên mini bảng và so sánh.
+Fixture và query của từng bài nằm ở `runs/judge/minidb/`.
+
+| Giám khảo | Model | Accuracy (CI 95%) | Bắt lỗi | Chê oan | Bị bẫy | Đổi ý khi chấm lại |
+|---|---|---|---|---|---|---|
+| rubric | Haiku | 99% (98–100) | 98% | 0% | 0% | 0% |
+| **minitable** | Haiku | 95% (91–98) | **98%** | **7%** | 0% | 4% |
+| formula | Haiku | 93% (89–97) | 81% | 0% | 11% | 4% |
+| rubric | Sonnet | 99% (98–100) | 98% | 0% | 0% | — |
+| **minitable** | Sonnet | **99%** (98–100) | **98%** | **0%** | 0% | — |
+| formula | Sonnet | 97% (93–99) | 91% | 0% | 0% | — |
+
+- **Bắt lỗi rất tốt.** Cả hai model đều bắt 100% số lỗi cố ý và bài bẫy; lỗi duy nhất bị bỏ
+  sót là ca biên giới C050. Comment tự tin trong bài bẫy vô tác dụng, vì giám khảo *chạy thử*
+  thay vì đọc lời giải thích ("expected 15.00, got 25.00").
+- **Điểm yếu riêng là chê oan (Haiku 7%)**, do *ca biên tưởng tượng*. Toàn bộ 11 lần chê oan
+  rơi vào 4 câu hỏi có chữ "mỗi"/"từng" (Q20, Q24, Q05, Q26). Giám khảo tự thêm vào mini bảng
+  những trường hợp **không có trong dữ liệu thật**: loại media không bán được bài nào, khách
+  không có hóa đơn, quốc gia NULL. Sau đó nó kết luận SQL sai vì không xử lý các trường hợp ấy.
+  Đây là tranh cãi về cách hiểu câu hỏi chứ không phải lỗi thật trên Chinook. Sonnet không mắc
+  lỗi này (0% chê oan), vì nó tự đánh giá được ca nào đáng phạt.
+- **Đắt hơn nhiều.** Trung bình ~30 lần gọi tool mỗi batch (so với 5), ~1.5–2.5 phút mỗi batch
+  (so với ~25 giây), ~95k token mỗi batch (so với ~68k).
+- McNemar: với Haiku, rubric hơn minitable 6–0 bài (p = 0.031); với Sonnet, minitable và rubric
+  hoà 0–0.
+
+### Ba kiểu thất bại khác nhau
+
+| Giám khảo | Kiểu thất bại điển hình |
+|---|---|
+| rubric | gần như không có trên bộ dữ liệu này (chạm trần) |
+| formula | **nuông chiều**: thấy lỗi nhưng hàm gộp trung bình vẫn cho qua |
+| minitable | **khắt khe quá**: tự tạo ca biên không tồn tại trong dữ liệu thật rồi phạt |
+
+Gợi ý cho vòng sau: bảo `minitable` **chỉ phạt ca biên mà câu hỏi nói rõ**, hoặc cho nó xem
+thống kê dữ liệu (ví dụ "mọi loại media đều có bài đã bán"), rồi đo lại tỉ lệ chê oan.
+
 ## So với thí nghiệm 1
 
 | | Thí nghiệm 1 (tóm tắt ticket) | Thí nghiệm 2 (SQL) |
@@ -91,7 +134,8 @@ questions.yaml       30 câu hỏi + SQL chuẩn + requirements + phép gây l�
 db.py                chạy read-only, so khớp kết quả (cho phép thêm cột, đổi tên, ghép họ tên)
 mutate.py            áp phép gây lỗi lên SQL chuẩn
 check_questions.py   chạy mọi SQL chuẩn và phép gây lỗi, báo phép nào không làm đổi kết quả
-judges/              rubric.md, formula.md
+judges/              rubric.md, formula.md, minitable.md
+minidb.py            database rỗng có schema Chinook để giám khảo minitable chạy fixture tự dựng
 external.py          export/collect cho sub-agent (không cần API key)
 flow.py              cùng luồng nhưng bằng deep agent qua API (cần ANTHROPIC_API_KEY)
 metrics.py           accuracy, recall, AUROC, McNemar, bootstrap CI, phân tích công thức
