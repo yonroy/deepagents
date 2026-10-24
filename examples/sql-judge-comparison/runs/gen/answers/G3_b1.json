@@ -1,0 +1,12 @@
+[
+  {"qid": "Q11", "sql": "SELECT g.Name AS genre, ROUND(SUM(il.UnitPrice * il.Quantity), 2) AS revenue FROM InvoiceLine il JOIN Track t ON t.TrackId = il.TrackId JOIN Genre g ON g.GenreId = t.GenreId GROUP BY g.GenreId, g.Name ORDER BY revenue DESC LIMIT 5;"},
+  {"qid": "Q12", "sql": "SELECT e.EmployeeId, e.FirstName || ' ' || e.LastName AS employee, COUNT(c.CustomerId) AS customer_count FROM Employee e LEFT JOIN Customer c ON c.SupportRepId = e.EmployeeId GROUP BY e.EmployeeId, e.FirstName, e.LastName ORDER BY customer_count DESC;"},
+  {"qid": "Q13", "sql": "SELECT c.FirstName || ' ' || c.LastName AS customer_name, ROUND(SUM(i.Total), 2) AS total_spent FROM Invoice i JOIN Customer c ON c.CustomerId = i.CustomerId WHERE strftime('%Y', i.InvoiceDate) = '2024' GROUP BY c.CustomerId, c.FirstName, c.LastName ORDER BY total_spent DESC LIMIT 5;"},
+  {"qid": "Q14", "sql": "SELECT al.Title AS album, COUNT(t.TrackId) AS track_count FROM Album al JOIN Artist ar ON ar.ArtistId = al.ArtistId LEFT JOIN Track t ON t.AlbumId = al.AlbumId WHERE ar.Name = 'Iron Maiden' GROUP BY al.AlbumId, al.Title ORDER BY al.Title;"},
+  {"qid": "Q15", "sql": "SELECT ar.Name AS artist, COUNT(al.AlbumId) AS album_count FROM Artist ar JOIN Album al ON al.ArtistId = ar.ArtistId GROUP BY ar.ArtistId, ar.Name HAVING COUNT(al.AlbumId) > 10 ORDER BY album_count DESC;"},
+  {"qid": "Q16", "sql": "SELECT strftime('%m', InvoiceDate) AS month, ROUND(SUM(Total), 2) AS revenue FROM Invoice WHERE strftime('%Y', InvoiceDate) = '2025' GROUP BY strftime('%m', InvoiceDate) ORDER BY month;"},
+  {"qid": "Q17", "sql": "SELECT BillingCountry AS country, ROUND(AVG(Total), 2) AS avg_invoice_total FROM Invoice WHERE BillingCountry IS NOT NULL GROUP BY BillingCountry HAVING COUNT(*) >= 20 ORDER BY avg_invoice_total DESC;"},
+  {"qid": "Q18", "sql": "SELECT t.Name AS track, COUNT(DISTINCT pt.PlaylistId) AS playlist_count FROM PlaylistTrack pt JOIN Track t ON t.TrackId = pt.TrackId GROUP BY t.TrackId, t.Name HAVING COUNT(DISTINCT pt.PlaylistId) > 4 ORDER BY playlist_count DESC;"},
+  {"qid": "Q19", "sql": "SELECT g.Name AS genre, ROUND(AVG(t.Milliseconds) / 60000.0, 2) AS avg_minutes FROM Track t JOIN Genre g ON g.GenreId = t.GenreId GROUP BY g.GenreId, g.Name ORDER BY avg_minutes DESC LIMIT 3;"},
+  {"qid": "Q20", "sql": "SELECT mt.Name AS media_type, COUNT(DISTINCT t.TrackId) AS sold_track_count FROM MediaType mt JOIN Track t ON t.MediaTypeId = mt.MediaTypeId JOIN InvoiceLine il ON il.TrackId = t.TrackId GROUP BY mt.MediaTypeId, mt.Name ORDER BY sold_track_count DESC;"}
+]

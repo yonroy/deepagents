@@ -1,0 +1,12 @@
+[
+{"qid":"Q11","sql":"SELECT g.Name, SUM(il.UnitPrice*il.Quantity) AS rev FROM InvoiceLine il JOIN Track t ON t.TrackId=il.TrackId JOIN Genre g ON g.GenreId=t.GenreId GROUP BY g.GenreId ORDER BY rev DESC LIMIT 5"},
+{"qid":"Q12","sql":"SELECT e.EmployeeId, e.FirstName, e.LastName, COUNT(c.CustomerId) AS n FROM Employee e LEFT JOIN Customer c ON c.SupportRepId=e.EmployeeId GROUP BY e.EmployeeId"},
+{"qid":"Q13","sql":"SELECT c.FirstName||' '||c.LastName AS name, SUM(i.Total) AS total FROM Invoice i JOIN Customer c ON c.CustomerId=i.CustomerId WHERE i.InvoiceDate>='2024-01-01' AND i.InvoiceDate<'2025-01-01' GROUP BY c.CustomerId ORDER BY total DESC LIMIT 5"},
+{"qid":"Q14","sql":"SELECT al.Title, COUNT(t.TrackId) AS n FROM Album al JOIN Artist ar ON ar.ArtistId=al.ArtistId LEFT JOIN Track t ON t.AlbumId=al.AlbumId WHERE ar.Name='Iron Maiden' GROUP BY al.AlbumId"},
+{"qid":"Q15","sql":"SELECT ar.Name, COUNT(*) AS n FROM Artist ar JOIN Album al ON al.ArtistId=ar.ArtistId GROUP BY ar.ArtistId HAVING n>10"},
+{"qid":"Q16","sql":"SELECT strftime('%m', InvoiceDate) AS month, SUM(Total) AS revenue FROM Invoice WHERE InvoiceDate>='2025-01-01' AND InvoiceDate<'2026-01-01' GROUP BY month ORDER BY month"},
+{"qid":"Q17","sql":"SELECT BillingCountry, AVG(Total) AS avg_total FROM Invoice GROUP BY BillingCountry HAVING COUNT(*)>=20"},
+{"qid":"Q18","sql":"SELECT t.Name, COUNT(DISTINCT pt.PlaylistId) AS n FROM Track t JOIN PlaylistTrack pt ON pt.TrackId=t.TrackId GROUP BY t.TrackId HAVING n>4"},
+{"qid":"Q19","sql":"SELECT g.Name, ROUND(AVG(t.Milliseconds)/60000.0,2) AS avg_min FROM Track t JOIN Genre g ON g.GenreId=t.GenreId GROUP BY g.GenreId ORDER BY AVG(t.Milliseconds) DESC LIMIT 3"},
+{"qid":"Q20","sql":"SELECT m.Name, COUNT(DISTINCT t.TrackId) AS n FROM MediaType m JOIN Track t ON t.MediaTypeId=m.MediaTypeId JOIN InvoiceLine il ON il.TrackId=t.TrackId GROUP BY m.MediaTypeId"}
+]

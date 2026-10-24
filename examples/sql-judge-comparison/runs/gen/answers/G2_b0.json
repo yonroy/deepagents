@@ -1,0 +1,12 @@
+[
+  {"qid": "Q01", "sql": "SELECT COUNT(*) AS customer_count FROM Customer WHERE Country = 'Brazil';"},
+  {"qid": "Q02", "sql": "SELECT Name, Milliseconds FROM Track ORDER BY Milliseconds DESC LIMIT 10;"},
+  {"qid": "Q03", "sql": "SELECT SUM(Total) AS total_revenue FROM Invoice WHERE InvoiceDate >= '2025-01-01 00:00:00' AND InvoiceDate < '2025-04-01 00:00:00';"},
+  {"qid": "Q04", "sql": "SELECT COUNT(DISTINCT g.GenreId) AS genre_count FROM Genre g JOIN Track t ON t.GenreId = g.GenreId;"},
+  {"qid": "Q05", "sql": "SELECT Country, COUNT(*) AS customer_count FROM Customer WHERE Country IS NOT NULL GROUP BY Country HAVING COUNT(*) >= 5 ORDER BY customer_count DESC;"},
+  {"qid": "Q06", "sql": "SELECT LastName, FirstName, HireDate FROM Employee WHERE Title = 'Sales Support Agent';"},
+  {"qid": "Q07", "sql": "SELECT al.Title FROM Album al JOIN Artist ar ON al.ArtistId = ar.ArtistId WHERE ar.Name = 'AC/DC';"},
+  {"qid": "Q08", "sql": "SELECT AVG(t.UnitPrice) AS avg_unit_price FROM Track t JOIN MediaType m ON t.MediaTypeId = m.MediaTypeId WHERE m.Name = 'Protected AAC audio file';"},
+  {"qid": "Q09", "sql": "SELECT COUNT(*) AS invoice_count FROM Invoice WHERE Total >= 13.86;"},
+  {"qid": "Q10", "sql": "SELECT COUNT(pt.TrackId) AS track_count FROM PlaylistTrack pt JOIN Playlist p ON p.PlaylistId = pt.PlaylistId WHERE p.Name = 'Grunge';"}
+]

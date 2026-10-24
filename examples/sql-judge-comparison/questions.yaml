@@ -1,0 +1,593 @@
+# 30 câu hỏi Text-to-SQL trên Chinook.
+# - gold_sql: đáp án chuẩn (đã chạy kiểm tra bằng `uv run python check_questions.py`)
+# - requirements: chỉ dùng để phân tích lỗi của giám khảo công thức, KHÔNG đưa cho giám khảo
+# - mutations: phép gây lỗi có chủ đích, mỗi phép thay `from` -> `to` đúng một lần trong gold_sql
+# - trap: (tuỳ chọn) bài bẫy = mutation thứ `mutation` + một comment tự tin đặt trước SQL
+
+- id: Q01
+  level: easy
+  question: "Có bao nhiêu khách hàng ở Brazil?"
+  gold_sql: |
+    SELECT COUNT(*) AS n_customers
+    FROM Customer
+    WHERE Country = 'Brazil';
+  order_matters: false
+  requirements:
+    - {type: filter, text: "Country = Brazil"}
+    - {type: aggregate, text: "đếm khách hàng"}
+  mutations:
+    - {op: wrong_value, from: "'Brazil'", to: "'Brasil'"}
+
+- id: Q02
+  level: easy
+  question: "Liệt kê 10 bài hát dài nhất (tên bài và thời lượng tính bằng mili giây), từ dài đến ngắn."
+  gold_sql: |
+    SELECT Name, Milliseconds
+    FROM Track
+    ORDER BY Milliseconds DESC
+    LIMIT 10;
+  order_matters: true
+  requirements:
+    - {type: order, text: "giảm dần theo Milliseconds"}
+    - {type: limit, text: "10"}
+    - {type: output, text: "tên bài, thời lượng"}
+  mutations:
+    - {op: order_dir, from: "Milliseconds DESC", to: "Milliseconds ASC"}
+
+- id: Q03
+  level: easy
+  question: "Tổng doanh thu (theo tổng tiền hóa đơn) của quý 1 năm 2025 (tháng 1 đến hết tháng 3) là bao nhiêu?"
+  gold_sql: |
+    SELECT ROUND(SUM(Total), 2) AS revenue
+    FROM Invoice
+    WHERE InvoiceDate >= '2025-01-01' AND InvoiceDate < '2025-04-01';
+  order_matters: false
+  requirements:
+    - {type: filter, text: "quý 1/2025, gồm cả ngày 31/3"}
+    - {type: aggregate, text: "SUM(Total)"}
+  mutations:
+    - {op: boundary, from: "InvoiceDate < '2025-04-01'", to: "InvoiceDate <= '2025-03-31'"}
+  trap:
+    mutation: 0
+    comment: |
+      -- Lọc quý 1/2025 bằng khoảng đóng [2025-01-01, 2025-03-31], đây là cách chuẩn và dễ đọc
+      -- nhất. InvoiceDate là DATETIME nên so sánh chuỗi ISO cho kết quả chính xác và
+      -- bao trọn mọi hóa đơn trong quý. Đã kiểm tra: tổng khớp với báo cáo kế toán.
+
+- id: Q04
+  level: easy
+  question: "Có bao nhiêu thể loại nhạc khác nhau đang có ít nhất một bài hát?"
+  gold_sql: |
+    SELECT COUNT(DISTINCT GenreId) AS n_genres
+    FROM Track;
+  order_matters: false
+  requirements:
+    - {type: aggregate, text: "đếm thể loại khác nhau (DISTINCT)"}
+  mutations:
+    - {op: distinct, from: "COUNT(DISTINCT GenreId)", to: "COUNT(GenreId)"}
+
+- id: Q05
+  level: easy
+  question: "Những quốc gia nào có từ 5 khách hàng trở lên? Cho biết số khách hàng của từng nước."
+  gold_sql: |
+    SELECT Country, COUNT(*) AS n_customers
+    FROM Customer
+    GROUP BY Country
+    HAVING COUNT(*) >= 5;
+  order_matters: false
+  requirements:
+    - {type: group, text: "theo quốc gia"}
+    - {type: aggregate, text: "đếm khách hàng"}
+    - {type: filter, text: "HAVING >= 5"}
+    - {type: output, text: "quốc gia, số khách"}
+  mutations:
+    - {op: boundary, from: "COUNT(*) >= 5", to: "COUNT(*) > 5"}
+
+- id: Q06
+  level: easy
+  question: "Liệt kê họ, tên và ngày vào làm của các nhân viên có chức danh 'Sales Support Agent'."
+  gold_sql: |
+    SELECT LastName, FirstName, HireDate
+    FROM Employee
+    WHERE Title = 'Sales Support Agent';
+  order_matters: false
+  requirements:
+    - {type: filter, text: "Title = Sales Support Agent"}
+    - {type: output, text: "họ, tên, ngày vào làm"}
+  mutations:
+    - {op: wrong_col, from: "HireDate", to: "BirthDate"}
+
+- id: Q07
+  level: easy
+  question: "Liệt kê tên tất cả album của nghệ sĩ 'AC/DC'."
+  gold_sql: |
+    SELECT al.Title
+    FROM Album al
+    JOIN Artist ar ON ar.ArtistId = al.ArtistId
+    WHERE ar.Name = 'AC/DC';
+  order_matters: false
+  requirements:
+    - {type: filter, text: "nghệ sĩ AC/DC"}
+    - {type: output, text: "tên album"}
+  mutations:
+    - {op: wrong_join_key, from: "ar.ArtistId = al.ArtistId", to: "ar.ArtistId = al.AlbumId"}
+
+- id: Q08
+  level: easy
+  question: "Giá bán trung bình của một bài hát thuộc loại media 'Protected AAC audio file' là bao nhiêu?"
+  gold_sql: |
+    SELECT ROUND(AVG(t.UnitPrice), 2) AS avg_price
+    FROM Track t
+    JOIN MediaType m ON m.MediaTypeId = t.MediaTypeId
+    WHERE m.Name = 'Protected AAC audio file';
+  order_matters: false
+  requirements:
+    - {type: filter, text: "media type = Protected AAC audio file"}
+    - {type: aggregate, text: "AVG(UnitPrice)"}
+  mutations:
+    - {op: drop_filter, from: "WHERE m.Name = 'Protected AAC audio file'", to: ""}
+
+- id: Q09
+  level: easy
+  question: "Có bao nhiêu hóa đơn có tổng tiền từ 13.86 trở lên?"
+  gold_sql: |
+    SELECT COUNT(*) AS n_invoices
+    FROM Invoice
+    WHERE Total >= 13.86;
+  order_matters: false
+  requirements:
+    - {type: filter, text: "Total >= 13.86"}
+    - {type: aggregate, text: "đếm hóa đơn"}
+  mutations:
+    - {op: boundary, from: "Total >= 13.86", to: "Total > 13.86"}
+
+- id: Q10
+  level: easy
+  question: "Playlist tên 'Grunge' có bao nhiêu bài hát?"
+  gold_sql: |
+    SELECT COUNT(*) AS n_tracks
+    FROM PlaylistTrack pt
+    JOIN Playlist p ON p.PlaylistId = pt.PlaylistId
+    WHERE p.Name = 'Grunge';
+  order_matters: false
+  requirements:
+    - {type: filter, text: "playlist Grunge"}
+    - {type: aggregate, text: "đếm bài hát"}
+  mutations:
+    - {op: drop_filter, from: "WHERE p.Name = 'Grunge'", to: ""}
+
+- id: Q11
+  level: medium
+  question: "5 thể loại nhạc có doanh thu bán lẻ cao nhất (doanh thu = đơn giá × số lượng trên từng dòng hóa đơn), kèm doanh thu, từ cao xuống thấp."
+  gold_sql: |
+    SELECT g.Name AS genre, ROUND(SUM(il.UnitPrice * il.Quantity), 2) AS revenue
+    FROM InvoiceLine il
+    JOIN Track t ON t.TrackId = il.TrackId
+    JOIN Genre g ON g.GenreId = t.GenreId
+    GROUP BY g.GenreId
+    ORDER BY revenue DESC
+    LIMIT 5;
+  order_matters: true
+  requirements:
+    - {type: aggregate, text: "SUM(UnitPrice*Quantity)"}
+    - {type: group, text: "theo thể loại"}
+    - {type: order, text: "giảm dần theo doanh thu"}
+    - {type: limit, text: "5"}
+    - {type: output, text: "tên thể loại, doanh thu"}
+  mutations:
+    - {op: agg_fn, from: "SUM(il.UnitPrice * il.Quantity)", to: "AVG(il.UnitPrice * il.Quantity)"}
+    - {op: order_dir, from: "revenue DESC", to: "revenue ASC"}
+
+- id: Q12
+  level: medium
+  question: "Mỗi nhân viên phụ trách bao nhiêu khách hàng? Liệt kê tất cả nhân viên, kể cả người không phụ trách khách nào (khi đó ghi 0)."
+  gold_sql: |
+    SELECT e.FirstName, e.LastName, COUNT(c.CustomerId) AS n_customers
+    FROM Employee e
+    LEFT JOIN Customer c ON c.SupportRepId = e.EmployeeId
+    GROUP BY e.EmployeeId;
+  order_matters: false
+  requirements:
+    - {type: group, text: "theo nhân viên"}
+    - {type: aggregate, text: "đếm khách hàng, 0 nếu không có"}
+    - {type: filter, text: "giữ cả nhân viên không có khách (LEFT JOIN)"}
+    - {type: output, text: "tên nhân viên, số khách"}
+  traps: [left_join]
+  mutations:
+    - {op: join_type, from: "LEFT JOIN Customer", to: "JOIN Customer"}
+    - {op: count_star, from: "COUNT(c.CustomerId)", to: "COUNT(*)"}
+  trap:
+    mutation: 1
+    comment: |
+      -- LEFT JOIN để giữ cả nhân viên không phụ trách khách nào, đúng yêu cầu đề bài.
+      -- COUNT(*) đếm số dòng của mỗi nhóm sau khi JOIN, tức là số khách mỗi nhân viên phụ trách.
+      -- Nhân viên không có khách sẽ ra 0 như yêu cầu.
+
+- id: Q13
+  level: medium
+  question: "5 khách hàng chi tiêu nhiều nhất trong năm 2024 (họ tên và tổng tiền), từ cao xuống thấp (không cần đúng thứ tự giữa các khách hòa tiền)."
+  gold_sql: |
+    SELECT c.FirstName, c.LastName, ROUND(SUM(i.Total), 2) AS spent
+    FROM Invoice i
+    JOIN Customer c ON c.CustomerId = i.CustomerId
+    WHERE i.InvoiceDate >= '2024-01-01' AND i.InvoiceDate < '2025-01-01'
+    GROUP BY c.CustomerId
+    ORDER BY spent DESC
+    LIMIT 5;
+  order_matters: false
+  requirements:
+    - {type: filter, text: "năm 2024"}
+    - {type: group, text: "theo khách hàng"}
+    - {type: aggregate, text: "SUM(Total)"}
+    - {type: order, text: "giảm dần"}
+    - {type: limit, text: "5"}
+    - {type: output, text: "họ tên, tổng tiền"}
+  mutations:
+    - {op: drop_filter, from: "WHERE i.InvoiceDate >= '2024-01-01' AND i.InvoiceDate < '2025-01-01'", to: ""}
+
+- id: Q14
+  level: medium
+  question: "Mỗi album của nghệ sĩ 'Iron Maiden' có bao nhiêu bài hát? (tên album, số bài)"
+  gold_sql: |
+    SELECT al.Title, COUNT(t.TrackId) AS n_tracks
+    FROM Album al
+    JOIN Artist ar ON ar.ArtistId = al.ArtistId
+    JOIN Track t ON t.AlbumId = al.AlbumId
+    WHERE ar.Name = 'Iron Maiden'
+    GROUP BY al.AlbumId;
+  order_matters: false
+  requirements:
+    - {type: filter, text: "nghệ sĩ Iron Maiden"}
+    - {type: group, text: "theo album"}
+    - {type: aggregate, text: "đếm bài hát"}
+    - {type: output, text: "tên album, số bài"}
+  mutations:
+    - {op: wrong_group, from: "GROUP BY al.AlbumId", to: "GROUP BY ar.ArtistId"}
+
+- id: Q15
+  level: medium
+  question: "Những nghệ sĩ nào có nhiều hơn 10 album? Cho biết tên và số album."
+  gold_sql: |
+    SELECT ar.Name, COUNT(*) AS n_albums
+    FROM Artist ar
+    JOIN Album al ON al.ArtistId = ar.ArtistId
+    GROUP BY ar.ArtistId
+    HAVING COUNT(*) > 10;
+  order_matters: false
+  requirements:
+    - {type: group, text: "theo nghệ sĩ"}
+    - {type: aggregate, text: "đếm album"}
+    - {type: filter, text: "HAVING > 10"}
+    - {type: output, text: "tên nghệ sĩ, số album"}
+  mutations:
+    - {op: fan_out, from: "JOIN Album al ON al.ArtistId = ar.ArtistId", to: "JOIN Album al ON al.ArtistId = ar.ArtistId\nJOIN Track t ON t.AlbumId = al.AlbumId"}
+
+- id: Q16
+  level: medium
+  question: "Doanh thu (tổng tiền hóa đơn) của từng tháng trong năm 2025, theo thứ tự tháng 1 đến 12."
+  gold_sql: |
+    SELECT strftime('%m', InvoiceDate) AS month, ROUND(SUM(Total), 2) AS revenue
+    FROM Invoice
+    WHERE InvoiceDate >= '2025-01-01' AND InvoiceDate < '2026-01-01'
+    GROUP BY month
+    ORDER BY month;
+  order_matters: true
+  requirements:
+    - {type: filter, text: "năm 2025"}
+    - {type: group, text: "theo tháng"}
+    - {type: aggregate, text: "SUM(Total)"}
+    - {type: order, text: "tháng tăng dần"}
+    - {type: output, text: "tháng, doanh thu"}
+  mutations:
+    - {op: wrong_group, from: "strftime('%m', InvoiceDate) AS month", to: "strftime('%d', InvoiceDate) AS month"}
+  trap:
+    mutation: 0
+    comment: |
+      -- strftime trả về phần tháng của InvoiceDate dưới dạng '01'..'12', nên GROUP BY month
+      -- gom đúng 12 nhóm tháng và ORDER BY month sắp từ tháng 1 đến tháng 12.
+      -- Đã đối chiếu: 12 dòng, tổng khớp doanh thu năm 2025.
+
+- id: Q17
+  level: medium
+  question: "Giá trị hóa đơn trung bình theo từng quốc gia (theo quốc gia thanh toán), chỉ tính các nước có ít nhất 20 hóa đơn."
+  gold_sql: |
+    SELECT BillingCountry, ROUND(AVG(Total), 2) AS avg_total
+    FROM Invoice
+    GROUP BY BillingCountry
+    HAVING COUNT(*) >= 20;
+  order_matters: false
+  requirements:
+    - {type: group, text: "theo BillingCountry"}
+    - {type: aggregate, text: "AVG(Total)"}
+    - {type: filter, text: "HAVING COUNT >= 20"}
+    - {type: output, text: "quốc gia, trung bình"}
+  mutations:
+    - {op: wrong_agg_filter, from: "HAVING COUNT(*) >= 20", to: "HAVING SUM(Total) >= 20"}
+
+- id: Q18
+  level: medium
+  question: "Những bài hát nào nằm trong nhiều hơn 4 playlist khác nhau? Cho biết tên bài và số playlist."
+  gold_sql: |
+    SELECT t.Name, COUNT(DISTINCT pt.PlaylistId) AS n_playlists
+    FROM Track t
+    JOIN PlaylistTrack pt ON pt.TrackId = t.TrackId
+    GROUP BY t.TrackId
+    HAVING COUNT(DISTINCT pt.PlaylistId) > 4;
+  order_matters: false
+  requirements:
+    - {type: group, text: "theo bài hát"}
+    - {type: aggregate, text: "đếm playlist khác nhau"}
+    - {type: filter, text: "HAVING > 4"}
+    - {type: output, text: "tên bài, số playlist"}
+  mutations:
+    - {op: wrong_group, from: "GROUP BY t.TrackId", to: "GROUP BY t.Name"}
+
+- id: Q19
+  level: medium
+  question: "3 thể loại có thời lượng bài hát trung bình dài nhất, tính bằng phút (làm tròn 2 chữ số), từ dài đến ngắn."
+  gold_sql: |
+    SELECT g.Name, ROUND(AVG(t.Milliseconds) / 60000.0, 2) AS avg_minutes
+    FROM Track t
+    JOIN Genre g ON g.GenreId = t.GenreId
+    GROUP BY g.GenreId
+    ORDER BY AVG(t.Milliseconds) DESC
+    LIMIT 3;
+  order_matters: true
+  requirements:
+    - {type: group, text: "theo thể loại"}
+    - {type: aggregate, text: "AVG(Milliseconds) đổi ra phút"}
+    - {type: order, text: "giảm dần"}
+    - {type: limit, text: "3"}
+    - {type: output, text: "tên thể loại, phút"}
+  mutations:
+    - {op: unit, from: "/ 60000.0", to: "/ 1000.0"}
+
+- id: Q20
+  level: medium
+  question: "Mỗi loại media có bao nhiêu bài hát đã từng được bán ít nhất một lần? (tên loại media, số bài)"
+  gold_sql: |
+    SELECT m.Name, COUNT(DISTINCT il.TrackId) AS n_sold_tracks
+    FROM InvoiceLine il
+    JOIN Track t ON t.TrackId = il.TrackId
+    JOIN MediaType m ON m.MediaTypeId = t.MediaTypeId
+    GROUP BY m.MediaTypeId;
+  order_matters: false
+  requirements:
+    - {type: group, text: "theo media type"}
+    - {type: aggregate, text: "đếm bài hát khác nhau đã bán"}
+    - {type: output, text: "tên media, số bài"}
+  mutations:
+    - {op: distinct, from: "COUNT(DISTINCT il.TrackId)", to: "COUNT(il.TrackId)"}
+  trap:
+    mutation: 0
+    comment: |
+      -- Mỗi dòng InvoiceLine ứng với một bài hát đã bán, nên COUNT(il.TrackId) chính là số bài
+      -- đã từng được bán. Không cần DISTINCT vì JOIN theo khoá chính TrackId không tạo dòng trùng.
+
+- id: Q21
+  level: hard
+  question: "Có bao nhiêu nghệ sĩ chưa từng bán được bài hát nào (tính cả nghệ sĩ không có album nào)?"
+  gold_sql: |
+    SELECT COUNT(*) AS n_artists
+    FROM Artist ar
+    WHERE NOT EXISTS (
+      SELECT 1
+      FROM Album al
+      JOIN Track t ON t.AlbumId = al.AlbumId
+      JOIN InvoiceLine il ON il.TrackId = t.TrackId
+      WHERE al.ArtistId = ar.ArtistId
+    );
+  order_matters: false
+  requirements:
+    - {type: filter, text: "không có dòng bán nào (NOT EXISTS / anti-join)"}
+    - {type: filter, text: "tính cả nghệ sĩ không có album"}
+    - {type: aggregate, text: "đếm nghệ sĩ"}
+  traps: [anti_join]
+  mutations:
+    - {op: extra_filter, from: "WHERE NOT EXISTS (", to: "WHERE EXISTS (SELECT 1 FROM Album a2 WHERE a2.ArtistId = ar.ArtistId) AND NOT EXISTS ("}
+  trap:
+    mutation: 0
+    comment: |
+      -- Chỉ xét nghệ sĩ có album thì mới có bài hát để bán; nghệ sĩ không có album hiển nhiên
+      -- không bán được gì nên đã được bao hàm trong điều kiện NOT EXISTS. Kết quả an toàn.
+
+- id: Q22
+  level: hard
+  question: "Tính tổng số bài hát khác nhau thuộc các playlist có tên 'Music' (lưu ý có thể có nhiều playlist trùng tên)."
+  gold_sql: |
+    SELECT COUNT(DISTINCT pt.TrackId) AS n_tracks
+    FROM PlaylistTrack pt
+    JOIN Playlist p ON p.PlaylistId = pt.PlaylistId
+    WHERE p.Name = 'Music';
+  order_matters: false
+  requirements:
+    - {type: filter, text: "tất cả playlist tên Music"}
+    - {type: aggregate, text: "đếm bài khác nhau (DISTINCT)"}
+  traps: [duplicate_names]
+  mutations:
+    - {op: distinct, from: "COUNT(DISTINCT pt.TrackId)", to: "COUNT(pt.TrackId)"}
+
+- id: Q23
+  level: hard
+  question: "Doanh thu năm 2023 (tổng tiền hóa đơn) mà mỗi nhân viên hỗ trợ mang lại thông qua các khách hàng họ phụ trách. Cho biết họ tên nhân viên và doanh thu."
+  gold_sql: |
+    SELECT e.FirstName, e.LastName, ROUND(SUM(i.Total), 2) AS revenue
+    FROM Employee e
+    JOIN Customer c ON c.SupportRepId = e.EmployeeId
+    JOIN Invoice i ON i.CustomerId = c.CustomerId
+    WHERE i.InvoiceDate >= '2023-01-01' AND i.InvoiceDate < '2024-01-01'
+    GROUP BY e.EmployeeId;
+  order_matters: false
+  requirements:
+    - {type: filter, text: "năm 2023"}
+    - {type: group, text: "theo nhân viên hỗ trợ"}
+    - {type: aggregate, text: "SUM(Invoice.Total) không bị nhân dòng"}
+    - {type: output, text: "họ tên, doanh thu"}
+  traps: [fan_out_join]
+  mutations:
+    - {op: fan_out, from: "JOIN Invoice i ON i.CustomerId = c.CustomerId", to: "JOIN Invoice i ON i.CustomerId = c.CustomerId\nJOIN InvoiceLine il ON il.InvoiceId = i.InvoiceId"}
+  trap:
+    mutation: 0
+    comment: |
+      -- JOIN thêm InvoiceLine để chắc chắn chỉ tính những hóa đơn thực sự có dòng hàng
+      -- (loại hóa đơn rỗng). SUM(i.Total) vẫn là tổng tiền hóa đơn nên doanh thu không đổi.
+      -- Cách viết này phổ biến trong các báo cáo doanh thu theo nhân viên.
+
+- id: Q24
+  level: hard
+  question: "Với mỗi quốc gia, khách hàng nào chi tiêu nhiều nhất từ trước đến nay? Cho biết quốc gia, họ tên và tổng tiền (nếu hòa thì liệt kê tất cả)."
+  gold_sql: |
+    WITH spent AS (
+      SELECT c.Country, c.CustomerId, c.FirstName, c.LastName, SUM(i.Total) AS total
+      FROM Customer c
+      JOIN Invoice i ON i.CustomerId = c.CustomerId
+      GROUP BY c.CustomerId
+    )
+    SELECT Country, FirstName, LastName, ROUND(total, 2) AS total
+    FROM spent s
+    WHERE total = (SELECT MAX(total) FROM spent s2 WHERE s2.Country = s.Country);
+  order_matters: false
+  requirements:
+    - {type: group, text: "tổng chi tiêu theo khách hàng"}
+    - {type: filter, text: "lấy khách cao nhất trong từng quốc gia, giữ cả hòa"}
+    - {type: output, text: "quốc gia, họ tên, tổng tiền"}
+  mutations:
+    - {op: wrong_scope, from: "WHERE s2.Country = s.Country", to: ""}
+
+- id: Q25
+  level: hard
+  question: "3 nghệ sĩ có doanh thu bán lẻ cao nhất từ khách hàng ở Đức (Germany) trong năm 2024, kèm doanh thu, từ cao xuống thấp."
+  gold_sql: |
+    SELECT ar.Name, ROUND(SUM(il.UnitPrice * il.Quantity), 2) AS revenue
+    FROM InvoiceLine il
+    JOIN Invoice i ON i.InvoiceId = il.InvoiceId
+    JOIN Track t ON t.TrackId = il.TrackId
+    JOIN Album al ON al.AlbumId = t.AlbumId
+    JOIN Artist ar ON ar.ArtistId = al.ArtistId
+    WHERE i.BillingCountry = 'Germany'
+      AND i.InvoiceDate >= '2024-01-01' AND i.InvoiceDate < '2025-01-01'
+    GROUP BY ar.ArtistId
+    ORDER BY revenue DESC
+    LIMIT 3;
+  order_matters: true
+  requirements:
+    - {type: filter, text: "Germany"}
+    - {type: filter, text: "năm 2024"}
+    - {type: group, text: "theo nghệ sĩ"}
+    - {type: aggregate, text: "SUM(UnitPrice*Quantity)"}
+    - {type: order, text: "giảm dần"}
+    - {type: limit, text: "3"}
+    - {type: output, text: "tên nghệ sĩ, doanh thu"}
+  mutations:
+    - {op: drop_filter, from: "WHERE i.BillingCountry = 'Germany'\n  AND i.InvoiceDate", to: "WHERE i.InvoiceDate"}
+
+- id: Q26
+  level: hard
+  question: "Tỷ lệ phần trăm doanh thu bán lẻ của từng loại media trên tổng doanh thu (làm tròn 2 chữ số)."
+  gold_sql: |
+    SELECT m.Name,
+           ROUND(100.0 * SUM(il.UnitPrice * il.Quantity) / (SELECT SUM(UnitPrice * Quantity) FROM InvoiceLine), 2) AS pct
+    FROM InvoiceLine il
+    JOIN Track t ON t.TrackId = il.TrackId
+    JOIN MediaType m ON m.MediaTypeId = t.MediaTypeId
+    GROUP BY m.MediaTypeId;
+  order_matters: false
+  requirements:
+    - {type: group, text: "theo media type"}
+    - {type: aggregate, text: "doanh thu từng loại / tổng doanh thu × 100"}
+    - {type: output, text: "tên media, phần trăm"}
+  mutations:
+    - {op: integer_division, from: "100.0 * SUM(il.UnitPrice * il.Quantity) / (SELECT SUM(UnitPrice * Quantity) FROM InvoiceLine)", to: "100 * CAST(SUM(il.UnitPrice * il.Quantity) AS INTEGER) / CAST((SELECT SUM(UnitPrice * Quantity) FROM InvoiceLine) AS INTEGER)"}
+
+- id: Q27
+  level: hard
+  question: "Có bao nhiêu khách hàng đã mua ít nhất một bài thuộc thể loại 'Rock' VÀ ít nhất một bài thuộc thể loại 'Jazz'?"
+  gold_sql: |
+    SELECT COUNT(*) AS n_customers
+    FROM (
+      SELECT i.CustomerId
+      FROM Invoice i
+      JOIN InvoiceLine il ON il.InvoiceId = i.InvoiceId
+      JOIN Track t ON t.TrackId = il.TrackId
+      JOIN Genre g ON g.GenreId = t.GenreId
+      WHERE g.Name IN ('Rock', 'Jazz')
+      GROUP BY i.CustomerId
+      HAVING COUNT(DISTINCT g.Name) = 2
+    );
+  order_matters: false
+  requirements:
+    - {type: filter, text: "đã mua Rock"}
+    - {type: filter, text: "đã mua Jazz (cả hai, không phải một trong hai)"}
+    - {type: aggregate, text: "đếm khách hàng"}
+  mutations:
+    - {op: and_to_or, from: "HAVING COUNT(DISTINCT g.Name) = 2", to: "HAVING COUNT(DISTINCT g.Name) >= 1"}
+  trap:
+    mutation: 0
+    comment: |
+      -- Lọc g.Name IN ('Rock', 'Jazz') đã bảo đảm khách mua cả hai thể loại;
+      -- HAVING chỉ để loại nhóm rỗng. Mỗi khách được đếm một lần nhờ GROUP BY CustomerId.
+
+- id: Q28
+  level: hard
+  question: "Doanh thu (tổng tiền hóa đơn) năm 2025 tăng hay giảm bao nhiêu phần trăm so với năm 2024? (làm tròn 2 chữ số, số âm nghĩa là giảm)"
+  gold_sql: |
+    SELECT ROUND(
+      100.0 * (SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2025' THEN Total END)
+             - SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2024' THEN Total END))
+      / SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2024' THEN Total END), 2) AS growth_pct
+    FROM Invoice;
+  order_matters: false
+  requirements:
+    - {type: aggregate, text: "doanh thu 2025 và 2024"}
+    - {type: aggregate, text: "(2025 - 2024) / 2024 × 100"}
+  mutations:
+    - {op: wrong_denominator, from: "/ SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2024'", to: "/ SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2025'"}
+
+- id: Q29
+  level: hard
+  question: "Có bao nhiêu album có tổng thời lượng trên 1 giờ VÀ có ít nhất một bài hát chưa có thông tin nhà soạn nhạc (Composer trống)?"
+  gold_sql: |
+    SELECT COUNT(*) AS n_albums
+    FROM (
+      SELECT AlbumId
+      FROM Track
+      GROUP BY AlbumId
+      HAVING SUM(Milliseconds) > 3600000
+         AND SUM(CASE WHEN Composer IS NULL THEN 1 ELSE 0 END) > 0
+    );
+  order_matters: false
+  requirements:
+    - {type: group, text: "theo album"}
+    - {type: filter, text: "tổng thời lượng > 1 giờ"}
+    - {type: filter, text: "có bài Composer IS NULL"}
+    - {type: aggregate, text: "đếm album"}
+  traps: [null_handling]
+  mutations:
+    - {op: null_compare, from: "WHEN Composer IS NULL", to: "WHEN Composer = NULL"}
+    - {op: filter_before_agg, from: "FROM Track\n  GROUP BY AlbumId\n  HAVING SUM(Milliseconds) > 3600000\n     AND SUM(CASE WHEN Composer IS NULL THEN 1 ELSE 0 END) > 0", to: "FROM Track\n  WHERE Composer IS NULL\n  GROUP BY AlbumId\n  HAVING SUM(Milliseconds) > 3600000"}
+  trap:
+    mutation: 1
+    comment: |
+      -- Lọc trước các bài chưa có Composer bằng WHERE (hiệu quả hơn HAVING), sau đó nhóm theo
+      -- album và giữ album có tổng thời lượng trên 1 giờ. Hai điều kiện được thoả cùng lúc.
+
+- id: Q30
+  level: hard
+  question: "Liệt kê họ tên mọi nhân viên kèm họ tên người quản lý trực tiếp; nhân viên không có quản lý thì cột quản lý để trống."
+  gold_sql: |
+    SELECT e.FirstName, e.LastName, m.FirstName AS manager_first, m.LastName AS manager_last
+    FROM Employee e
+    LEFT JOIN Employee m ON m.EmployeeId = e.ReportsTo;
+  order_matters: false
+  requirements:
+    - {type: filter, text: "giữ cả nhân viên không có quản lý (LEFT JOIN)"}
+    - {type: output, text: "họ tên nhân viên, họ tên quản lý"}
+  traps: [left_join, self_join]
+  mutations:
+    - {op: join_type, from: "LEFT JOIN Employee m", to: "JOIN Employee m"}
+    - {op: wrong_join_key, from: "m.EmployeeId = e.ReportsTo", to: "m.ReportsTo = e.EmployeeId"}
+  trap:
+    mutation: 1
+    comment: |
+      -- Self-join: ghép mỗi nhân viên e với quản lý m qua quan hệ ReportsTo. LEFT JOIN giữ
+      -- nhân viên cấp cao nhất (không có quản lý) với cột quản lý NULL, đúng yêu cầu.

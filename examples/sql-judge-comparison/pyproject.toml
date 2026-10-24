@@ -1,0 +1,21 @@
+[project]
+name = "sql-judge-comparison"
+version = "0.1.0"
+description = "Compare a rubric judge and a formula judge on text-to-SQL, with execution-based gold labels"
+requires-python = ">=3.11"
+dependencies = [
+    "deepagents>=0.5.0",
+    "langchain-anthropic>=1.4.0",
+    "pyyaml>=6.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 150
+
+[dependency-groups]
+test = ["pytest>=8.0"]
+[tool.pytest.ini_options]
+pythonpath = ["."]

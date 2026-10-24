@@ -1,0 +1,1599 @@
+[
+  {
+    "qid": "Q10",
+    "sql": "SELECT COUNT(pt.TrackId) AS track_count FROM Playlist p JOIN PlaylistTrack pt ON pt.PlaylistId = p.PlaylistId WHERE p.Name = 'Grunge';",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C001",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q30",
+    "sql": "SELECT e.FirstName, e.LastName, m.FirstName AS manager_first, m.LastName AS manager_last\nFROM Employee e\nJOIN Employee m ON m.EmployeeId = e.ReportsTo;\n",
+    "source": "M",
+    "op": "join_type",
+    "sources": [
+      "M"
+    ],
+    "id": "C002",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q25",
+    "sql": "SELECT ar.Name AS artist_name, ROUND(SUM(il.UnitPrice * il.Quantity), 2) AS revenue FROM InvoiceLine il JOIN Invoice i ON i.InvoiceId = il.InvoiceId JOIN Customer c ON c.CustomerId = i.CustomerId JOIN Track t ON t.TrackId = il.TrackId JOIN Album al ON al.AlbumId = t.AlbumId JOIN Artist ar ON ar.ArtistId = al.ArtistId WHERE c.Country = 'Germany' AND strftime('%Y', i.InvoiceDate) = '2024' GROUP BY ar.ArtistId, ar.Name ORDER BY revenue DESC LIMIT 3;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C003",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q22",
+    "sql": "SELECT COUNT(pt.TrackId) AS n_tracks\nFROM PlaylistTrack pt\nJOIN Playlist p ON p.PlaylistId = pt.PlaylistId\nWHERE p.Name = 'Music';\n",
+    "source": "M",
+    "op": "distinct",
+    "sources": [
+      "M"
+    ],
+    "id": "C004",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q10",
+    "sql": "SELECT COUNT(*) AS n_tracks\nFROM PlaylistTrack pt\nJOIN Playlist p ON p.PlaylistId = pt.PlaylistId\n;\n",
+    "source": "M",
+    "op": "drop_filter",
+    "sources": [
+      "M"
+    ],
+    "id": "C005",
+    "level": "easy",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q28",
+    "sql": "SELECT ROUND(100.0*(SUM(CASE WHEN InvoiceDate>='2025-01-01' AND InvoiceDate<'2026-01-01' THEN Total END)-SUM(CASE WHEN InvoiceDate>='2024-01-01' AND InvoiceDate<'2025-01-01' THEN Total END))/SUM(CASE WHEN InvoiceDate>='2024-01-01' AND InvoiceDate<'2025-01-01' THEN Total END),2) FROM Invoice",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C006",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q06",
+    "sql": "SELECT LastName, FirstName, HireDate FROM Employee WHERE Title = 'Sales Support Agent';",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2",
+      "G3"
+    ],
+    "id": "C007",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q20",
+    "sql": "SELECT m.Name, COUNT(DISTINCT t.TrackId) AS n FROM MediaType m JOIN Track t ON t.MediaTypeId=m.MediaTypeId JOIN InvoiceLine il ON il.TrackId=t.TrackId GROUP BY m.MediaTypeId",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C008",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q11",
+    "sql": "SELECT g.Name AS Genre, ROUND(SUM(il.UnitPrice * il.Quantity), 2) AS Revenue FROM InvoiceLine il JOIN Track t ON t.TrackId = il.TrackId JOIN Genre g ON g.GenreId = t.GenreId GROUP BY g.GenreId, g.Name ORDER BY Revenue DESC LIMIT 5;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2",
+      "G3"
+    ],
+    "id": "C009",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q05",
+    "sql": "SELECT Country, COUNT(*) AS customer_count FROM Customer WHERE Country IS NOT NULL GROUP BY Country HAVING COUNT(*) >= 5 ORDER BY customer_count DESC;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C010",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q03",
+    "sql": "SELECT SUM(Total) FROM Invoice WHERE InvoiceDate >= '2025-01-01' AND InvoiceDate < '2025-04-01'",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C011",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q16",
+    "sql": "SELECT strftime('%d', InvoiceDate) AS month, ROUND(SUM(Total), 2) AS revenue\nFROM Invoice\nWHERE InvoiceDate >= '2025-01-01' AND InvoiceDate < '2026-01-01'\nGROUP BY month\nORDER BY month;\n",
+    "source": "M",
+    "op": "wrong_group",
+    "sources": [
+      "M"
+    ],
+    "id": "C012",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q11",
+    "sql": "SELECT g.Name AS genre, ROUND(SUM(il.UnitPrice * il.Quantity), 2) AS revenue\nFROM InvoiceLine il\nJOIN Track t ON t.TrackId = il.TrackId\nJOIN Genre g ON g.GenreId = t.GenreId\nGROUP BY g.GenreId\nORDER BY revenue ASC\nLIMIT 5;\n",
+    "source": "M",
+    "op": "order_dir",
+    "sources": [
+      "M"
+    ],
+    "id": "C013",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q14",
+    "sql": "SELECT al.Title, COUNT(t.TrackId) AS n_tracks\nFROM Album al\nJOIN Artist ar ON ar.ArtistId = al.ArtistId\nJOIN Track t ON t.AlbumId = al.AlbumId\nWHERE ar.Name = 'Iron Maiden'\nGROUP BY ar.ArtistId;\n",
+    "source": "M",
+    "op": "wrong_group",
+    "sources": [
+      "M"
+    ],
+    "id": "C014",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q20",
+    "sql": "SELECT m.Name, COUNT(il.TrackId) AS n_sold_tracks\nFROM InvoiceLine il\nJOIN Track t ON t.TrackId = il.TrackId\nJOIN MediaType m ON m.MediaTypeId = t.MediaTypeId\nGROUP BY m.MediaTypeId;\n",
+    "source": "M",
+    "op": "distinct",
+    "sources": [
+      "M"
+    ],
+    "id": "C015",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q14",
+    "sql": "SELECT al.Title AS album, COUNT(t.TrackId) AS track_count FROM Album al JOIN Artist ar ON ar.ArtistId = al.ArtistId LEFT JOIN Track t ON t.AlbumId = al.AlbumId WHERE ar.Name = 'Iron Maiden' GROUP BY al.AlbumId, al.Title ORDER BY al.Title;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C016",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q03",
+    "sql": "SELECT SUM(Total) AS total_revenue FROM Invoice WHERE InvoiceDate >= '2025-01-01 00:00:00' AND InvoiceDate < '2025-04-01 00:00:00';",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C017",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q16",
+    "sql": "SELECT strftime('%m', InvoiceDate) AS month, SUM(Total) AS revenue FROM Invoice WHERE InvoiceDate>='2025-01-01' AND InvoiceDate<'2026-01-01' GROUP BY month ORDER BY month",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C018",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q23",
+    "sql": "SELECT e.FirstName || ' ' || e.LastName AS employee_name, ROUND(SUM(i.Total), 2) AS revenue FROM Employee e JOIN Customer c ON c.SupportRepId = e.EmployeeId JOIN Invoice i ON i.CustomerId = c.CustomerId WHERE strftime('%Y', i.InvoiceDate) = '2023' GROUP BY e.EmployeeId, e.FirstName, e.LastName;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C019",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q12",
+    "sql": "SELECT e.EmployeeId, e.FirstName || ' ' || e.LastName AS employee, COUNT(c.CustomerId) AS customer_count FROM Employee e LEFT JOIN Customer c ON c.SupportRepId = e.EmployeeId GROUP BY e.EmployeeId, e.FirstName, e.LastName ORDER BY customer_count DESC;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C020",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q29",
+    "sql": "SELECT COUNT(*) FROM (SELECT AlbumId FROM Track WHERE AlbumId IS NOT NULL GROUP BY AlbumId HAVING SUM(Milliseconds)>3600000 AND SUM(CASE WHEN Composer IS NULL OR TRIM(Composer)='' THEN 1 ELSE 0 END)>0)",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C021",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q20",
+    "sql": "SELECT mt.Name AS media_type, COUNT(DISTINCT t.TrackId) AS sold_track_count FROM MediaType mt JOIN Track t ON t.MediaTypeId = mt.MediaTypeId JOIN InvoiceLine il ON il.TrackId = t.TrackId GROUP BY mt.MediaTypeId, mt.Name ORDER BY sold_track_count DESC;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C022",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q23",
+    "sql": "SELECT e.FirstName||' '||e.LastName AS name, SUM(i.Total) AS revenue FROM Employee e JOIN Customer c ON c.SupportRepId=e.EmployeeId JOIN Invoice i ON i.CustomerId=c.CustomerId WHERE i.InvoiceDate>='2023-01-01' AND i.InvoiceDate<'2024-01-01' GROUP BY e.EmployeeId",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C023",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q03",
+    "sql": "-- Lọc quý 1/2025 bằng khoảng đóng [2025-01-01, 2025-03-31], đây là cách chuẩn và dễ đọc\n-- nhất. InvoiceDate là DATETIME nên so sánh chuỗi ISO cho kết quả chính xác và\n-- bao trọn mọi hóa đơn trong quý. Đã kiểm tra: tổng khớp với báo cáo kế toán.\nSELECT ROUND(SUM(Total), 2) AS revenue\nFROM Invoice\nWHERE InvoiceDate >= '2025-01-01' AND InvoiceDate <= '2025-03-31';\n",
+    "source": "T",
+    "op": "trap:boundary",
+    "sources": [
+      "T"
+    ],
+    "id": "C024",
+    "level": "easy",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q23",
+    "sql": "SELECT e.FirstName, e.LastName, ROUND(SUM(i.Total), 2) AS revenue\nFROM Employee e\nJOIN Customer c ON c.SupportRepId = e.EmployeeId\nJOIN Invoice i ON i.CustomerId = c.CustomerId\nJOIN InvoiceLine il ON il.InvoiceId = i.InvoiceId\nWHERE i.InvoiceDate >= '2023-01-01' AND i.InvoiceDate < '2024-01-01'\nGROUP BY e.EmployeeId;\n",
+    "source": "M",
+    "op": "fan_out",
+    "sources": [
+      "M"
+    ],
+    "id": "C025",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q12",
+    "sql": "SELECT e.EmployeeId, e.FirstName || ' ' || e.LastName AS EmployeeName, COUNT(c.CustomerId) AS CustomerCount FROM Employee e LEFT JOIN Customer c ON c.SupportRepId = e.EmployeeId GROUP BY e.EmployeeId, e.FirstName, e.LastName ORDER BY CustomerCount DESC;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C026",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q17",
+    "sql": "SELECT BillingCountry, ROUND(AVG(Total), 2) AS avg_total\nFROM Invoice\nGROUP BY BillingCountry\nHAVING SUM(Total) >= 20;\n",
+    "source": "M",
+    "op": "wrong_agg_filter",
+    "sources": [
+      "M"
+    ],
+    "id": "C027",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q26",
+    "sql": "SELECT m.Name,\n       ROUND(100 * CAST(SUM(il.UnitPrice * il.Quantity) AS INTEGER) / CAST((SELECT SUM(UnitPrice * Quantity) FROM InvoiceLine) AS INTEGER), 2) AS pct\nFROM InvoiceLine il\nJOIN Track t ON t.TrackId = il.TrackId\nJOIN MediaType m ON m.MediaTypeId = t.MediaTypeId\nGROUP BY m.MediaTypeId;\n",
+    "source": "M",
+    "op": "integer_division",
+    "sources": [
+      "M"
+    ],
+    "id": "C028",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q16",
+    "sql": "SELECT strftime('%m', InvoiceDate) AS Month, ROUND(SUM(Total), 2) AS Revenue FROM Invoice WHERE InvoiceDate >= '2025-01-01' AND InvoiceDate < '2026-01-01' GROUP BY strftime('%m', InvoiceDate) ORDER BY Month;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C029",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q19",
+    "sql": "SELECT g.Name AS genre, ROUND(AVG(t.Milliseconds) / 60000.0, 2) AS avg_minutes FROM Track t JOIN Genre g ON g.GenreId = t.GenreId GROUP BY g.GenreId, g.Name ORDER BY avg_minutes DESC LIMIT 3;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C030",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q10",
+    "sql": "SELECT COUNT(*) FROM PlaylistTrack pt JOIN Playlist p ON p.PlaylistId=pt.PlaylistId WHERE p.Name='Grunge'",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C031",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q12",
+    "sql": "-- LEFT JOIN để giữ cả nhân viên không phụ trách khách nào, đúng yêu cầu đề bài.\n-- COUNT(*) đếm số dòng của mỗi nhóm sau khi JOIN, tức là số khách mỗi nhân viên phụ trách.\n-- Nhân viên không có khách sẽ ra 0 như yêu cầu.\nSELECT e.FirstName, e.LastName, COUNT(*) AS n_customers\nFROM Employee e\nLEFT JOIN Customer c ON c.SupportRepId = e.EmployeeId\nGROUP BY e.EmployeeId;\n",
+    "source": "T",
+    "op": "trap:count_star",
+    "sources": [
+      "T"
+    ],
+    "id": "C032",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q22",
+    "sql": "SELECT COUNT(DISTINCT pt.TrackId) FROM PlaylistTrack pt JOIN Playlist p ON p.PlaylistId=pt.PlaylistId WHERE p.Name='Music'",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C033",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q18",
+    "sql": "SELECT t.Name, COUNT(DISTINCT pt.PlaylistId) AS n FROM Track t JOIN PlaylistTrack pt ON pt.TrackId=t.TrackId GROUP BY t.TrackId HAVING n>4",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C034",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q27",
+    "sql": "SELECT COUNT(*) AS n_customers\nFROM (\n  SELECT i.CustomerId\n  FROM Invoice i\n  JOIN InvoiceLine il ON il.InvoiceId = i.InvoiceId\n  JOIN Track t ON t.TrackId = il.TrackId\n  JOIN Genre g ON g.GenreId = t.GenreId\n  WHERE g.Name IN ('Rock', 'Jazz')\n  GROUP BY i.CustomerId\n  HAVING COUNT(DISTINCT g.Name) >= 1\n);\n",
+    "source": "M",
+    "op": "and_to_or",
+    "sources": [
+      "M"
+    ],
+    "id": "C035",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q18",
+    "sql": "SELECT t.Name AS TrackName, COUNT(DISTINCT pt.PlaylistId) AS PlaylistCount FROM Track t JOIN PlaylistTrack pt ON pt.TrackId = t.TrackId GROUP BY t.TrackId, t.Name HAVING COUNT(DISTINCT pt.PlaylistId) > 4 ORDER BY PlaylistCount DESC;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C036",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q27",
+    "sql": "SELECT COUNT(*) FROM Customer c WHERE EXISTS (SELECT 1 FROM Invoice i JOIN InvoiceLine il ON il.InvoiceId=i.InvoiceId JOIN Track t ON t.TrackId=il.TrackId JOIN Genre g ON g.GenreId=t.GenreId WHERE i.CustomerId=c.CustomerId AND g.Name='Rock') AND EXISTS (SELECT 1 FROM Invoice i JOIN InvoiceLine il ON il.InvoiceId=i.InvoiceId JOIN Track t ON t.TrackId=il.TrackId JOIN Genre g ON g.GenreId=t.GenreId WHERE i.CustomerId=c.CustomerId AND g.Name='Jazz')",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C037",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q12",
+    "sql": "SELECT e.FirstName, e.LastName, COUNT(c.CustomerId) AS n_customers\nFROM Employee e\nJOIN Customer c ON c.SupportRepId = e.EmployeeId\nGROUP BY e.EmployeeId;\n",
+    "source": "M",
+    "op": "join_type",
+    "sources": [
+      "M"
+    ],
+    "id": "C038",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q19",
+    "sql": "SELECT g.Name AS Genre, ROUND(AVG(t.Milliseconds) / 60000.0, 2) AS AvgMinutes FROM Track t JOIN Genre g ON g.GenreId = t.GenreId GROUP BY g.GenreId, g.Name ORDER BY AvgMinutes DESC LIMIT 3;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C039",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q07",
+    "sql": "SELECT al.Title\nFROM Album al\nJOIN Artist ar ON ar.ArtistId = al.AlbumId\nWHERE ar.Name = 'AC/DC';\n",
+    "source": "M",
+    "op": "wrong_join_key",
+    "sources": [
+      "M"
+    ],
+    "id": "C040",
+    "level": "easy",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q28",
+    "sql": "SELECT ROUND(100.0 * (SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2025' THEN Total END) - SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2024' THEN Total END)) / SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2024' THEN Total END), 2) AS pct_change FROM Invoice WHERE strftime('%Y', InvoiceDate) IN ('2024', '2025');",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C041",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q14",
+    "sql": "SELECT al.Title AS AlbumTitle, COUNT(t.TrackId) AS TrackCount FROM Album al JOIN Artist ar ON ar.ArtistId = al.ArtistId LEFT JOIN Track t ON t.AlbumId = al.AlbumId WHERE ar.Name = 'Iron Maiden' GROUP BY al.AlbumId, al.Title ORDER BY al.Title;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C042",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q14",
+    "sql": "SELECT al.Title, COUNT(t.TrackId) AS n FROM Album al JOIN Artist ar ON ar.ArtistId=al.ArtistId LEFT JOIN Track t ON t.AlbumId=al.AlbumId WHERE ar.Name='Iron Maiden' GROUP BY al.AlbumId",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C043",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q15",
+    "sql": "SELECT ar.Name, COUNT(*) AS n_albums\nFROM Artist ar\nJOIN Album al ON al.ArtistId = ar.ArtistId\nJOIN Track t ON t.AlbumId = al.AlbumId\nGROUP BY ar.ArtistId\nHAVING COUNT(*) > 10;\n",
+    "source": "M",
+    "op": "fan_out",
+    "sources": [
+      "M"
+    ],
+    "id": "C044",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q15",
+    "sql": "SELECT ar.Name AS ArtistName, COUNT(al.AlbumId) AS AlbumCount FROM Artist ar JOIN Album al ON al.ArtistId = ar.ArtistId GROUP BY ar.ArtistId, ar.Name HAVING COUNT(al.AlbumId) > 10 ORDER BY AlbumCount DESC;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C045",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q27",
+    "sql": "SELECT COUNT(*) AS customer_count FROM (SELECT i.CustomerId FROM Invoice i JOIN InvoiceLine il ON il.InvoiceId = i.InvoiceId JOIN Track t ON t.TrackId = il.TrackId JOIN Genre g ON g.GenreId = t.GenreId WHERE g.Name = 'Rock' INTERSECT SELECT i.CustomerId FROM Invoice i JOIN InvoiceLine il ON il.InvoiceId = i.InvoiceId JOIN Track t ON t.TrackId = il.TrackId JOIN Genre g ON g.GenreId = t.GenreId WHERE g.Name = 'Jazz');",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C046",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q26",
+    "sql": "SELECT m.Name AS media_type, ROUND(100.0 * SUM(il.UnitPrice * il.Quantity) / (SELECT SUM(UnitPrice * Quantity) FROM InvoiceLine), 2) AS revenue_percent FROM InvoiceLine il JOIN Track t ON t.TrackId = il.TrackId JOIN MediaType m ON m.MediaTypeId = t.MediaTypeId GROUP BY m.MediaTypeId, m.Name ORDER BY revenue_percent DESC;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C047",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q21",
+    "sql": "-- Chỉ xét nghệ sĩ có album thì mới có bài hát để bán; nghệ sĩ không có album hiển nhiên\n-- không bán được gì nên đã được bao hàm trong điều kiện NOT EXISTS. Kết quả an toàn.\nSELECT COUNT(*) AS n_artists\nFROM Artist ar\nWHERE EXISTS (SELECT 1 FROM Album a2 WHERE a2.ArtistId = ar.ArtistId) AND NOT EXISTS (\n  SELECT 1\n  FROM Album al\n  JOIN Track t ON t.AlbumId = al.AlbumId\n  JOIN InvoiceLine il ON il.TrackId = t.TrackId\n  WHERE al.ArtistId = ar.ArtistId\n);\n",
+    "source": "T",
+    "op": "trap:extra_filter",
+    "sources": [
+      "T"
+    ],
+    "id": "C048",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q25",
+    "sql": "SELECT ar.Name AS artist_name, ROUND(SUM(il.UnitPrice * il.Quantity), 2) AS revenue FROM Customer c JOIN Invoice i ON i.CustomerId = c.CustomerId JOIN InvoiceLine il ON il.InvoiceId = i.InvoiceId JOIN Track t ON t.TrackId = il.TrackId JOIN Album al ON al.AlbumId = t.AlbumId JOIN Artist ar ON ar.ArtistId = al.ArtistId WHERE c.Country = 'Germany' AND strftime('%Y', i.InvoiceDate) = '2024' GROUP BY ar.ArtistId, ar.Name ORDER BY revenue DESC LIMIT 3;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C049",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q23",
+    "sql": "SELECT e.FirstName || ' ' || e.LastName AS employee_name, ROUND(COALESCE(SUM(i.Total), 0), 2) AS revenue FROM Employee e LEFT JOIN Customer c ON c.SupportRepId = e.EmployeeId LEFT JOIN Invoice i ON i.CustomerId = c.CustomerId AND strftime('%Y', i.InvoiceDate) = '2023' GROUP BY e.EmployeeId, e.FirstName, e.LastName;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C050",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q24",
+    "sql": "WITH spend AS (SELECT c.Country, c.CustomerId, c.FirstName || ' ' || c.LastName AS full_name, SUM(i.Total) AS total FROM Customer c JOIN Invoice i ON i.CustomerId = c.CustomerId WHERE c.Country IS NOT NULL GROUP BY c.CustomerId, c.Country, c.FirstName, c.LastName), ranked AS (SELECT Country, full_name, total, RANK() OVER (PARTITION BY Country ORDER BY total DESC) AS rk FROM spend) SELECT Country, full_name, ROUND(total, 2) AS total_spent FROM ranked WHERE rk = 1;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C051",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q07",
+    "sql": "SELECT al.Title FROM Album al JOIN Artist ar ON ar.ArtistId=al.ArtistId WHERE ar.Name='AC/DC'",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C052",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q21",
+    "sql": "SELECT COUNT(*) AS artist_count FROM Artist ar WHERE NOT EXISTS (SELECT 1 FROM Album al JOIN Track t ON t.AlbumId = al.AlbumId JOIN InvoiceLine il ON il.TrackId = t.TrackId WHERE al.ArtistId = ar.ArtistId);",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2",
+      "G3"
+    ],
+    "id": "C053",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q08",
+    "sql": "SELECT AVG(t.UnitPrice) AS avg_unit_price FROM Track t JOIN MediaType m ON t.MediaTypeId = m.MediaTypeId WHERE m.Name = 'Protected AAC audio file';",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2",
+      "G3"
+    ],
+    "id": "C054",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q13",
+    "sql": "SELECT c.FirstName, c.LastName, ROUND(SUM(i.Total), 2) AS spent\nFROM Invoice i\nJOIN Customer c ON c.CustomerId = i.CustomerId\n\nGROUP BY c.CustomerId\nORDER BY spent DESC\nLIMIT 5;\n",
+    "source": "M",
+    "op": "drop_filter",
+    "sources": [
+      "M"
+    ],
+    "id": "C055",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q06",
+    "sql": "SELECT LastName, FirstName, BirthDate\nFROM Employee\nWHERE Title = 'Sales Support Agent';\n",
+    "source": "M",
+    "op": "wrong_col",
+    "sources": [
+      "M"
+    ],
+    "id": "C056",
+    "level": "easy",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q29",
+    "sql": "SELECT COUNT(*) AS n_albums\nFROM (\n  SELECT AlbumId\n  FROM Track\n  WHERE Composer IS NULL\n  GROUP BY AlbumId\n  HAVING SUM(Milliseconds) > 3600000\n);\n",
+    "source": "M",
+    "op": "filter_before_agg",
+    "sources": [
+      "M"
+    ],
+    "id": "C057",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q04",
+    "sql": "SELECT COUNT(DISTINCT g.GenreId) AS genre_count FROM Genre g JOIN Track t ON t.GenreId = g.GenreId;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2",
+      "G3"
+    ],
+    "id": "C058",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q15",
+    "sql": "SELECT ar.Name, COUNT(*) AS n FROM Artist ar JOIN Album al ON al.ArtistId=ar.ArtistId GROUP BY ar.ArtistId HAVING n>10",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C059",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q20",
+    "sql": "SELECT mt.Name AS MediaType, COUNT(DISTINCT t.TrackId) AS TrackCount FROM MediaType mt JOIN Track t ON t.MediaTypeId = mt.MediaTypeId JOIN InvoiceLine il ON il.TrackId = t.TrackId GROUP BY mt.MediaTypeId, mt.Name ORDER BY TrackCount DESC;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C060",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q08",
+    "sql": "SELECT ROUND(AVG(t.UnitPrice), 2) AS avg_price\nFROM Track t\nJOIN MediaType m ON m.MediaTypeId = t.MediaTypeId\n;\n",
+    "source": "M",
+    "op": "drop_filter",
+    "sources": [
+      "M"
+    ],
+    "id": "C061",
+    "level": "easy",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q17",
+    "sql": "SELECT BillingCountry, AVG(Total) AS avg_total FROM Invoice GROUP BY BillingCountry HAVING COUNT(*)>=20",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C062",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q17",
+    "sql": "SELECT BillingCountry AS Country, ROUND(AVG(Total), 2) AS AvgInvoiceValue, COUNT(*) AS InvoiceCount FROM Invoice GROUP BY BillingCountry HAVING COUNT(*) >= 20 ORDER BY AvgInvoiceValue DESC;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C063",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q05",
+    "sql": "SELECT Country, COUNT(*) AS n_customers\nFROM Customer\nGROUP BY Country\nHAVING COUNT(*) > 5;\n",
+    "source": "M",
+    "op": "boundary",
+    "sources": [
+      "M"
+    ],
+    "id": "C064",
+    "level": "easy",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q24",
+    "sql": "WITH spend AS (SELECT c.Country, c.CustomerId, c.FirstName || ' ' || c.LastName AS customer_name, SUM(i.Total) AS total FROM Customer c JOIN Invoice i ON i.CustomerId = c.CustomerId GROUP BY c.CustomerId, c.Country, c.FirstName, c.LastName), ranked AS (SELECT Country, customer_name, total, MAX(total) OVER (PARTITION BY Country) AS max_total FROM spend) SELECT Country, customer_name, ROUND(total, 2) AS total_spent FROM ranked WHERE total = max_total;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C065",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q07",
+    "sql": "SELECT al.Title FROM Album al JOIN Artist ar ON al.ArtistId = ar.ArtistId WHERE ar.Name = 'AC/DC';",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2",
+      "G3"
+    ],
+    "id": "C066",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q30",
+    "sql": "SELECT e.FirstName || ' ' || e.LastName AS employee_name, m.FirstName || ' ' || m.LastName AS manager_name FROM Employee e LEFT JOIN Employee m ON m.EmployeeId = e.ReportsTo;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C067",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q11",
+    "sql": "SELECT g.Name, SUM(il.UnitPrice*il.Quantity) AS rev FROM InvoiceLine il JOIN Track t ON t.TrackId=il.TrackId JOIN Genre g ON g.GenreId=t.GenreId GROUP BY g.GenreId ORDER BY rev DESC LIMIT 5",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C068",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q01",
+    "sql": "SELECT COUNT(*) FROM Customer WHERE Country='Brazil'",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C069",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q13",
+    "sql": "SELECT c.FirstName || ' ' || c.LastName AS customer_name, ROUND(SUM(i.Total), 2) AS total_spent FROM Invoice i JOIN Customer c ON c.CustomerId = i.CustomerId WHERE strftime('%Y', i.InvoiceDate) = '2024' GROUP BY c.CustomerId, c.FirstName, c.LastName ORDER BY total_spent DESC LIMIT 5;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C070",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q09",
+    "sql": "SELECT COUNT(*) AS invoice_count FROM Invoice WHERE Total >= 13.86;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2",
+      "G3"
+    ],
+    "id": "C071",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q30",
+    "sql": "SELECT e.FirstName||' '||e.LastName AS employee, m.FirstName||' '||m.LastName AS manager FROM Employee e LEFT JOIN Employee m ON m.EmployeeId=e.ReportsTo",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C072",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q16",
+    "sql": "SELECT strftime('%m', InvoiceDate) AS month, ROUND(SUM(Total), 2) AS revenue FROM Invoice WHERE strftime('%Y', InvoiceDate) = '2025' GROUP BY strftime('%m', InvoiceDate) ORDER BY month;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C073",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q26",
+    "sql": "SELECT m.Name, ROUND(100.0*SUM(il.UnitPrice*il.Quantity)/(SELECT SUM(UnitPrice*Quantity) FROM InvoiceLine),2) AS pct FROM InvoiceLine il JOIN Track t ON t.TrackId=il.TrackId JOIN MediaType m ON m.MediaTypeId=t.MediaTypeId GROUP BY m.MediaTypeId",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C074",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q28",
+    "sql": "SELECT ROUND(100.0 * (SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2025' THEN Total ELSE 0 END) - SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2024' THEN Total ELSE 0 END)) / SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2024' THEN Total ELSE 0 END), 2) AS pct_change FROM Invoice;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C075",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q13",
+    "sql": "SELECT c.FirstName || ' ' || c.LastName AS CustomerName, ROUND(SUM(i.Total), 2) AS TotalSpent FROM Invoice i JOIN Customer c ON c.CustomerId = i.CustomerId WHERE i.InvoiceDate >= '2024-01-01' AND i.InvoiceDate < '2025-01-01' GROUP BY c.CustomerId, c.FirstName, c.LastName ORDER BY TotalSpent DESC LIMIT 5;",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C076",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q29",
+    "sql": "SELECT COUNT(*) AS n_albums\nFROM (\n  SELECT AlbumId\n  FROM Track\n  GROUP BY AlbumId\n  HAVING SUM(Milliseconds) > 3600000\n     AND SUM(CASE WHEN Composer = NULL THEN 1 ELSE 0 END) > 0\n);\n",
+    "source": "M",
+    "op": "null_compare",
+    "sources": [
+      "M"
+    ],
+    "id": "C077",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q04",
+    "sql": "SELECT COUNT(DISTINCT GenreId) FROM Track WHERE GenreId IS NOT NULL",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C078",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q12",
+    "sql": "SELECT e.FirstName, e.LastName, COUNT(*) AS n_customers\nFROM Employee e\nLEFT JOIN Customer c ON c.SupportRepId = e.EmployeeId\nGROUP BY e.EmployeeId;\n",
+    "source": "M",
+    "op": "count_star",
+    "sources": [
+      "M"
+    ],
+    "id": "C079",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q01",
+    "sql": "SELECT COUNT(*) AS customer_count FROM Customer WHERE Country = 'Brazil';",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2",
+      "G3"
+    ],
+    "id": "C080",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q25",
+    "sql": "SELECT ar.Name, ROUND(SUM(il.UnitPrice * il.Quantity), 2) AS revenue\nFROM InvoiceLine il\nJOIN Invoice i ON i.InvoiceId = il.InvoiceId\nJOIN Track t ON t.TrackId = il.TrackId\nJOIN Album al ON al.AlbumId = t.AlbumId\nJOIN Artist ar ON ar.ArtistId = al.ArtistId\nWHERE i.InvoiceDate >= '2024-01-01' AND i.InvoiceDate < '2025-01-01'\nGROUP BY ar.ArtistId\nORDER BY revenue DESC\nLIMIT 3;\n",
+    "source": "M",
+    "op": "drop_filter",
+    "sources": [
+      "M"
+    ],
+    "id": "C081",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q05",
+    "sql": "SELECT Country, COUNT(*) AS n FROM Customer GROUP BY Country HAVING COUNT(*) >= 5 ORDER BY n DESC",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C082",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q08",
+    "sql": "SELECT AVG(t.UnitPrice) FROM Track t JOIN MediaType m ON t.MediaTypeId=m.MediaTypeId WHERE m.Name='Protected AAC audio file'",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C083",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q09",
+    "sql": "SELECT COUNT(*) FROM Invoice WHERE Total >= 13.86",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C084",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q17",
+    "sql": "SELECT BillingCountry AS country, ROUND(AVG(Total), 2) AS avg_invoice_total FROM Invoice WHERE BillingCountry IS NOT NULL GROUP BY BillingCountry HAVING COUNT(*) >= 20 ORDER BY avg_invoice_total DESC;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C085",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q02",
+    "sql": "SELECT Name, Milliseconds FROM Track ORDER BY Milliseconds DESC LIMIT 10",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1",
+      "G2",
+      "G3"
+    ],
+    "id": "C086",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q01",
+    "sql": "SELECT COUNT(*) AS n_customers\nFROM Customer\nWHERE Country = 'Brasil';\n",
+    "source": "M",
+    "op": "wrong_value",
+    "sources": [
+      "M"
+    ],
+    "id": "C087",
+    "level": "easy",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q21",
+    "sql": "SELECT COUNT(*) FROM Artist ar WHERE NOT EXISTS (SELECT 1 FROM Album al JOIN Track t ON t.AlbumId=al.AlbumId JOIN InvoiceLine il ON il.TrackId=t.TrackId WHERE al.ArtistId=ar.ArtistId)",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C088",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q11",
+    "sql": "SELECT g.Name AS genre, ROUND(AVG(il.UnitPrice * il.Quantity), 2) AS revenue\nFROM InvoiceLine il\nJOIN Track t ON t.TrackId = il.TrackId\nJOIN Genre g ON g.GenreId = t.GenreId\nGROUP BY g.GenreId\nORDER BY revenue DESC\nLIMIT 5;\n",
+    "source": "M",
+    "op": "agg_fn",
+    "sources": [
+      "M"
+    ],
+    "id": "C089",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q21",
+    "sql": "SELECT COUNT(*) AS n_artists\nFROM Artist ar\nWHERE EXISTS (SELECT 1 FROM Album a2 WHERE a2.ArtistId = ar.ArtistId) AND NOT EXISTS (\n  SELECT 1\n  FROM Album al\n  JOIN Track t ON t.AlbumId = al.AlbumId\n  JOIN InvoiceLine il ON il.TrackId = t.TrackId\n  WHERE al.ArtistId = ar.ArtistId\n);\n",
+    "source": "M",
+    "op": "extra_filter",
+    "sources": [
+      "M"
+    ],
+    "id": "C090",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q04",
+    "sql": "SELECT COUNT(GenreId) AS n_genres\nFROM Track;\n",
+    "source": "M",
+    "op": "distinct",
+    "sources": [
+      "M"
+    ],
+    "id": "C091",
+    "level": "easy",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q20",
+    "sql": "-- Mỗi dòng InvoiceLine ứng với một bài hát đã bán, nên COUNT(il.TrackId) chính là số bài\n-- đã từng được bán. Không cần DISTINCT vì JOIN theo khoá chính TrackId không tạo dòng trùng.\nSELECT m.Name, COUNT(il.TrackId) AS n_sold_tracks\nFROM InvoiceLine il\nJOIN Track t ON t.TrackId = il.TrackId\nJOIN MediaType m ON m.MediaTypeId = t.MediaTypeId\nGROUP BY m.MediaTypeId;\n",
+    "source": "T",
+    "op": "trap:distinct",
+    "sources": [
+      "T"
+    ],
+    "id": "C092",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q22",
+    "sql": "SELECT COUNT(DISTINCT pt.TrackId) AS distinct_track_count FROM PlaylistTrack pt JOIN Playlist p ON p.PlaylistId = pt.PlaylistId WHERE p.Name = 'Music';",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C093",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q27",
+    "sql": "SELECT COUNT(*) AS customer_count FROM (SELECT i.CustomerId FROM Invoice i JOIN InvoiceLine il ON il.InvoiceId = i.InvoiceId JOIN Track t ON t.TrackId = il.TrackId JOIN Genre g ON g.GenreId = t.GenreId WHERE g.Name IN ('Rock', 'Jazz') GROUP BY i.CustomerId HAVING COUNT(DISTINCT g.Name) = 2);",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C094",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q06",
+    "sql": "SELECT LastName, FirstName, HireDate FROM Employee WHERE Title='Sales Support Agent'",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C095",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q03",
+    "sql": "SELECT ROUND(SUM(Total), 2) AS revenue\nFROM Invoice\nWHERE InvoiceDate >= '2025-01-01' AND InvoiceDate <= '2025-03-31';\n",
+    "source": "M",
+    "op": "boundary",
+    "sources": [
+      "M"
+    ],
+    "id": "C096",
+    "level": "easy",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q09",
+    "sql": "SELECT COUNT(*) AS n_invoices\nFROM Invoice\nWHERE Total > 13.86;\n",
+    "source": "M",
+    "op": "boundary",
+    "sources": [
+      "M"
+    ],
+    "id": "C097",
+    "level": "easy",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q18",
+    "sql": "SELECT t.Name AS track, COUNT(DISTINCT pt.PlaylistId) AS playlist_count FROM PlaylistTrack pt JOIN Track t ON t.TrackId = pt.TrackId GROUP BY t.TrackId, t.Name HAVING COUNT(DISTINCT pt.PlaylistId) > 4 ORDER BY playlist_count DESC;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C098",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q12",
+    "sql": "SELECT e.EmployeeId, e.FirstName, e.LastName, COUNT(c.CustomerId) AS n FROM Employee e LEFT JOIN Customer c ON c.SupportRepId=e.EmployeeId GROUP BY e.EmployeeId",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C099",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q19",
+    "sql": "SELECT g.Name, ROUND(AVG(t.Milliseconds)/60000.0,2) AS avg_min FROM Track t JOIN Genre g ON g.GenreId=t.GenreId GROUP BY g.GenreId ORDER BY AVG(t.Milliseconds) DESC LIMIT 3",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C100",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q10",
+    "sql": "SELECT COUNT(pt.TrackId) AS track_count FROM PlaylistTrack pt JOIN Playlist p ON p.PlaylistId = pt.PlaylistId WHERE p.Name = 'Grunge';",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2"
+    ],
+    "id": "C101",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q28",
+    "sql": "SELECT ROUND(\n  100.0 * (SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2025' THEN Total END)\n         - SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2024' THEN Total END))\n  / SUM(CASE WHEN strftime('%Y', InvoiceDate) = '2025' THEN Total END), 2) AS growth_pct\nFROM Invoice;\n",
+    "source": "M",
+    "op": "wrong_denominator",
+    "sources": [
+      "M"
+    ],
+    "id": "C102",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q13",
+    "sql": "SELECT c.FirstName||' '||c.LastName AS name, SUM(i.Total) AS total FROM Invoice i JOIN Customer c ON c.CustomerId=i.CustomerId WHERE i.InvoiceDate>='2024-01-01' AND i.InvoiceDate<'2025-01-01' GROUP BY c.CustomerId ORDER BY total DESC LIMIT 5",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C103",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q30",
+    "sql": "SELECT e.FirstName, e.LastName, m.FirstName AS manager_first, m.LastName AS manager_last\nFROM Employee e\nLEFT JOIN Employee m ON m.ReportsTo = e.EmployeeId;\n",
+    "source": "M",
+    "op": "wrong_join_key",
+    "sources": [
+      "M"
+    ],
+    "id": "C104",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q18",
+    "sql": "SELECT t.Name, COUNT(DISTINCT pt.PlaylistId) AS n_playlists\nFROM Track t\nJOIN PlaylistTrack pt ON pt.TrackId = t.TrackId\nGROUP BY t.Name\nHAVING COUNT(DISTINCT pt.PlaylistId) > 4;\n",
+    "source": "M",
+    "op": "wrong_group",
+    "sources": [
+      "M"
+    ],
+    "id": "C105",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q30",
+    "sql": "SELECT e.FirstName || ' ' || e.LastName AS employee_name, CASE WHEN m.EmployeeId IS NULL THEN NULL ELSE m.FirstName || ' ' || m.LastName END AS manager_name FROM Employee e LEFT JOIN Employee m ON m.EmployeeId = e.ReportsTo;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C106",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q02",
+    "sql": "SELECT Name, Milliseconds\nFROM Track\nORDER BY Milliseconds ASC\nLIMIT 10;\n",
+    "source": "M",
+    "op": "order_dir",
+    "sources": [
+      "M"
+    ],
+    "id": "C107",
+    "level": "easy",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q05",
+    "sql": "SELECT Country, COUNT(*) AS customer_count FROM Customer WHERE Country IS NOT NULL GROUP BY Country HAVING COUNT(*) >= 5;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C108",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q27",
+    "sql": "-- Lọc g.Name IN ('Rock', 'Jazz') đã bảo đảm khách mua cả hai thể loại;\n-- HAVING chỉ để loại nhóm rỗng. Mỗi khách được đếm một lần nhờ GROUP BY CustomerId.\nSELECT COUNT(*) AS n_customers\nFROM (\n  SELECT i.CustomerId\n  FROM Invoice i\n  JOIN InvoiceLine il ON il.InvoiceId = i.InvoiceId\n  JOIN Track t ON t.TrackId = il.TrackId\n  JOIN Genre g ON g.GenreId = t.GenreId\n  WHERE g.Name IN ('Rock', 'Jazz')\n  GROUP BY i.CustomerId\n  HAVING COUNT(DISTINCT g.Name) >= 1\n);\n",
+    "source": "T",
+    "op": "trap:and_to_or",
+    "sources": [
+      "T"
+    ],
+    "id": "C109",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q19",
+    "sql": "SELECT g.Name, ROUND(AVG(t.Milliseconds) / 1000.0, 2) AS avg_minutes\nFROM Track t\nJOIN Genre g ON g.GenreId = t.GenreId\nGROUP BY g.GenreId\nORDER BY AVG(t.Milliseconds) DESC\nLIMIT 3;\n",
+    "source": "M",
+    "op": "unit",
+    "sources": [
+      "M"
+    ],
+    "id": "C110",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q24",
+    "sql": "WITH s AS (SELECT c.CustomerId, c.Country, c.FirstName||' '||c.LastName AS name, SUM(i.Total) AS total FROM Customer c JOIN Invoice i ON i.CustomerId=c.CustomerId GROUP BY c.CustomerId) SELECT Country, name, total FROM s WHERE total=(SELECT MAX(total) FROM s s2 WHERE s2.Country=s.Country) ORDER BY Country",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C111",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q25",
+    "sql": "SELECT ar.Name, ROUND(SUM(il.UnitPrice*il.Quantity),2) AS revenue FROM InvoiceLine il JOIN Invoice i ON i.InvoiceId=il.InvoiceId JOIN Customer c ON c.CustomerId=i.CustomerId JOIN Track t ON t.TrackId=il.TrackId JOIN Album al ON al.AlbumId=t.AlbumId JOIN Artist ar ON ar.ArtistId=al.ArtistId WHERE c.Country='Germany' AND i.InvoiceDate>='2024-01-01' AND i.InvoiceDate<'2025-01-01' GROUP BY ar.ArtistId ORDER BY revenue DESC LIMIT 3",
+    "source": "G1",
+    "op": null,
+    "sources": [
+      "G1"
+    ],
+    "id": "C112",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q26",
+    "sql": "SELECT mt.Name AS media_type, ROUND(100.0 * SUM(il.UnitPrice * il.Quantity) / (SELECT SUM(UnitPrice * Quantity) FROM InvoiceLine), 2) AS revenue_percent FROM InvoiceLine il JOIN Track t ON t.TrackId = il.TrackId JOIN MediaType mt ON mt.MediaTypeId = t.MediaTypeId GROUP BY mt.MediaTypeId, mt.Name;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C113",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q29",
+    "sql": "-- Lọc trước các bài chưa có Composer bằng WHERE (hiệu quả hơn HAVING), sau đó nhóm theo\n-- album và giữ album có tổng thời lượng trên 1 giờ. Hai điều kiện được thoả cùng lúc.\nSELECT COUNT(*) AS n_albums\nFROM (\n  SELECT AlbumId\n  FROM Track\n  WHERE Composer IS NULL\n  GROUP BY AlbumId\n  HAVING SUM(Milliseconds) > 3600000\n);\n",
+    "source": "T",
+    "op": "trap:filter_before_agg",
+    "sources": [
+      "T"
+    ],
+    "id": "C114",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q15",
+    "sql": "SELECT ar.Name AS artist, COUNT(al.AlbumId) AS album_count FROM Artist ar JOIN Album al ON al.ArtistId = ar.ArtistId GROUP BY ar.ArtistId, ar.Name HAVING COUNT(al.AlbumId) > 10 ORDER BY album_count DESC;",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C115",
+    "level": "medium",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q30",
+    "sql": "-- Self-join: ghép mỗi nhân viên e với quản lý m qua quan hệ ReportsTo. LEFT JOIN giữ\n-- nhân viên cấp cao nhất (không có quản lý) với cột quản lý NULL, đúng yêu cầu.\nSELECT e.FirstName, e.LastName, m.FirstName AS manager_first, m.LastName AS manager_last\nFROM Employee e\nLEFT JOIN Employee m ON m.ReportsTo = e.EmployeeId;\n",
+    "source": "T",
+    "op": "trap:wrong_join_key",
+    "sources": [
+      "T"
+    ],
+    "id": "C116",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q03",
+    "sql": "SELECT SUM(Total) AS total_revenue FROM Invoice WHERE InvoiceDate >= '2025-01-01' AND InvoiceDate < '2025-04-01';",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C117",
+    "level": "easy",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q16",
+    "sql": "-- strftime trả về phần tháng của InvoiceDate dưới dạng '01'..'12', nên GROUP BY month\n-- gom đúng 12 nhóm tháng và ORDER BY month sắp từ tháng 1 đến tháng 12.\n-- Đã đối chiếu: 12 dòng, tổng khớp doanh thu năm 2025.\nSELECT strftime('%d', InvoiceDate) AS month, ROUND(SUM(Total), 2) AS revenue\nFROM Invoice\nWHERE InvoiceDate >= '2025-01-01' AND InvoiceDate < '2026-01-01'\nGROUP BY month\nORDER BY month;\n",
+    "source": "T",
+    "op": "trap:wrong_group",
+    "sources": [
+      "T"
+    ],
+    "id": "C118",
+    "level": "medium",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q23",
+    "sql": "-- JOIN thêm InvoiceLine để chắc chắn chỉ tính những hóa đơn thực sự có dòng hàng\n-- (loại hóa đơn rỗng). SUM(i.Total) vẫn là tổng tiền hóa đơn nên doanh thu không đổi.\n-- Cách viết này phổ biến trong các báo cáo doanh thu theo nhân viên.\nSELECT e.FirstName, e.LastName, ROUND(SUM(i.Total), 2) AS revenue\nFROM Employee e\nJOIN Customer c ON c.SupportRepId = e.EmployeeId\nJOIN Invoice i ON i.CustomerId = c.CustomerId\nJOIN InvoiceLine il ON il.InvoiceId = i.InvoiceId\nWHERE i.InvoiceDate >= '2023-01-01' AND i.InvoiceDate < '2024-01-01'\nGROUP BY e.EmployeeId;\n",
+    "source": "T",
+    "op": "trap:fan_out",
+    "sources": [
+      "T"
+    ],
+    "id": "C119",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q22",
+    "sql": "SELECT COUNT(DISTINCT pt.TrackId) AS distinct_track_count FROM Playlist p JOIN PlaylistTrack pt ON pt.PlaylistId = p.PlaylistId WHERE p.Name = 'Music';",
+    "source": "G3",
+    "op": null,
+    "sources": [
+      "G3"
+    ],
+    "id": "C120",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  },
+  {
+    "qid": "Q24",
+    "sql": "WITH spent AS (\n  SELECT c.Country, c.CustomerId, c.FirstName, c.LastName, SUM(i.Total) AS total\n  FROM Customer c\n  JOIN Invoice i ON i.CustomerId = c.CustomerId\n  GROUP BY c.CustomerId\n)\nSELECT Country, FirstName, LastName, ROUND(total, 2) AS total\nFROM spent s\nWHERE total = (SELECT MAX(total) FROM spent s2 );\n",
+    "source": "M",
+    "op": "wrong_scope",
+    "sources": [
+      "M"
+    ],
+    "id": "C121",
+    "level": "hard",
+    "gold_correct": false,
+    "exec_error": null
+  },
+  {
+    "qid": "Q29",
+    "sql": "SELECT COUNT(*) AS album_count FROM Album al WHERE (SELECT SUM(t.Milliseconds) FROM Track t WHERE t.AlbumId = al.AlbumId) > 3600000 AND EXISTS (SELECT 1 FROM Track t WHERE t.AlbumId = al.AlbumId AND (t.Composer IS NULL OR TRIM(t.Composer) = ''));",
+    "source": "G2",
+    "op": null,
+    "sources": [
+      "G2",
+      "G3"
+    ],
+    "id": "C122",
+    "level": "hard",
+    "gold_correct": true,
+    "exec_error": null
+  }
+]
