@@ -1,0 +1,12 @@
+[
+  {"item": "item-01", "reason": "Chỉ nêu được 1/4 ý (gói Business 20 người); thiếu hóa đơn tháng 9 sai 25 người, nhu cầu hóa đơn điều chỉnh và hạn ngày 30. Bịa yêu cầu nâng cấp lên Enterprise 50 người.", "score": 1},
+  {"item": "item-02", "reason": "Nêu đủ yêu cầu kiểm tra lại và cộng bù, nhưng thiếu việc hết dung lượng tốc độ cao từ ngày 15 và số liệu 3GB/10GB (thiếu một nửa số ý). Không bịa, độ dài hợp lý.", "score": 5},
+  {"item": "item-03", "reason": "Đủ cả 4 ý: đặt bàn 19h thứ Bảy tại Quận 3, đổi từ 6 lên 8 người, có người dị ứng đậu phộng, nhờ nhà hàng lưu ý món. Không bịa, khoảng 32 từ.", "score": 10},
+  {"item": "item-04", "reason": "Đủ các ý bắt buộc (đơn #48213, tai nghe nứt vỏ, đổi mới không hoàn tiền, hạn thứ Sáu) nhưng có một chi tiết bịa trái ticket: khách yêu cầu hoàn 100% tiền qua ví điện tử.", "score": 5},
+  {"item": "item-05", "reason": "Đủ 4 ý bắt buộc nhưng dài khoảng 105 từ (quá gấp rưỡi giới hạn) với phần câu xã giao lặp ý. Có ít nhất hai chi tiết bịa: bộ phận đã tiếp nhận và đang xem xét, và nhân viên sẽ cập nhật cho khách.", "score": 0},
+  {"item": "item-06", "reason": "Đủ 4 ý bắt buộc nhưng dài khoảng 78 từ và có hai chi tiết bịa: nhân viên sẽ cập nhật tình hình cho khách, và bộ phận đã tiếp nhận đang xem xét cẩn thận.", "score": 0},
+  {"item": "item-07", "reason": "Đủ cả 4 ý bắt buộc, gọn. Nhưng có một chi tiết bịa: khách muốn hủy hợp đồng và chuyển nhà mạng khác, không có trong ticket.", "score": 5},
+  {"item": "item-08", "reason": "Chỉ nêu được 1/4 ý (chi nhánh Quận 3, 19h thứ Bảy); thiếu đổi 6 lên 8 người, dị ứng đậu phộng và yêu cầu lưu ý món. Bịa khách muốn đổi sang chi nhánh Quận 7.", "score": 1},
+  {"item": "item-09", "reason": "Thiếu ý số đơn #48213; các ý còn lại đủ. Có hai chi tiết bịa: yêu cầu hoàn 100% tiền qua ví điện tử, và đây là lần thứ ba khách gặp lỗi.", "score": 0},
+  {"item": "item-10", "reason": "Nêu được ý hết dung lượng từ ngày 15, 3GB/10GB và cộng bù, nhưng thiếu rõ yêu cầu kiểm tra lại. Có ít nhất hai chi tiết bịa: khách muốn hủy hợp đồng và khách bị trừ 500.000 đồng.", "score": 0}
+]

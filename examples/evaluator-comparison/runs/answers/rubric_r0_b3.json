@@ -1,0 +1,12 @@
+[
+  {"item": "item-01", "reason": "Đủ cả 4 ý chính, nhưng bịa thêm yêu cầu nâng cấp lên gói Enterprise 50 người mà ticket không có; một chi tiết bịa kéo điểm xuống còn khoảng một nửa. Độ dài khoảng 45 từ, trong giới hạn.", "score": 5},
+  {"item": "item-02", "reason": "Thiếu hai trong bốn ý: việc đổi số người từ 6 lên 8 và yêu cầu nhà hàng lưu ý món ăn. Không có chi tiết bịa.", "score": 4},
+  {"item": "item-03", "reason": "Nêu đủ 4 ý chính nhưng bịa cam kết 'nhân viên sẽ cập nhật tình hình cho khách' mà ticket không có, và dài khoảng 76 từ với nhiều câu xã giao, lặp ý.", "score": 3},
+  {"item": "item-04", "reason": "Nêu đủ 4 ý chính, nhưng có ít nhất hai chi tiết bịa: cam kết 'nhân viên phụ trách sẽ cập nhật' và khẳng định 'bộ phận hỗ trợ đang xem xét cẩn thận'. Theo rubric, từ hai chi tiết bịa trở lên thì điểm 0.", "score": 0},
+  {"item": "item-05", "reason": "Đủ 4 ý chính nhưng có nhiều chi tiết bịa (cam kết cập nhật, ghi nhận hệ thống, đang xem xét) và dài khoảng 100 từ, vượt xa mức 90 từ. Theo rubric điểm 0.", "score": 0},
+  {"item": "item-06", "reason": "Nêu đủ 4 ý chính và gọn, nhưng ghi khách dùng điện thoại Android đời cũ trong khi ticket nói iPhone; đây là chi tiết trái với ticket nên điểm bị kéo xuống khoảng một nửa.", "score": 4},
+  {"item": "item-07", "reason": "Nêu đủ cả 4 ý chính, không bịa thêm chi tiết nào và gọn khoảng 35 từ.", "score": 10},
+  {"item": "item-08", "reason": "Chỉ nêu được 2 trong 4 ý (mã đơn và hạn thứ Sáu); thiếu việc tai nghe bị nứt vỏ và yêu cầu đổi chiếc mới. Không có chi tiết bịa.", "score": 4},
+  {"item": "item-09", "reason": "Nêu được 3 trong 4 ý (cài lại hai lần, web bình thường, không đăng nhập được app từ sáng nay), thiếu lỗi báo OTP hết hạn dù vừa nhận mã. Không bịa và gọn khoảng 25 từ.", "score": 7},
+  {"item": "item-10", "reason": "Nêu được 3 trong 4 ý (đặt bàn 19h thứ Bảy Quận 3, đổi từ 6 lên 8, có người dị ứng đậu phộng), thiếu yêu cầu nhà hàng lưu ý món ăn. Không có chi tiết bịa.", "score": 7}
+]

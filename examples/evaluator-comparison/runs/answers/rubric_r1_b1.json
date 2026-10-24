@@ -1,0 +1,12 @@
+[
+  {"item": "item-01", "reason": "Thiếu ý yêu cầu nhà hàng lưu ý món ăn cho khách dị ứng đậu phộng (1/4 ý). Không bịa, và độ dài ngắn gọn trong giới hạn.", "score": 7},
+  {"item": "item-02", "reason": "Đủ bốn ý và không sai dữ kiện, nhưng có câu bịa cam kết 'nhân viên phụ trách sẽ cập nhật tình hình qua kênh liên lạc' và nhiều câu xã giao lặp ý, tổng khoảng 105 từ (vượt quá 90).", "score": 2},
+  {"item": "item-03", "reason": "Đủ bốn ý nhưng có hai chi tiết bịa: 'nhân viên phụ trách sẽ cập nhật' và 'bộ phận hỗ trợ đang xem xét yêu cầu', cộng với phần đệm dài khoảng 100 từ.", "score": 1},
+  {"item": "item-04", "reason": "Thiếu một nửa ý chính: không nêu việc không đăng nhập được app iPhone từ sáng nay và việc web vẫn đăng nhập bình thường (2/4 ý). Không bịa và rất ngắn.", "score": 4},
+  {"item": "item-05", "reason": "Thiếu mã đơn #48213 và chưa nêu rõ khách muốn đổi sản phẩm mới. Có hai chi tiết bịa: khách yêu cầu hoàn 100% tiền qua ví điện tử (trái với ticket) và 'lần thứ ba gặp lỗi' (không có trong ticket).", "score": 0},
+  {"item": "item-06", "reason": "Chỉ nêu được đúng một phần ý đặt bàn 19h thứ Bảy chi nhánh Quận 3; thiếu việc đổi từ 6 lên 8 người, khách dị ứng đậu phộng và yêu cầu lưu ý món. Có bịa 'khách muốn đổi sang chi nhánh Quận 7', trái với ticket.", "score": 1},
+  {"item": "item-07", "reason": "Đủ bốn ý chính nhưng có một chi tiết bịa: 'bộ phận hỗ trợ đang xem xét yêu cầu một cách cẩn thận'. Thêm nhiều câu đệm, tổng khoảng 77 từ.", "score": 4},
+  {"item": "item-08", "reason": "Thiếu yêu cầu cộng bù dung lượng nếu tính sai (3/4 ý). Không bịa và ngắn gọn.", "score": 7},
+  {"item": "item-09", "reason": "Thiếu hai ý chính: tai nghe bị nứt vỏ bên trái khi nhận và khách muốn đổi sản phẩm mới không cần hoàn tiền (chỉ đủ 2/4 ý). Không bịa, nhưng nội dung quá sơ sài.", "score": 4},
+  {"item": "item-10", "reason": "Đủ bốn ý chính và không sai dữ kiện, nhưng có một câu bịa cam kết 'nhân viên phụ trách sẽ cập nhật tình hình' và phần câu đệm đẩy độ dài lên khoảng 80 từ.", "score": 3}
+]

@@ -1,0 +1,12 @@
+[
+  {"item": "item-01", "reason": "Đủ cả 4 ý chính, không bịa. Tuy nhiên khoảng 107 từ, vượt xa mức 90 từ nên bị trừ nặng vì nhiều câu xã giao, lặp ý.", "score": 6},
+  {"item": "item-02", "reason": "Chỉ nêu được ý về số liệu 3GB/10GB; thiếu hết dung lượng từ ngày 15, yêu cầu kiểm tra lại và cộng bù. Còn bịa yêu cầu hủy hợp đồng và chuyển nhà mạng, không có trong ticket.", "score": 1},
+  {"item": "item-03", "reason": "Nêu được gói Business 20 người và hạn trước ngày 30, nhưng thiếu việc hóa đơn tháng 9 tính sai 25 người và yêu cầu hóa đơn điều chỉnh. Không bịa.", "score": 4},
+  {"item": "item-04", "reason": "Đủ cả 4 ý chính, không bịa. Khoảng 78 từ, hơi dài và có nhiều câu xã giao (\"Chúng tôi luôn trân trọng...\") nên bị trừ nhẹ.", "score": 7},
+  {"item": "item-05", "reason": "Đủ cả 4 ý chính, không bịa. Khoảng 107 từ, vượt xa mức 90 từ với nhiều câu lặp ý, xã giao nên bị trừ nặng.", "score": 6},
+  {"item": "item-06", "reason": "Chỉ nêu được ý đăng nhập web bình thường; thiếu phần lớn ý chính. Bịa chi tiết khách dùng Android đời cũ, trái với ticket là iPhone.", "score": 2},
+  {"item": "item-07", "reason": "Đủ cả 4 ý chính, không bịa. Khoảng 76 từ, hơi dài do có câu cảm ơn và câu xã giao không cần thiết.", "score": 7},
+  {"item": "item-08", "reason": "Chỉ nêu được hạn xử lý trước thứ Sáu; thiếu mã đơn, tai nghe nứt vỏ và yêu cầu đổi mới. Bịa yêu cầu hoàn 100% tiền qua ví điện tử, trái với yêu cầu đổi sản phẩm không hoàn tiền.", "score": 0},
+  {"item": "item-09", "reason": "Có hai chi tiết bịa: khách bị trừ tiền hai lần và khách muốn nâng cấp lên gói Enterprise 50 người. Theo rubric, từ hai chi tiết bịa trở lên bản tóm tắt không dùng được.", "score": 0},
+  {"item": "item-10", "reason": "Nêu được 3/4 ý chính (hạn trước ngày 30, cần hóa đơn điều chỉnh, hóa đơn tính 25 người), thiếu gói Business 20 người. Không bịa, ngắn gọn.", "score": 7}
+]

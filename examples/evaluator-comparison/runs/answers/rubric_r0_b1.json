@@ -1,0 +1,12 @@
+[
+  {"item": "item-01", "reason": "Nêu đủ bốn ý chính (hết tốc độ từ ngày 15, 3GB/10GB, yêu cầu kiểm tra, yêu cầu cộng bù), không bịa. Tuy nhiên bản tóm tắt dài khoảng 115 từ, gần gấp đôi giới hạn 60 từ, với nhiều câu xã giao và lặp ý.", "score": 3},
+  {"item": "item-02", "reason": "Nêu đủ bốn ý chính (đơn #48213, tai nghe nứt vỏ bên trái, muốn đổi mới không hoàn tiền, cần xử lý trước thứ Sáu), không bịa và gọn khoảng 35 từ.", "score": 10},
+  {"item": "item-03", "reason": "Thiếu ý tai nghe bị nứt vỏ bên trái khi nhận hàng, tức là thiếu một trong bốn ý chính và là lỗi cốt lõi của ticket. Không có chi tiết bịa và độ dài đạt yêu cầu.", "score": 6},
+  {"item": "item-04", "reason": "Nêu đủ bốn ý chính nhưng có một chi tiết bịa: khách muốn đổi sang chi nhánh Quận 7, trong khi ticket không yêu cầu đổi chi nhánh. Chi tiết bịa này kéo điểm xuống khoảng một nửa.", "score": 5},
+  {"item": "item-05", "reason": "Thiếu ý đặt bàn 19h thứ Bảy tại chi nhánh Quận 3, và có hai chi tiết bịa (đổi sang Quận 7, yêu cầu phòng riêng có karaoke). Hai chi tiết bịa trở lên khiến bản tóm tắt không dùng được.", "score": 0},
+  {"item": "item-06", "reason": "Chỉ nêu được hai ý (đã cài lại app hai lần, app báo OTP hết hạn dù vừa nhận mã). Thiếu ý không đăng nhập được app iPhone từ sáng nay và ý web vẫn đăng nhập bình thường, tức khoảng một nửa số ý bị thiếu. Không có chi tiết bịa.", "score": 4},
+  {"item": "item-07", "reason": "Có hai chi tiết bịa: tài khoản bị khóa do nghi ngờ gian lận, và khách dùng Android đời cũ (ticket ghi iPhone). Ngoài ra còn thiếu ý không đăng nhập được app iPhone từ sáng nay. Từ hai chi tiết bịa trở lên thì điểm là 0.", "score": 0},
+  {"item": "item-08", "reason": "Nêu đủ bốn ý chính (hết tốc độ từ ngày 15, 3GB/10GB, yêu cầu kiểm tra lại, yêu cầu cộng bù), không bịa và gọn khoảng 40 từ.", "score": 10},
+  {"item": "item-09", "reason": "Nêu đủ bốn ý chính (không đăng nhập được app iPhone từ sáng nay, lỗi OTP hết hạn, web vẫn bình thường, đã cài lại hai lần), không bịa và gọn khoảng 34 từ.", "score": 10},
+  {"item": "item-10", "reason": "Thiếu ý yêu cầu cộng bù dung lượng nếu tính sai, tức thiếu một trong bốn ý chính. Không có chi tiết bịa và bản tóm tắt ngắn gọn.", "score": 6}
+]

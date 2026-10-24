@@ -1,0 +1,12 @@
+[
+  {"item": "item-01", "reason": "Bản tóm tắt chỉ nêu được ý web vẫn đăng nhập bình thường; thiếu ba ý còn lại (không vào được app từ sáng nay, lỗi OTP hết hạn dù vừa nhận mã, đã cài lại app hai lần). Còn bịa chi tiết 'điện thoại Android', trái với ticket ghi iPhone.", "score": 2},
+  {"item": "item-02", "reason": "Nêu đủ bốn ý chính (gói Business 20 người, hóa đơn tháng 9 tính 25 người, cần hóa đơn điều chỉnh, hạn trước ngày 30). Có một chi tiết bịa là khách muốn nâng cấp lên gói Enterprise 50 người, không có trong ticket.", "score": 5},
+  {"item": "item-03", "reason": "Đủ bốn ý chính, gọn trong giới hạn. Nhưng có một chi tiết bịa trái với ticket: khách yêu cầu hoàn lại 100% tiền qua ví điện tử, trong khi khách chỉ muốn đổi sản phẩm mới, không cần hoàn tiền.", "score": 5},
+  {"item": "item-04", "reason": "Nêu được ý đặt bàn 19h thứ Bảy tại Quận 3 và có khách dị ứng đậu phộng; thiếu ý đổi từ 6 lên 8 người và yêu cầu nhà hàng lưu ý món ăn (khoảng một nửa số ý). Không có chi tiết bịa.", "score": 4},
+  {"item": "item-05", "reason": "Nêu đủ bốn ý chính (Business 20 người, tháng 9 tính thành 25 người, cần hóa đơn điều chỉnh, hạn trước ngày 30) và không thêm thông tin sai. Chỉ trừ nhẹ vì câu 'Khách cần gửi lại hóa đơn' diễn đạt chưa rõ chiều gửi.", "score": 9},
+  {"item": "item-06", "reason": "Có hai chi tiết bịa: đổi sang chi nhánh Quận 7 (ticket ghi Quận 3, không đổi chi nhánh) và yêu cầu phòng riêng có karaoke. Thiếu ý đặt 19h thứ Bảy tại Quận 3, nên bản tóm tắt không dùng được.", "score": 0},
+  {"item": "item-07", "reason": "Nêu đủ bốn ý chính và không có chi tiết hoàn tiền sai. Tuy nhiên có ít nhất hai câu bịa về cam kết và trạng thái xử lý (nhân viên sẽ cập nhật qua kênh liên lạc; bộ phận đã tiếp nhận và đang xem xét), và phần lời xã giao làm bản tóm tắt dài khoảng 70 từ.", "score": 0},
+  {"item": "item-08", "reason": "Đủ cả bốn ý chính (lưu ý món ăn, đặt bàn 19h thứ Bảy Quận 3, đổi từ 6 lên 8 người, có người dị ứng đậu phộng), không bịa và gọn trong khoảng 40 từ.", "score": 10},
+  {"item": "item-09", "reason": "Nêu đủ bốn ý chính (không vào được app iPhone từ sáng nay, OTP hết hạn dù vừa nhận mã, web vẫn bình thường, đã cài lại hai lần). Có một chi tiết bịa là khách dùng điện thoại Android đời cũ, trái với ticket ghi iPhone.", "score": 5},
+  {"item": "item-10", "reason": "Có hai chi tiết bịa: khách bị trừ tiền hai lần trong tháng 9 và khách muốn nâng cấp lên gói Enterprise 50 người, đều không có trong ticket. Thiếu ý cần hóa đơn điều chỉnh.", "score": 0}
+]

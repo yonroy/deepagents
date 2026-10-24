@@ -1,0 +1,12 @@
+[
+  {"item": "item-01", "reason": "Nêu đủ cả 4 ý chính, không bịa chi tiết nào. Tuy nhiên bản tóm tắt dài khoảng 90 từ với nhiều câu xã giao (trân trọng sự kiên nhẫn, ghi nhận vào hệ thống) không làm tăng giá trị, nên bị trừ nặng vì độ dài.", "score": 5},
+  {"item": "item-02", "reason": "Nêu đủ 4 ý chính (đơn #48213, tai nghe nứt vỏ bên trái khi nhận, muốn đổi mới không hoàn tiền, hạn trước thứ Sáu), không bịa và gọn trong khoảng 35 từ.", "score": 10},
+  {"item": "item-03", "reason": "Thiếu ý chính 'gói Business 20 người' (1/4 ý). Các ý còn lại đúng, không bịa, độ dài ngắn.", "score": 7},
+  {"item": "item-04", "reason": "Nêu đủ 4 ý chính và không bịa, nhưng khoảng 86 từ với nhiều câu xã giao ('đang xem xét yêu cầu một cách cẩn thận', 'ghi nhận vào hệ thống') nên bị trừ nặng vì độ dài.", "score": 5},
+  {"item": "item-05", "reason": "Nêu đủ 4 ý chính nhưng có một chi tiết bịa: khách muốn hủy hợp đồng và chuyển sang nhà mạng khác, không có trong ticket. Một chi tiết bịa kéo điểm xuống khoảng một nửa.", "score": 5},
+  {"item": "item-06", "reason": "Nêu đủ 4 ý chính, không bịa thông tin cụ thể, nhưng dài khoảng 112 từ với nhiều câu đệm xã giao, gần gấp đôi giới hạn 60 từ nên bị trừ nặng.", "score": 4},
+  {"item": "item-07", "reason": "Thiếu ý chính 'tai nghe nứt vỏ bên trái khi nhận' (1/4 ý). Các ý còn lại đúng, không bịa, gọn.", "score": 7},
+  {"item": "item-08", "reason": "Có hai chi tiết bịa: khách muốn hủy hợp đồng chuyển nhà mạng và khách bị trừ 500.000 đồng, cả hai không có trong ticket. Với từ hai chi tiết bịa trở lên, bản tóm tắt không dùng được.", "score": 0},
+  {"item": "item-09", "reason": "Nêu đủ 4 ý chính nhưng có một chi tiết bịa và mâu thuẫn với ticket: khách muốn đổi sang chi nhánh Quận 7, trong khi ticket không đề cập việc đổi chi nhánh. Một chi tiết bịa kéo điểm xuống khoảng một nửa.", "score": 5},
+  {"item": "item-10", "reason": "Có hai chi tiết bịa hoặc sai: tài khoản bị khóa do nghi ngờ gian lận và khách dùng Android đời cũ (ticket nói iPhone). Thiếu nhiều ý chính như không đăng nhập được app từ sáng nay. Từ hai chi tiết bịa trở lên nên điểm 0.", "score": 0}
+]

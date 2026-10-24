@@ -1,0 +1,12 @@
+[
+  {"item": "item-01", "reason": "Nêu đủ cả bốn ý (hết dung lượng từ ngày 15, dùng khoảng 3GB/10GB, yêu cầu kiểm tra lại, yêu cầu cộng bù) và không bịa thông tin, độ dài gọn.", "score": 10},
+  {"item": "item-02", "reason": "Nêu đủ bốn ý (không đăng nhập được app iPhone từ sáng nay, lỗi OTP hết hạn, web bình thường, đã cài lại hai lần) và không có chi tiết bịa, độ dài gọn.", "score": 10},
+  {"item": "item-03", "reason": "Chỉ nêu được ý gói Business 20 người; bỏ sót việc hóa đơn tính sai 25 người, yêu cầu hóa đơn điều chỉnh và hạn trước ngày 30, đồng thời bịa yêu cầu nâng cấp lên Enterprise 50 người.", "score": 2},
+  {"item": "item-04", "reason": "Chỉ nêu được ý 3GB/10GB; bỏ sót việc hết dung lượng từ ngày 15, yêu cầu kiểm tra lại và yêu cầu cộng bù, đồng thời bịa việc khách muốn hủy hợp đồng và chuyển nhà mạng.", "score": 2},
+  {"item": "item-05", "reason": "Thiếu ý lỗi báo 'OTP hết hạn dù vừa nhận mã' là chi tiết cốt lõi của sự cố; ba ý còn lại được nêu đủ, không bịa, độ dài gọn.", "score": 7},
+  {"item": "item-06", "reason": "Nêu đủ bốn ý và không bịa, nhưng khoảng 110 từ, phần lớn là câu xã giao và lặp ý (ví dụ 'trân trọng sự kiên nhẫn', 'được ghi nhận vào hệ thống') nên quá dài.", "score": 5},
+  {"item": "item-07", "reason": "Chỉ nêu được hai ý (gói Business 20 người và hạn trước ngày 30); bỏ sót việc hóa đơn tính sai 25 người và yêu cầu hóa đơn điều chỉnh, không có chi tiết bịa.", "score": 5},
+  {"item": "item-08", "reason": "Chỉ nêu được hai ý yêu cầu kiểm tra lại và cộng bù; bỏ sót việc hết dung lượng từ ngày 15 và số liệu 3GB/10GB, không có chi tiết bịa.", "score": 5},
+  {"item": "item-09", "reason": "Nêu đủ bốn ý và không bịa, nhưng khoảng 110 từ với nhiều câu xã giao và lặp ý ('được ghi nhận vào hệ thống', 'trân trọng sự kiên nhẫn'), nên quá dài.", "score": 5},
+  {"item": "item-10", "reason": "Chỉ nêu được ý hạn xử lý trước thứ Sáu; bỏ sót mã đơn, tai nghe nứt vỏ và yêu cầu đổi mới, đồng thời bịa yêu cầu hoàn lại 100% tiền qua ví điện tử (trái với yêu cầu đổi sản phẩm).", "score": 0}
+]
