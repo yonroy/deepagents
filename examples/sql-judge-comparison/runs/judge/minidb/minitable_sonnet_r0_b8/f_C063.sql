@@ -1,0 +1,4 @@
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingCountry, Total) WITH RECURSIVE n(x) AS (SELECT 1 UNION ALL SELECT x+1 FROM n WHERE x<10) SELECT x, 1, '2024-01-01 00:00:00', 'A', 1.00 FROM n;
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingCountry, Total) WITH RECURSIVE n(x) AS (SELECT 11 UNION ALL SELECT x+1 FROM n WHERE x<20) SELECT x, 1, '2024-01-01 00:00:00', 'A', 3.00 FROM n;
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingCountry, Total) WITH RECURSIVE n(x) AS (SELECT 101 UNION ALL SELECT x+1 FROM n WHERE x<119) SELECT x, 1, '2024-01-01 00:00:00', 'B', 100 FROM n;
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingCountry, Total) WITH RECURSIVE n(x) AS (SELECT 201 UNION ALL SELECT x+1 FROM n WHERE x<225) SELECT x, 1, '2024-01-01 00:00:00', 'C', 5.00 FROM n;
