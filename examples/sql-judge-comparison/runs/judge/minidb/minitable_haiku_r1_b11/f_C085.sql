@@ -1,0 +1,4 @@
+WITH RECURSIVE s(n) AS (SELECT 1 UNION ALL SELECT n+1 FROM s WHERE n<20) INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingCountry, Total) SELECT n, 1, '2025-03-01 10:00:00', 'Brazil', n FROM s;
+WITH RECURSIVE s(n) AS (SELECT 1 UNION ALL SELECT n+1 FROM s WHERE n<19) INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingCountry, Total) SELECT n+100, 2, '2025-03-01 10:00:00', 'Germany', 100 FROM s;
+WITH RECURSIVE s(n) AS (SELECT 1 UNION ALL SELECT n+1 FROM s WHERE n<21) INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingCountry, Total) SELECT n+200, 3, '2025-03-01 10:00:00', 'Chile', 3.33 FROM s;
+WITH RECURSIVE s(n) AS (SELECT 1 UNION ALL SELECT n+1 FROM s WHERE n<25) INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingCountry, Total) SELECT n+300, 4, '2025-03-01 10:00:00', NULL, 500 FROM s;

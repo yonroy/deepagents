@@ -1,0 +1,4 @@
+INSERT INTO Genre (GenreId, Name) VALUES (1,'Rock'),(2,'Jazz'),(3,'Metal'),(4,'Empty');
+INSERT INTO MediaType (MediaTypeId, Name) VALUES (1,'M');
+INSERT INTO Track (TrackId, Name, MediaTypeId, GenreId, Milliseconds, UnitPrice) VALUES
+(1,'a',1,1,100,0.99),(2,'b',1,1,100,0.99),(3,'c',1,2,100,0.99),(4,'d',1,NULL,100,0.99),(5,'e',1,3,100,0.99);

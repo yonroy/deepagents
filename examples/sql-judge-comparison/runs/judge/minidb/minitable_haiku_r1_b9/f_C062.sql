@@ -1,0 +1,3 @@
+WITH RECURSIVE seq(x) AS (SELECT 1 UNION ALL SELECT x+1 FROM seq WHERE x<20) INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingCountry, Total) SELECT x, 1, '2024-03-01 00:00:00', 'Brazil', CASE WHEN x%2=0 THEN 2.00 ELSE 1.00 END FROM seq;
+WITH RECURSIVE seq(x) AS (SELECT 101 UNION ALL SELECT x+1 FROM seq WHERE x<119) INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingCountry, Total) SELECT x, 2, '2024-05-01 00:00:00', 'Canada', 5.00 FROM seq;
+INSERT INTO Invoice (InvoiceId, CustomerId, InvoiceDate, BillingCountry, Total) VALUES (201, 3, '2024-06-01 00:00:00', 'Norway', 10.00), (202, 3, '2024-06-02 00:00:00', 'Norway', 10.00), (203, 3, '2024-06-03 00:00:00', 'Norway', 10.00);

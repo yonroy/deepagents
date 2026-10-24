@@ -1,0 +1,1 @@
+SELECT g.Name AS genre, ROUND(AVG(il.UnitPrice * il.Quantity), 2) AS revenue FROM InvoiceLine il JOIN Track t ON t.TrackId = il.TrackId JOIN Genre g ON g.GenreId = t.GenreId GROUP BY g.GenreId ORDER BY revenue DESC LIMIT 5;

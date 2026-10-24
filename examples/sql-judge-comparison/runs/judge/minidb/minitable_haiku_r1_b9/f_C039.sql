@@ -1,0 +1,14 @@
+INSERT INTO Genre (GenreId, Name) VALUES (1,'Rock'),(2,'Jazz'),(3,'Metal'),(4,'Blues'),(5,'Latin'),(6,'Pop');
+INSERT INTO MediaType (MediaTypeId, Name) VALUES (1,'MPEG audio file');
+INSERT INTO Track (TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice) VALUES
+(1,'R1',NULL,1,1,NULL,200000,NULL,0.99),
+(2,'R2',NULL,1,1,NULL,400000,NULL,0.99),
+(3,'M1',NULL,1,3,NULL,300000,NULL,0.99),
+(4,'M2',NULL,1,3,NULL,480000,NULL,0.99),
+(5,'M3',NULL,1,3,NULL,360000,NULL,0.99),
+(6,'J1',NULL,1,2,NULL,1000000,NULL,0.99),
+(7,'B1',NULL,1,4,NULL,120000,NULL,0.99),
+(8,'L1',NULL,1,5,NULL,500000,NULL,0.99),
+(9,'L2',NULL,1,5,NULL,600000,NULL,0.99),
+(10,'P1',NULL,1,6,NULL,1800000,NULL,0.99),
+(11,'N1',NULL,1,NULL,NULL,99999999,NULL,0.99);

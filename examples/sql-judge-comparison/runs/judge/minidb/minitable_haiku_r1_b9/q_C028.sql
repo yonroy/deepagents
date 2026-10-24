@@ -1,0 +1,1 @@
+SELECT m.Name, ROUND(100 * CAST(SUM(il.UnitPrice * il.Quantity) AS INTEGER) / CAST((SELECT SUM(UnitPrice * Quantity) FROM InvoiceLine) AS INTEGER), 2) AS pct FROM InvoiceLine il JOIN Track t ON t.TrackId = il.TrackId JOIN MediaType m ON m.MediaTypeId = t.MediaTypeId GROUP BY m.MediaTypeId;

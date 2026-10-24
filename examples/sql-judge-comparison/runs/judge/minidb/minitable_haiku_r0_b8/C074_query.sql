@@ -1,0 +1,1 @@
+SELECT m.Name, ROUND(100.0*SUM(il.UnitPrice*il.Quantity)/(SELECT SUM(UnitPrice*Quantity) FROM InvoiceLine),2) AS pct FROM InvoiceLine il JOIN Track t ON t.TrackId=il.TrackId JOIN MediaType m ON m.MediaTypeId=t.MediaTypeId GROUP BY m.MediaTypeId;
