@@ -1,0 +1,12 @@
+[
+  {"item": "C067", "verdict": "correct", "score": 9, "reason": "LEFT JOIN Employee theo ReportsTo giữ mọi nhân viên; người không có quản lý cho cột quản lý NULL (trống), đúng yêu cầu."},
+  {"item": "C032", "verdict": "incorrect", "score": 2, "reason": "COUNT(*) sau LEFT JOIN đếm cả dòng NULL nên nhân viên không phụ trách khách nào vẫn ra 1 thay vì 0; cần COUNT(c.CustomerId)."},
+  {"item": "C024", "verdict": "incorrect", "score": 5, "reason": "Điều kiện InvoiceDate <= '2025-03-31' so sánh chuỗi nên hóa đơn ngày 31/3 có giờ sau 00:00:00 bị loại; chỉ đúng nếu mọi thời điểm là nửa đêm."},
+  {"item": "C021", "verdict": "correct", "score": 9, "reason": "HAVING SUM(Milliseconds)>3600000 đúng ngưỡng 1 giờ, kiểm tra Composer NULL hoặc rỗng, và đếm số album qua subquery là đúng."},
+  {"item": "C023", "verdict": "correct", "score": 9, "reason": "Join Employee-Customer-Invoice không nhân dòng, lọc đúng năm 2023 với biên đầu mở, nhóm theo nhân viên và SUM(Total)."},
+  {"item": "C037", "verdict": "correct", "score": 9, "reason": "Hai EXISTS tương quan theo CustomerId đúng cho điều kiện 'cả Rock và Jazz', và mỗi khách được đếm một lần."},
+  {"item": "C022", "verdict": "correct", "score": 9, "reason": "INNER JOIN tới InvoiceLine chỉ giữ bài đã từng bán, COUNT(DISTINCT TrackId) theo loại media là đúng."},
+  {"item": "C018", "verdict": "correct", "score": 7, "reason": "Lọc đúng năm 2025, nhóm và sắp xếp theo tháng là đúng; tháng không có hóa đơn sẽ không hiện ra, nên phụ thuộc vào dữ liệu có đủ 12 tháng."},
+  {"item": "C016", "verdict": "correct", "score": 9, "reason": "LEFT JOIN Track và COUNT(t.TrackId) nhóm theo album cho đúng số bài của từng album của Iron Maiden."},
+  {"item": "C098", "verdict": "correct", "score": 9, "reason": "COUNT(DISTINCT PlaylistId) theo bài kết hợp HAVING > 4 đúng với 'nhiều hơn 4 playlist'."}
+]

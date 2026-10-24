@@ -1,0 +1,12 @@
+[
+  {"item": "C079", "verdict": "incorrect", "score": 2, "reason": "LEFT JOIN đúng hướng nhưng COUNT(*) đếm cả dòng NULL, nên nhân viên không phụ trách khách nào sẽ ra 1 thay vì 0. Phải dùng COUNT(c.CustomerId)."},
+  {"item": "C002", "verdict": "incorrect", "score": 2, "reason": "Dùng JOIN thường thay vì LEFT JOIN nên các nhân viên không có quản lý (ReportsTo NULL) bị loại khỏi kết quả, trong khi câu hỏi yêu cầu liệt kê mọi nhân viên."},
+  {"item": "C037", "verdict": "correct", "score": 9, "reason": "Hai EXISTS tương quan theo CustomerId kiểm tra riêng có mua Rock và có mua Jazz, đúng ý 'cả A và B', và COUNT(*) trên Customer không bị nhân dòng."},
+  {"item": "C122", "verdict": "correct", "score": 9, "reason": "Tổng thời lượng album được tính bằng subquery nên không bị nhân dòng, ngưỡng 3600000 ms đúng với 1 giờ, và điều kiện Composer NULL hoặc rỗng được xử lý đúng."},
+  {"item": "C023", "verdict": "correct", "score": 9, "reason": "Nối Employee-Customer-Invoice đúng khóa, lọc năm 2023 bằng khoảng nửa mở đúng biên, SUM(i.Total) theo EmployeeId và ghép họ tên đúng."},
+  {"item": "C015", "verdict": "incorrect", "score": 2, "reason": "COUNT(il.TrackId) đếm số dòng hóa đơn chứ không đếm số bài hát khác nhau, nên một bài bán nhiều lần sẽ được đếm nhiều lần. Phải dùng COUNT(DISTINCT il.TrackId)."},
+  {"item": "C118", "verdict": "incorrect", "score": 1, "reason": "strftime('%d') trả về ngày trong tháng chứ không phải tháng, nên GROUP BY sẽ ra theo ngày (tối đa 31 nhóm) thay vì 12 tháng. Comment của agent khẳng định ngược lại nhưng không đúng với code."},
+  {"item": "C024", "verdict": "incorrect", "score": 3, "reason": "Điều kiss InvoiceDate <= '2025-03-31' so sánh với chuỗi ngày không có giờ nên loại mọi hóa đơn trong ngày 31/3 có thời gian (ví dụ '2025-03-31 10:00:00'). Phải dùng < '2025-04-01'."},
+  {"item": "C100", "verdict": "correct", "score": 9, "reason": "AVG theo thể loại, chia 60000.0 ra phút, làm tròn 2 chữ số, ORDER BY AVG(Milliseconds) DESC cùng thứ tự với avg_min và LIMIT 3 đúng."},
+  {"item": "C013", "verdict": "incorrect", "score": 1, "reason": "ORDER BY revenue ASC sắp xếp từ thấp lên cao, trong khi câu hỏi yêu cầu 5 thể loại có doanh thu cao nhất từ cao xuống thấp. Kết quả sẽ trả về 5 thể loại doanh thu thấp nhất."}
+]

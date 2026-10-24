@@ -1,0 +1,12 @@
+[
+  {"item": "C036", "verdict": "correct", "score": 9, "reason": "Nhóm theo bài hát, đếm DISTINCT playlist và lọc HAVING > 4 đúng yêu cầu. Thứ tự giảm dần theo số playlist là hợp lý."},
+  {"item": "C004", "verdict": "incorrect", "score": 2, "reason": "Câu hỏi yêu cầu số bài hát khác nhau, nhưng COUNT(pt.TrackId) đếm số dòng, nên một bài nằm trong nhiều playlist 'Music' sẽ bị đếm lặp. Cần COUNT(DISTINCT pt.TrackId)."},
+  {"item": "C065", "verdict": "correct", "score": 9, "reason": "Tổng chi tiêu được tính đúng theo từng khách hàng, lấy MAX theo quốc gia bằng window function và giữ mọi người hòa điểm. Làm tròn 2 chữ số đúng."},
+  {"item": "C100", "verdict": "correct", "score": 9, "reason": "Nhóm theo thể loại, tính trung bình thời lượng chuyển sang phút làm tròn 2 chữ số, sắp xếp giảm dần và lấy 3 dòng đầu. Cách sắp xếp theo AVG(Milliseconds) tương đương với avg_min."},
+  {"item": "C115", "verdict": "correct", "score": 9, "reason": "Đếm album theo nghệ sĩ bằng JOIN và lọc HAVING > 10 đúng. Có đủ tên và số album, sắp xếp giảm dần."},
+  {"item": "C082", "verdict": "correct", "score": 8, "reason": "Nhóm theo quốc gia, đếm khách hàng và lọc >= 5 đúng. Nhóm NULL có thể xuất hiện nếu có nhiều khách hàng thiếu quốc gia, nhưng trong Chinook khả năng này rất thấp."},
+  {"item": "C113", "verdict": "correct", "score": 9, "reason": "Tử số là doanh thu theo loại media và mẫu số là tổng doanh thu toàn bộ InvoiceLine, làm tròn 2 chữ số. Mọi dòng hóa đơn đều có track nên tổng không bị mất dòng."},
+  {"item": "C049", "verdict": "correct", "score": 8, "reason": "Chuỗi JOIN từ khách hàng đến nghệ sĩ, lọc Germany và năm 2024 bằng strftime trên InvoiceDate, rồi lấy top 3 theo doanh thu giảm dần. Chỉ đáng ngờ nhẹ ở chỗ JOIN Album loại bỏ track không có album."},
+  {"item": "C048", "verdict": "incorrect", "score": 2, "reason": "Điều kiện EXISTS (SELECT ... FROM Album WHERE ArtistId = ar.ArtistId) loại mọi nghệ sĩ không có album, trong khi câu hỏi yêu cầu tính cả họ. Kết quả sẽ thiếu, comment trong SQL nhận định sai."},
+  {"item": "C071", "verdict": "correct", "score": 9, "reason": "Đếm hóa đơn có Total >= 13.86, đúng biên và đúng bảng."}
+]

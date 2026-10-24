@@ -1,0 +1,9 @@
+[
+  {"item": "C087", "verdict": "incorrect", "score": 2, "reason": "Điều kiện Country = 'Brasil' sai tên quốc gia trong dữ liệu (Chinook lưu là 'Brazil'), nên kết quả sẽ là 0 thay vì số khách hàng ở Brazil."},
+  {"item": "C091", "verdict": "incorrect", "score": 2, "reason": "COUNT(GenreId) trên Track đếm số bài hát có thể loại, không đếm số thể loại khác nhau; thiếu COUNT(DISTINCT GenreId)."},
+  {"item": "C095", "verdict": "correct", "score": 9, "reason": "Lọc đúng Title = 'Sales Support Agent' trên bảng Employee và trả đúng ba cột LastName, FirstName, HireDate."},
+  {"item": "C066", "verdict": "correct", "score": 9, "reason": "JOIN Album với Artist theo ArtistId, lọc đúng ar.Name = 'AC/DC' và trả về tên album."},
+  {"item": "C061", "verdict": "incorrect", "score": 1, "reason": "Thiếu điều kiện lọc theo tên media type 'Protected AAC audio file' (không có WHERE trên MediaType.Name), nên AVG tính trên toàn bộ bài hát."},
+  {"item": "C071", "verdict": "correct", "score": 9, "reason": "Đếm đúng số hóa đơn có Total >= 13.86, đúng biên 'từ ... trở lên'."},
+  {"item": "C086", "verdict": "correct", "score": 9, "reason": "Lấy đúng Name và Milliseconds, sắp xếp giảm dần theo Milliseconds và giới hạn 10 dòng."}
+]

@@ -1,0 +1,12 @@
+[
+  {"item": "C026", "verdict": "correct", "score": 9, "reason": "LEFT JOIN từ Employee sang Customer theo SupportRepId, COUNT(c.CustomerId) nên nhân viên không phụ trách khách sẽ có 0. Nhóm theo đúng nhân viên."},
+  {"item": "C106", "verdict": "correct", "score": 9, "reason": "Self-join LEFT JOIN Employee theo ReportsTo lấy đúng người quản lý; nhân viên không có quản lý cho cột NULL vì nối chuỗi với NULL. Đúng yêu cầu."},
+  {"item": "C094", "verdict": "correct", "score": 9, "reason": "Lọc Rock và Jazz, nhóm theo khách hàng và HAVING COUNT(DISTINCT g.Name) = 2 đúng nghĩa 'cả Rock và Jazz'. Đếm số khách hàng thỏa điều kiện."},
+  {"item": "C021", "verdict": "correct", "score": 9, "reason": "Tổng Milliseconds của album > 3600000 (trên 1 giờ) và có ít nhất một bài Composer trống (NULL hoặc rỗng), đếm số album. Điều kiện đúng."},
+  {"item": "C050", "verdict": "correct", "score": 9, "reason": "LEFT JOIN Customer và Invoice với điều kiện năm 2023 nằm trong ON, nên nhân viên không có doanh thu vẫn ra 0. Tổng và nhóm theo nhân viên đúng."},
+  {"item": "C018", "verdict": "correct", "score": 7, "reason": "Lọc đúng năm 2025 với biên [2025-01-01, 2026-01-01) và nhóm theo tháng, sắp xếp tăng dần. Tuy nhiên tháng không có hóa đơn sẽ bị bỏ qua thay vì ghi 0, có thể khác với kỳ vọng '1 đến 12'."},
+  {"item": "C022", "verdict": "correct", "score": 9, "reason": "INNER JOIN InvoiceLine đảm bảo chỉ tính bài đã từng bán, COUNT(DISTINCT TrackId) theo từng loại media. Đúng yêu cầu."},
+  {"item": "C017", "verdict": "correct", "score": 9, "reason": "SUM(Total) với khoảng [2025-01-01 00:00:00, 2025-04-01 00:00:00) đúng quý 1 năm 2025; định dạng chuỗi ngày khớp với schema nên so sánh chuỗi hoạt động đúng."},
+  {"item": "C115", "verdict": "correct", "score": 9, "reason": "Nối Artist với Album, nhóm theo nghệ sĩ, HAVING COUNT(al.AlbumId) > 10 đúng điều kiện 'nhiều hơn 10 album'. Trả về tên và số album."},
+  {"item": "C041", "verdict": "correct", "score": 9, "reason": "Công thức 100.0*(2025-2024)/2024 dùng 100.0 nên không bị chia nguyên, làm tròn 2 chữ số, số âm nghĩa là giảm. Đúng yêu cầu."}
+]

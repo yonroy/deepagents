@@ -1,0 +1,12 @@
+[
+  {"item": "C104", "verdict": "incorrect", "score": 1, "reason": "JOIN điều kiện m.ReportsTo = e.EmployeeId đảo chiều: mỗi dòng ghép nhân viên e với cấp dưới m, nên cột quản lý thực chất là cấp dưới. Nhân viên không có quản lý cũng không được xử lý đúng."},
+  {"item": "C038", "verdict": "incorrect", "score": 2, "reason": "Dùng INNER JOIN nên nhân viên không phụ trách khách nào bị loại, trong khi câu hỏi yêu cầu liệt kê tất cả nhân viên với số 0. Cách nhóm và COUNT thì đúng."},
+  {"item": "C094", "verdict": "correct", "score": 9, "reason": "Lọc đúng hai thể loại Rock và Jazz, nhóm theo khách hàng và giữ những khách có COUNT(DISTINCT thể loại) = 2, tức có cả hai thể loại. Đếm số khách hàng là đúng."},
+  {"item": "C117", "verdict": "correct", "score": 9, "reason": "Khoảng thời gian [2025-01-01, 2025-04-01) bao trọn quý 1 và so sánh chuỗi ngày hoạt động đúng với định dạng lưu trong bảng. SUM(Total) trên bảng Invoice không bị nhân dòng."},
+  {"item": "C122", "verdict": "correct", "score": 9, "reason": "Tổng Milliseconds theo album được so với 3600000 (1 giờ) và EXISTS kiểm tra bài có Composer NULL hoặc rỗng. Điều kiện 'cả A và B' được thể hiện đúng bằng AND."},
+  {"item": "C025", "verdict": "incorrect", "score": 2, "reason": "JOIN với InvoiceLine làm nhân dòng hoá đơn theo số dòng hàng, nên SUM(i.Total) bị cộng lặp cho mỗi dòng. Doanh thu thu được sẽ lớn hơn thực tế; cần bỏ JOIN InvoiceLine hoặc tính trên hoá đơn riêng."},
+  {"item": "C015", "verdict": "incorrect", "score": 2, "reason": "COUNT(il.TrackId) đếm số dòng hoá đơn, không đếm số bài hát khác nhau; một bài bán nhiều lần sẽ bị đếm lặp. Cần COUNT(DISTINCT il.TrackId)."},
+  {"item": "C118", "verdict": "incorrect", "score": 1, "reason": "strftime('%d') trả về ngày trong tháng chứ không phải tháng, nên GROUP BY tạo tối đa 31 nhóm theo ngày thay vì 12 nhóm theo tháng. Chú thích khẳng định đã kiểm chứng là không đúng với code."},
+  {"item": "C075", "verdict": "correct", "score": 9, "reason": "Công thức 100.0 * (tổng 2025 - tổng 2024) / tổng 2024 dùng CASE theo năm, và 100.0 đảm bảo phép chia không bị làm tròn số nguyên. Kết quả làm tròn 2 chữ số đúng yêu cầu."},
+  {"item": "C081", "verdict": "incorrect", "score": 2, "reason": "Truy vấn không lọc khách hàng ở Đức: không join Customer và không có điều kiện quốc gia, nên tính doanh thu của mọi khách hàng. Phần còn lại (năm 2024, nhóm theo nghệ sĩ, top 3 giảm dần) đúng."}
+]

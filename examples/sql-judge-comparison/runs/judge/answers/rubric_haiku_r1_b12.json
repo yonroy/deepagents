@@ -1,0 +1,7 @@
+[
+  {"item": "C058", "verdict": "correct", "score": 10, "reason": "COUNT(DISTINCT g.GenreId) qua JOIN Genre-Track theo GenreId đếm đúng số thể loại có ít nhất một bài hát. Không có lỗi nhân dòng vì dùng DISTINCT."},
+  {"item": "C095", "verdict": "correct", "score": 10, "reason": "Lọc đúng Employee.Title = 'Sales Support Agent' và trả về LastName, FirstName, HireDate đúng như câu hỏi."},
+  {"item": "C052", "verdict": "correct", "score": 10, "reason": "JOIN Album với Artist theo ArtistId và lọc Artist.Name = 'AC/DC', trả về Title của album, đúng yêu cầu."},
+  {"item": "C080", "verdict": "correct", "score": 10, "reason": "COUNT(*) trên Customer với Country = 'Brazil' đếm đúng số khách hàng ở Brazil, không có NULL hay JOIN gây nhân dòng."},
+  {"item": "C054", "verdict": "correct", "score": 9, "reason": "AVG(t.UnitPrice) trên Track JOIN MediaType lọc đúng tên 'Protected AAC audio file' cho giá trung bình mỗi bài hát. Chỉ hơi chưa chắc về cách làm tròn, nhưng không ảnh hưởng đúng sai."}
+]

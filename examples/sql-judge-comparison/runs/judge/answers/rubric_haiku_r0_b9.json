@@ -1,0 +1,12 @@
+[
+  {"item": "C043", "verdict": "correct", "score": 9, "reason": "JOIN Album-Artist lọc đúng 'Iron Maiden', LEFT JOIN Track và COUNT(t.TrackId) nhóm theo AlbumId cho số bài từng album, kể cả album có 0 bài. Trả về đúng tên album và số bài."},
+  {"item": "C033", "verdict": "correct", "score": 9, "reason": "Lọc playlist có Name='Music' (kể cả trùng tên) và COUNT(DISTINCT pt.TrackId) đếm số bài hát khác nhau, đúng yêu cầu 'tổng số bài khác nhau'."},
+  {"item": "C062", "verdict": "correct", "score": 9, "reason": "Nhóm theo BillingCountry, AVG(Total) cho giá trị hóa đơn trung bình, HAVING COUNT(*)>=20 đúng ngưỡng. Không làm tròn nhưng câu hỏi không yêu cầu."},
+  {"item": "C070", "verdict": "correct", "score": 9, "reason": "Lọc năm 2024 bằng strftime trên cột ngày dạng text (hợp lệ trong SQLite), nhóm theo khách, SUM(Total) sắp xếp giảm dần và LIMIT 5 đúng yêu cầu."},
+  {"item": "C010", "verdict": "correct", "score": 9, "reason": "Đếm khách theo Country, loại NULL, HAVING COUNT(*)>=5 và sắp xếp giảm dần. Đúng với câu hỏi."},
+  {"item": "C110", "verdict": "incorrect", "score": 2, "reason": "Chia Milliseconds cho 1000.0 nên ra đơn vị giây, không phải phút như câu hỏi yêu cầu (cần chia cho 60000.0). Kết quả sai đơn vị dù thứ tự và LIMIT đúng."},
+  {"item": "C048", "verdict": "incorrect", "score": 2, "reason": "Điều kiện EXISTS (có album) loại trừ nghệ sĩ không có album, trong khi câu hỏi yêu cầu tính cả họ. Comment trong SQL nói ngược lại nhưng code sai nên số đếm bị thiếu."},
+  {"item": "C001", "verdict": "correct", "score": 9, "reason": "Join Playlist với PlaylistTrack, lọc Name='Grunge' và COUNT(pt.TrackId) cho số bài. PK của PlaylistTrack đảm bảo không trùng bài."},
+  {"item": "C089", "verdict": "incorrect", "score": 2, "reason": "Dùng AVG(UnitPrice*Quantity) thay vì SUM, nên doanh thu mỗi thể loại là trung bình trên dòng hóa đơn chứ không phải tổng doanh thu. Thứ tự xếp hạng vì vậy có thể sai."},
+  {"item": "C069", "verdict": "correct", "score": 9, "reason": "COUNT(*) với Country='Brazil' trên bảng Customer đúng với câu hỏi số khách hàng ở Brazil."}
+]

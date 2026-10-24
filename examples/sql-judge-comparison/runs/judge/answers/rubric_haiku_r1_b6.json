@@ -1,0 +1,12 @@
+[
+  {"item": "C001", "verdict": "correct", "score": 9, "reason": "COUNT(pt.TrackId) sau JOIN PlaylistTrack theo PlaylistId, lọc đúng Name = 'Grunge'. Không thấy lỗi nào làm sai kết quả."},
+  {"item": "C030", "verdict": "correct", "score": 9, "reason": "Nhóm theo thể loại, AVG(Milliseconds)/60000.0 làm tròn 2 chữ số, sắp giảm dần và LIMIT 3 đúng. Chia cho 60000.0 nên không bị chia số nguyên."},
+  {"item": "C059", "verdict": "correct", "score": 9, "reason": "GROUP BY ArtistId, COUNT album, HAVING n > 10 đúng ý; trả về tên nghệ sĩ và số album."},
+  {"item": "C103", "verdict": "correct", "score": 9, "reason": "Khoảng ngày chuỗi '>= 2024-01-01' và '< 2025-01-01' đúng biên; SUM(Total) theo khách, sắp giảm dần, LIMIT 5. Hòa tiền được câu hỏi cho phép."},
+  {"item": "C028", "verdict": "incorrect", "score": 2, "reason": "CAST(SUM(...) AS INTEGER) cắt phần thập phân trước khi chia, và phép chia số nguyên làm tỷ lệ bị cắt thành số nguyên, nên ROUND(..., 2) không còn ý nghĩa. Kết quả sai."},
+  {"item": "C090", "verdict": "incorrect", "score": 2, "reason": "Điều kiện EXISTS (artist có album) loại trừ nghệ sĩ không có album, trong khi câu hỏi yêu cầu tính cả họ. Kết quả đếm thiếu."},
+  {"item": "C111", "verdict": "correct", "score": 7, "reason": "CTE tổng chi tiêu theo khách, lấy khách có total bằng MAX theo quốc gia và giữ các trường hợp hòa. Rủi ro nhỏ: khách có Country NULL sẽ không khớp (= NULL) nên bị bỏ."},
+  {"item": "C034", "verdict": "correct", "score": 9, "reason": "GROUP BY TrackId, COUNT(DISTINCT PlaylistId), HAVING n > 4 đúng ý; trả về tên bài và số playlist."},
+  {"item": "C042", "verdict": "correct", "score": 9, "reason": "Lọc đúng nghệ sĩ 'Iron Maiden', LEFT JOIN Track và COUNT(t.TrackId) theo album; album không có bài sẽ hiện 0."},
+  {"item": "C009", "verdict": "correct", "score": 9, "reason": "Doanh thu = UnitPrice * Quantity trên dòng hóa đơn, nhóm theo thể loại, làm tròn 2 chữ số, sắp giảm dần và LIMIT 5 đúng."}
+]

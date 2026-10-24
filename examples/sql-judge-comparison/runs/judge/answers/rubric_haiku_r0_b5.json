@@ -1,0 +1,12 @@
+[
+  {"item": "C104", "verdict": "incorrect", "score": 1, "reason": "JOIN dùng m.ReportsTo = e.EmployeeId, nên mỗi nhân viên được ghép với cấp dưới của mình thay vì quản lý trực tiếp. Đúng phải là e.ReportsTo = m.EmployeeId."},
+  {"item": "C032", "verdict": "incorrect", "score": 2, "reason": "COUNT(*) đếm cả dòng NULL của LEFT JOIN, nên nhân viên không có khách vẫn ra 1 thay vì 0. Cần COUNT(c.CustomerId)."},
+  {"item": "C102", "verdict": "incorrect", "score": 2, "reason": "Công thức chia cho doanh thu năm 2025 thay vì năm 2024 (mẫu số đúng là base 2024), nên phần trăm tăng/giảm bị sai."},
+  {"item": "C009", "verdict": "correct", "score": 9, "reason": "Join InvoiceLine-Track-Genre đúng khóa, tính đơn giá × số lượng, nhóm theo thể loại, sắp giảm dần và LIMIT 5 đúng yêu cầu."},
+  {"item": "C049", "verdict": "correct", "score": 9, "reason": "Chuỗi JOIN từ Customer đến Artist đúng, lọc Country = 'Germany' và năm 2024, nhóm theo nghệ sĩ, sắp giảm dần và LIMIT 3."},
+  {"item": "C113", "verdict": "correct", "score": 9, "reason": "Tử số là doanh thu theo media type, mẫu số là tổng doanh thu toàn bộ InvoiceLine; tỷ lệ nhân 100.0 nên không lỗi chia số nguyên, làm tròn 2 chữ số."},
+  {"item": "C065", "verdict": "correct", "score": 9, "reason": "CTE tính tổng chi tiêu theo khách, MAX OVER PARTITION BY Country lấy đúng người cao nhất mỗi nước và giữ các trường hợp hòa."},
+  {"item": "C034", "verdict": "correct", "score": 9, "reason": "COUNT(DISTINCT PlaylistId) theo bài hát và HAVING n > 4 đúng điều kiện 'nhiều hơn 4 playlist'."},
+  {"item": "C005", "verdict": "incorrect", "score": 0, "reason": "Query không lọc theo tên playlist 'Grunge', nên đếm toàn bộ dòng PlaylistTrack thay vì số bài của riêng playlist đó. Đây là câu hỏi khác."},
+  {"item": "C082", "verdict": "correct", "score": 9, "reason": "GROUP BY Country với HAVING COUNT(*) >= 5 và sắp giảm dần đúng yêu cầu; dữ liệu Chinook không có quốc gia NULL nên không ảnh hưởng kết quả."}
+]

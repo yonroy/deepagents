@@ -1,0 +1,7 @@
+[
+  {"item": "C007", "verdict": "correct", "score": 9, "reason": "Lọc đúng Title = 'Sales Support Agent' trên bảng Employee và trả về LastName, FirstName, HireDate đúng như câu hỏi yêu cầu. Không có JOIN hay tổng hợp nào có thể làm sai kết quả."},
+  {"item": "C054", "verdict": "correct", "score": 9, "reason": "JOIN Track với MediaType qua MediaTypeId đúng khóa, lọc đúng tên 'Protected AAC audio file', và AVG(UnitPrice) đúng phép tính giá bán trung bình."},
+  {"item": "C078", "verdict": "correct", "score": 9, "reason": "COUNT(DISTINCT GenreId) trên Track với điều kiện GenreId IS NOT NULL đếm đúng số thể loại có ít nhất một bài hát."},
+  {"item": "C040", "verdict": "incorrect", "score": 2, "reason": "JOIN sai khóa: ar.ArtistId = al.AlbumId thay vì al.ArtistId. Câu lệnh sẽ không trả về album của AC/DC, mà ghép các ID không liên quan."},
+  {"item": "C084", "verdict": "correct", "score": 9, "reason": "Điều kiện Total >= 13.86 khớp với 'từ 13.86 trở lên' (bao gồm cả 13.86), và COUNT(*) trên Invoice đếm đúng số hóa đơn."}
+]

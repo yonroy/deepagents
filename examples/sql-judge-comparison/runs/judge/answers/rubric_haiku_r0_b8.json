@@ -1,0 +1,12 @@
+[
+  {"item": "C030", "verdict": "correct", "score": 9, "reason": "Nhóm theo GenreId, tính AVG(Milliseconds)/60000.0 làm tròn 2 chữ số, sắp xếp giảm dần và LIMIT 3 đúng yêu cầu. Bài không có GenreId bị loại bởi JOIN, điều này phù hợp."},
+  {"item": "C042", "verdict": "correct", "score": 9, "reason": "LEFT JOIN từ Album sang Track đúng để đếm bài hát, COUNT(t.TrackId) bỏ qua NULL, lọc đúng nghệ sĩ 'Iron Maiden' và nhóm theo album."},
+  {"item": "C121", "verdict": "incorrect", "score": 2, "reason": "Điều kiện WHERE total = (SELECT MAX(total) FROM spent s2) lấy max toàn cục chứ không phải max theo từng quốc gia, nên chỉ trả về khách hàng chi nhiều nhất toàn bộ thay vì một người cho mỗi quốc gia."},
+  {"item": "C045", "verdict": "correct", "score": 9, "reason": "JOIN Album với Artist, nhóm theo nghệ sĩ, HAVING COUNT(al.AlbumId) > 10 đúng điều kiện 'nhiều hơn 10 album', có đủ tên và số album."},
+  {"item": "C105", "verdict": "incorrect", "score": 5, "reason": "Nhóm theo t.Name thay vì TrackId, nên các bài khác nhau cùng tên (ví dụ cùng tiêu đề ở album khác) bị gộp và có thể làm sai số playlist, dù COUNT(DISTINCT PlaylistId) và HAVING > 4 đúng."},
+  {"item": "C063", "verdict": "correct", "score": 9, "reason": "Nhóm theo BillingCountry đúng là 'quốc gia thanh toán', AVG làm tròn 2 chữ số, HAVING COUNT(*) >= 20 đúng biên 'ít nhất 20', sắp xếp giảm dần."},
+  {"item": "C101", "verdict": "correct", "score": 9, "reason": "JOIN PlaylistTrack với Playlist và lọc Name = 'Grunge', COUNT(pt.TrackId) đếm số dòng; khóa chính (PlaylistId, TrackId) đảm bảo không trùng bài."},
+  {"item": "C074", "verdict": "correct", "score": 9, "reason": "Tử số là tổng doanh thu theo MediaTypeId từ InvoiceLine, mẫu số là tổng toàn bộ InvoiceLine, nhân 100.0 nên không bị chia số nguyên; làm tròn 2 chữ số đúng."},
+  {"item": "C081", "verdict": "incorrect", "score": 1, "reason": "Câu hỏi yêu cầu khách hàng ở Đức nhưng SQL không có điều kiện nào về quốc gia (BillingCountry hoặc Customer.Country = 'Germany'), nên kết quả là top 3 nghệ sĩ toàn cầu năm 2024."},
+  {"item": "C090", "verdict": "incorrect", "score": 2, "reason": "Điều kiện EXISTS (có album) loại trừ các nghệ sĩ không có album nào, trong khi câu hỏi yêu cầu tính cả họ; những nghệ sĩ này chắc chắn chưa bán bài nào nên bị bỏ sót."}
+]

@@ -1,0 +1,12 @@
+[
+  {"item": "C106", "verdict": "correct", "score": 9, "reason": "Self LEFT JOIN Employee theo ReportsTo giữ được nhân viên không có quản lý; CASE trả NULL cho cột quản lý khi không có người quản lý. Cột và điều kiện đều đúng với câu hỏi."},
+  {"item": "C026", "verdict": "correct", "score": 9, "reason": "LEFT JOIN Customer theo SupportRepId và COUNT(c.CustomerId) (đếm không tính NULL) cho ra 0 với nhân viên không có khách. Nhóm theo đúng nhân viên, sắp xếp giảm dần đúng."},
+  {"item": "C035", "verdict": "incorrect", "score": 2, "reason": "Điều kiện HAVING COUNT(DISTINCT g.Name) >= 1 chỉ cần một thể loại, nên trả về khách mua Rock HOẶC Jazz thay vì cả hai. Cần HAVING COUNT(DISTINCT g.Name) = 2."},
+  {"item": "C096", "verdict": "incorrect", "score": 5, "reason": "Lọc InvoiceDate <= '2025-03-31' so sánh chuỗi datetime, nên hóa đơn có giờ trong ngày 31/3 (ví dụ '2025-03-31 10:00:00') bị loại. Cần dùng < '2025-04-01' để chắc chắn đúng biên."},
+  {"item": "C114", "verdict": "incorrect", "score": 2, "reason": "WHERE Composer IS NULL được áp dụng trước khi cộng thời lượng, nên SUM chỉ tính các bài thiếu composer thay vì toàn bộ album. Điều kiện tổng thời lượng trên 1 giờ bị sai, kết quả có thể sai."},
+  {"item": "C060", "verdict": "correct", "score": 9, "reason": "JOIN InvoiceLine giữ lại đúng các bài đã từng được bán, COUNT(DISTINCT t.TrackId) tránh đếm trùng, nhóm theo loại media. Đúng yêu cầu tên loại media và số bài."},
+  {"item": "C019", "verdict": "correct", "score": 9, "reason": "Chuỗi JOIN Employee→Customer→Invoice là quan hệ nhiều-một theo hướng hóa đơn nên không nhân dòng; lọc năm 2023 bằng strftime đúng và SUM theo từng nhân viên."},
+  {"item": "C029", "verdict": "correct", "score": 8, "reason": "Lọc đúng khoảng năm 2025, nhóm theo tháng và SUM đúng. Sắp xếp theo tháng tăng dần đúng; tháng không có hóa đơn sẽ không hiện, trình bày nhỏ."},
+  {"item": "C047", "verdict": "correct", "score": 9, "reason": "Tử số là tổng UnitPrice*Quantity theo loại media, mẫu số là tổng toàn bộ InvoiceLine; dùng 100.0 nên không lỗi chia số nguyên. Làm tròn 2 chữ số và sắp xếp đúng."},
+  {"item": "C063", "verdict": "correct", "score": 9, "reason": "Nhóm theo BillingCountry (quốc gia thanh toán), AVG(Total) và HAVING COUNT(*) >= 20 đúng điều kiện. Sắp xếp theo giá trị trung bình giảm dần."}
+]

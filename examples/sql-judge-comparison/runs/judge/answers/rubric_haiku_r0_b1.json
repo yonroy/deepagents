@@ -1,0 +1,12 @@
+[
+  {"item": "C072", "verdict": "correct", "score": 9, "reason": "Self-join Employee với LEFT JOIN trên ReportsTo giữ được nhân viên không có quản lý (cột quản lý thành NULL) và trả đúng họ tên hai phía. Không thấy lỗi logic."},
+  {"item": "C038", "verdict": "incorrect", "score": 2, "reason": "Dùng JOIN Customer thay vì LEFT JOIN nên nhân viên không phụ trách khách nào bị loại khỏi kết quả, trong khi câu hỏi yêu cầu liệt kê họ với giá trị 0."},
+  {"item": "C119", "verdict": "incorrect", "score": 1, "reason": "JOIN thêm InvoiceLine làm mỗi hóa đơn bị nhân số dòng hàng, nên SUM(i.Total) bị tính nhiều lần và doanh thu sai. Comment của agent không đúng với cách JOIN này."},
+  {"item": "C046", "verdict": "correct", "score": 9, "reason": "INTERSECT trên tập CustomerId mua Rock với tập mua Jazz đúng với 'cả A và B', và COUNT(*) đếm số khách hàng. Không thấy lỗi."},
+  {"item": "C077", "verdict": "incorrect", "score": 1, "reason": "Composer = NULL luôn sai nên CASE luôn trả 0, điều kiện SUM(...) > 0 không bao giờ đúng, kết quả luôn là 0 album. Thiếu điều kiện đúng là Composer IS NULL OR Composer = ''."},
+  {"item": "C096", "verdict": "incorrect", "score": 3, "reason": "InvoiceDate được lưu dạng 'YYYY-MM-DD 00:00:00', nên so sánh chuỗi với '2025-03-31' làm loại mọi hóa đơn trong ngày 31/03. Cần dùng < '2025-04-01'."},
+  {"item": "C012", "verdict": "incorrect", "score": 1, "reason": "strftime('%d') trả về ngày trong tháng chứ không phải tháng, nên nhóm theo ngày (1-31) thay vì theo tháng 1-12. Kết quả sai hoàn toàn."},
+  {"item": "C092", "verdict": "incorrect", "score": 2, "reason": "COUNT(il.TrackId) đếm số dòng hóa đơn, nên một bài bán nhiều lần được tính nhiều lần. Cần COUNT(DISTINCT il.TrackId). Comment của agent sai ở điểm này."},
+  {"item": "C047", "verdict": "correct", "score": 9, "reason": "Tử số là doanh thu theo media type, mẫu số là tổng doanh thu toàn bộ InvoiceLine, nhân 100.0 tránh chia số nguyên, làm tròn 2 chữ số. Mọi dòng đều có track và media type nên tổng khớp."},
+  {"item": "C016", "verdict": "correct", "score": 9, "reason": "LEFT JOIN Track từ Album của đúng nghệ sĩ 'Iron Maiden' và COUNT(t.TrackId) cho số bài đúng, kể cả album có 0 bài. Không thấy lỗi."}
+]

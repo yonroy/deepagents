@@ -1,0 +1,12 @@
+[
+  {"item": "C002", "verdict": "incorrect", "score": 2, "reason": "INNER JOIN với m.EmployeeId = e.ReportsTo loại bỏ những nhân viên không có quản lý (ReportsTo NULL), trong khi câu hỏi yêu cầu liệt kê mọi nhân viên."},
+  {"item": "C099", "verdict": "correct", "score": 9, "reason": "LEFT JOIN từ Employee sang Customer và COUNT(c.CustomerId) cho 0 với nhân viên không có khách; GROUP BY EmployeeId đúng."},
+  {"item": "C102", "verdict": "incorrect", "score": 2, "reason": "Mẫu số là tổng doanh thu 2025 thay vì tổng doanh thu 2024, nên tỷ lệ tăng/giảm tính sai."},
+  {"item": "C074", "verdict": "correct", "score": 9, "reason": "Tử số là doanh thu theo media type từ InvoiceLine, mẫu số là tổng toàn bộ InvoiceLine; JOIN không làm mất dòng vì các khóa đều NOT NULL, làm tròn 2 chữ số đúng."},
+  {"item": "C110", "verdict": "incorrect", "score": 2, "reason": "Chia Milliseconds cho 1000 cho ra giây chứ không phải phút (cần chia 60000), nên giá trị avg_minutes sai đơn vị; thứ tự và LIMIT 3 đúng."},
+  {"item": "C089", "verdict": "incorrect", "score": 2, "reason": "Dùng AVG(UnitPrice*Quantity) thay vì SUM, nên trả về doanh thu trung bình mỗi dòng hóa đơn chứ không phải tổng doanh thu theo thể loại."},
+  {"item": "C031", "verdict": "correct", "score": 9, "reason": "Đếm số dòng PlaylistTrack của playlist có tên 'Grunge' qua JOIN với Playlist; đúng yêu cầu."},
+  {"item": "C076", "verdict": "correct", "score": 9, "reason": "Lọc năm 2024 bằng khoảng [2024-01-01, 2025-01-01) đúng biên, gom theo khách, SUM rồi sắp giảm dần và LIMIT 5."},
+  {"item": "C085", "verdict": "correct", "score": 9, "reason": "Lọc BillingCountry không NULL, GROUP BY quốc gia, HAVING COUNT(*) >= 20, AVG làm tròn 2 chữ số, sắp giảm dần; đúng."},
+  {"item": "C121", "verdict": "incorrect", "score": 2, "reason": "Điều kiện total = MAX(total) lấy giá trị lớn nhất toàn cục thay vì lớn nhất trong từng quốc gia, nên chỉ trả về khách chi nhiều nhất toàn bộ, không phải theo từng quốc gia."}
+]

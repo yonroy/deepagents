@@ -1,0 +1,12 @@
+[
+  {"item": "C112", "verdict": "correct", "score": 8, "reason": "Nối đúng chuỗi InvoiceLine, Invoice, Customer, Track, Album, Artist; lọc Germany và năm 2024 với biên đúng, nhóm theo ArtistId, sắp giảm dần và LIMIT 3. Chỉ rủi ro nhỏ là bỏ các track không có album do JOIN trong."},
+  {"item": "C075", "verdict": "correct", "score": 9, "reason": "Tính đúng (tổng 2025 - tổng 2024) / tổng 2024 * 100 trên toàn bộ Invoice, dùng 100.0 nên không bị chia nguyên, làm tròn 2 chữ số. strftime('%Y') đúng với cột ngày dạng chuỗi."},
+  {"item": "C028", "verdict": "incorrect", "score": 1, "reason": "CAST(SUM(...) AS INTEGER) cắt bỏ phần thập phân và phép chia 100*int/int là chia nguyên, nên kết quả chỉ là số nguyên bị sai, không phải phần trăm có 2 chữ số thập phân. Lỗi này làm sai toàn bộ kết quả."},
+  {"item": "C053", "verdict": "correct", "score": 9, "reason": "NOT EXISTS kiểm tra đúng nghệ sĩ không có album nào có track xuất hiện trong InvoiceLine, nên nghệ sĩ không có album cũng được tính. COUNT(*) trả về số nghệ sĩ cần tìm."},
+  {"item": "C044", "verdict": "incorrect", "score": 2, "reason": "JOIN với Track làm nhân dòng theo số bài hát, và COUNT(*) đếm dòng track chứ không đếm album. Cần COUNT(DISTINCT al.AlbumId) thì HAVING > 10 mới đúng."},
+  {"item": "C111", "verdict": "correct", "score": 8, "reason": "CTE tính tổng chi tiêu theo từng khách, sau đó giữ khách có tổng bằng MAX theo quốc gia nên giữ được trường hợp hòa. Điểm trừ nhỏ: quốc gia NULL sẽ bị loại vì so sánh s2.Country = s.Country không khớp với NULL."},
+  {"item": "C076", "verdict": "correct", "score": 9, "reason": "Lọc đúng năm 2024 với biên >= và <, cộng Total theo khách, làm tròn 2 chữ số, sắp giảm dần và LIMIT 5. Các khách hòa tiền ở biên có thể lấy tùy ý, điều này đã được câu hỏi cho phép."},
+  {"item": "C064", "verdict": "incorrect", "score": 2, "reason": "HAVING COUNT(*) > 5 loại các quốc gia có đúng 5 khách, trong khi câu hỏi yêu cầu từ 5 trở lên (>= 5). Kết quả thiếu các quốc gia có đúng 5 khách."},
+  {"item": "C093", "verdict": "correct", "score": 9, "reason": "Nối PlaylistTrack với Playlist, lọc đúng Name = 'Music' và đếm COUNT(DISTINCT TrackId), nên các playlist trùng tên và bài hát lặp đều được xử lý đúng."},
+  {"item": "C085", "verdict": "correct", "score": 9, "reason": "Nhóm theo BillingCountry trên Invoice, lọc HAVING COUNT(*) >= 20 đúng với 'ít nhất 20 hóa đơn', tính AVG(Total) làm tròn 2 chữ số và sắp giảm dần. Loại bỏ BillingCountry NULL là hợp lý."}
+]

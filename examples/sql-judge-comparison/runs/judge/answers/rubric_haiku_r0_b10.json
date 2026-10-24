@@ -1,0 +1,12 @@
+[
+  {"item": "C004", "verdict": "incorrect", "score": 3, "reason": "Câu hỏi yêu cầu số bài hát khác nhau, nhưng SQL dùng COUNT(pt.TrackId) nên đếm trùng khi một bài nằm trong nhiều playlist tên 'Music'. Cần COUNT(DISTINCT pt.TrackId)."},
+  {"item": "C014", "verdict": "incorrect", "score": 2, "reason": "SQL GROUP BY ar.ArtistId nên gộp toàn bộ album của nghệ sĩ thành một dòng, không trả về số bài theo từng album. Cần GROUP BY al.AlbumId (hoặc al.Title)."},
+  {"item": "C055", "verdict": "incorrect", "score": 1, "reason": "Câu hỏi yêu cầu chi tiêu trong năm 2024 nhưng SQL không có điều kiện lọc theo InvoiceDate, nên tính trên toàn bộ hóa đơn."},
+  {"item": "C052", "verdict": "correct", "score": 9, "reason": "JOIN Album với Artist đúng khóa ArtistId, lọc đúng Name = 'AC/DC' và trả về cột Title của album. Kết quả đúng với câu hỏi."},
+  {"item": "C058", "verdict": "correct", "score": 9, "reason": "INNER JOIN Genre với Track qua GenreId chỉ giữ các thể loại có ít nhất một bài hát, và COUNT(DISTINCT g.GenreId) đếm đúng số thể loại khác nhau."},
+  {"item": "C080", "verdict": "correct", "score": 9, "reason": "Đếm đúng số khách hàng có Country = 'Brazil' trong bảng Customer, không cần JOIN và không có chi tiết dễ sai nào."},
+  {"item": "C083", "verdict": "correct", "score": 9, "reason": "JOIN Track với MediaType đúng khóa, lọc đúng tên 'Protected AAC audio file' và dùng AVG trên UnitPrice, đúng với yêu cầu giá trung bình."},
+  {"item": "C056", "verdict": "incorrect", "score": 2, "reason": "Câu hỏi yêu cầu ngày vào làm (HireDate) nhưng SQL trả về BirthDate, sai cột. Điều kiện lọc Title = 'Sales Support Agent' thì đúng."},
+  {"item": "C097", "verdict": "incorrect", "score": 2, "reason": "Câu hỏi yêu cầu Total từ 13.86 trở lên (>=) nhưng SQL dùng Total > 13.86, loại mất các hóa đơn có tổng đúng bằng 13.86."},
+  {"item": "C107", "verdict": "incorrect", "score": 1, "reason": "Câu hỏi yêu cầu 10 bài dài nhất, từ dài đến ngắn, nhưng SQL dùng ORDER BY Milliseconds ASC nên trả về 10 bài ngắn nhất."}
+]

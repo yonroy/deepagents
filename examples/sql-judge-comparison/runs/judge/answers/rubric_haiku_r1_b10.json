@@ -1,0 +1,12 @@
+[
+  {"item": "C108", "verdict": "correct", "score": 9, "reason": "Đếm khách hàng theo Country, bỏ NULL và lọc HAVING COUNT(*) >= 5 đúng với yêu cầu 'từ 5 khách hàng trở lên' và trả về số khách hàng của từng nước."},
+  {"item": "C093", "verdict": "correct", "score": 9, "reason": "JOIN PlaylistTrack với Playlist theo khoá đúng, lọc Name = 'Music' (bắt cả playlist trùng tên) và COUNT(DISTINCT TrackId) cho số bài hát khác nhau."},
+  {"item": "C044", "verdict": "incorrect", "score": 2, "reason": "JOIN thêm bảng Track và dùng COUNT(*) nên đếm số bài hát, không phải số album; ngưỡng HAVING > 10 do đó áp lên sai đại lượng."},
+  {"item": "C091", "verdict": "incorrect", "score": 1, "reason": "COUNT(GenreId) trên Track đếm số bài hát có thể loại, không đếm số thể loại khác nhau; thiếu COUNT(DISTINCT GenreId)."},
+  {"item": "C007", "verdict": "correct", "score": 9, "reason": "Lọc Employee theo Title = 'Sales Support Agent' và lấy đúng LastName, FirstName, HireDate."},
+  {"item": "C066", "verdict": "correct", "score": 9, "reason": "Nối Album với Artist theo ArtistId và lọc Artist.Name = 'AC/DC', trả về tên album."},
+  {"item": "C069", "verdict": "correct", "score": 9, "reason": "COUNT(*) trên Customer với Country = 'Brazil' cho đúng số khách hàng ở Brazil."},
+  {"item": "C084", "verdict": "correct", "score": 9, "reason": "COUNT(*) trên Invoice với Total >= 13.86 đúng biên 'từ ... trở lên'."},
+  {"item": "C061", "verdict": "incorrect", "score": 1, "reason": "Câu hỏi yêu cầu lọc MediaType 'Protected AAC audio file', nhưng query không có điều kiện m.Name nên tính AVG trên toàn bộ bài hát."},
+  {"item": "C086", "verdict": "correct", "score": 9, "reason": "Sắp xếp Milliseconds giảm dần, LIMIT 10, trả về Name và Milliseconds đúng như yêu cầu."}
+]

@@ -1,0 +1,12 @@
+[
+  {"item": "C116", "verdict": "incorrect", "score": 2, "reason": "JOIN dùng điều kiện m.ReportsTo = e.EmployeeId, nên mỗi nhân viên được ghép với cấp dưới của mình thay vì quản lý. Đúng phải là e.ReportsTo = m.EmployeeId."},
+  {"item": "C079", "verdict": "incorrect", "score": 2, "reason": "COUNT(*) sau LEFT JOIN đếm cả dòng NULL, nên nhân viên không phụ trách khách nào sẽ ra 1 thay vì 0. Cần COUNT(c.CustomerId)."},
+  {"item": "C109", "verdict": "incorrect", "score": 2, "reason": "WHERE lọc Rock hoặc Jazz và HAVING COUNT(DISTINCT g.Name) >= 1 chỉ yêu cầu một thể loại, nên đếm khách mua một trong hai chứ không phải cả hai. Cần HAVING COUNT(DISTINCT g.Name) = 2."},
+  {"item": "C011", "verdict": "correct", "score": 9, "reason": "Lọc InvoiceDate từ 2025-01-01 đến trước 2025-04-01 bao đúng quý 1 và SUM(Total) là tổng doanh thu cần tìm. So sánh chuỗi ngày theo định dạng ISO hoạt động đúng."},
+  {"item": "C057", "verdict": "incorrect", "score": 2, "reason": "WHERE Composer IS NULL được áp dụng trước khi SUM(Milliseconds), nên tổng thời lượng chỉ tính các bài thiếu nhà soạn nhạc. Điều kiện trên 1 giờ phải tính trên toàn bộ bài của album."},
+  {"item": "C050", "verdict": "correct", "score": 9, "reason": "LEFT JOIN từ Employee qua Customer tới Invoice, lọc năm 2023 trong ON nên giữ nhân viên không có doanh thu với 0. Mỗi hóa đơn chỉ thuộc một khách và một nhân viên nên không bị nhân dòng, GROUP BY đúng."},
+  {"item": "C073", "verdict": "correct", "score": 7, "reason": "Nhóm theo tháng của năm 2025, tính tổng và sắp xếp theo tháng đúng. Tháng nào không có hóa đơn sẽ không xuất hiện, điều này chỉ là khác biệt nhỏ về trình bày nếu dữ liệu có đủ 12 tháng."},
+  {"item": "C092", "verdict": "incorrect", "score": 2, "reason": "COUNT(il.TrackId) đếm số dòng InvoiceLine, nên một bài bán nhiều lần sẽ được đếm nhiều lần. Cần COUNT(DISTINCT il.TrackId)."},
+  {"item": "C006", "verdict": "correct", "score": 9, "reason": "Tính tăng trưởng (2025 - 2024) / 2024 * 100 bằng SUM(CASE ...) đúng khoảng thời gian, dùng 100.0 nên không bị chia số nguyên, và làm tròn 2 chữ số đúng yêu cầu."},
+  {"item": "C068", "verdict": "correct", "score": 9, "reason": "Doanh thu theo thể loại được tính đúng là UnitPrice * Quantity trên từng dòng hóa đơn, nhóm theo GenreId, sắp xếp giảm dần và LIMIT 5 đúng yêu cầu."}
+]

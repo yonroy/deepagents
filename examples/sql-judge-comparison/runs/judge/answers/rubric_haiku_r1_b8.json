@@ -1,0 +1,12 @@
+[
+  {"item": "C014", "verdict": "incorrect", "score": 2, "reason": "GROUP BY ar.ArtistId gom toàn bộ album của Iron Maiden thành một dòng, nên chỉ trả về một tổng số bài và một tiêu đề album tùy ý, không phải số bài cho từng album."},
+  {"item": "C013", "verdict": "incorrect", "score": 1, "reason": "ORDER BY revenue ASC sắp xếp từ thấp lên cao, trong khi câu hỏi yêu cầu từ cao xuống thấp; 5 dòng trả về là 5 thể loại có doanh thu thấp nhất."},
+  {"item": "C003", "verdict": "correct", "score": 9, "reason": "Nối InvoiceLine, Invoice, Customer, Track, Album, Artist đúng khóa, lọc Country = 'Germany' và năm 2024 bằng strftime, nhóm theo nghệ sĩ, sắp xếp giảm dần và LIMIT 3 đúng."},
+  {"item": "C010", "verdict": "correct", "score": 9, "reason": "Đếm khách hàng theo Country, loại NULL, HAVING COUNT(*) >= 5 đúng ngưỡng 'từ 5 trở lên' và sắp xếp giảm dần đúng."},
+  {"item": "C062", "verdict": "correct", "score": 8, "reason": "AVG(Total) theo BillingCountry với HAVING COUNT(*) >= 20 đúng yêu cầu; không lọc NULL nhưng schema không cho thấy BillingCountry NULL nên ít rủi ro ảnh hưởng kết quả."},
+  {"item": "C105", "verdict": "incorrect", "score": 3, "reason": "Nhóm theo t.Name thay vì TrackId, nên các bài khác nhau trùng tên bị gộp và số playlist có thể bị đếm sai, dẫn đến kết quả có thể sai."},
+  {"item": "C005", "verdict": "incorrect", "score": 0, "reason": "Không có điều kiện lọc theo tên playlist 'Grunge'; câu SQL đếm toàn bộ dòng PlaylistTrack của mọi playlist, tức là trả lời một câu hỏi khác."},
+  {"item": "C055", "verdict": "incorrect", "score": 1, "reason": "Thiếu điều kiện lọc năm 2024 nên tổng chi tiêu tính trên mọi năm, top 5 trả về sai so với câu hỏi."},
+  {"item": "C041", "verdict": "correct", "score": 9, "reason": "Tính tổng hóa đơn 2025 và 2024 bằng CASE, công thức (2025 - 2024) * 100.0 / 2024 đúng chiều tăng/giảm, làm tròn 2 chữ số đúng."},
+  {"item": "C045", "verdict": "correct", "score": 9, "reason": "Nối Artist với Album, nhóm theo nghệ sĩ, COUNT album và HAVING > 10 đúng điều kiện 'nhiều hơn 10 album'."}
+]

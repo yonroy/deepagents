@@ -1,0 +1,12 @@
+[
+  {"item": "C067", "verdict": "correct", "score": 9, "reason": "LEFT JOIN Employee m ON m.EmployeeId = e.ReportsTo giữ nhân viên không có quản lý, cột quản lý sẽ là NULL (để trống). Ghép họ tên đúng thứ tự."},
+  {"item": "C020", "verdict": "correct", "score": 9, "reason": "LEFT JOIN từ Employee sang Customer và COUNT(c.CustomerId) (đếm không tính NULL) cho 0 với nhân viên không phụ trách khách nào. GROUP BY theo EmployeeId, sắp xếp giảm dần đúng."},
+  {"item": "C114", "verdict": "incorrect", "score": 2, "reason": "WHERE Composer IS NULL được áp dụng trước khi SUM, nên tổng thời lượng chỉ tính các bài chưa có Composer thay vì toàn bộ album. Điều kiện album trên 1 giờ bị tính sai; cũng bỏ sót Composer rỗng dạng chuỗi rỗng."},
+  {"item": "C109", "verdict": "incorrect", "score": 2, "reason": "WHERE g.Name IN ('Rock','Jazz') kết hợp HAVING COUNT(DISTINCT g.Name) >= 1 chỉ đòi ít nhất một thể loại, không đòi cả Rock và Jazz (cần = 2). Kết quả sẽ đếm dư khách chỉ mua một trong hai thể loại."},
+  {"item": "C029", "verdict": "correct", "score": 8, "reason": "Lọc đúng khoảng năm 2025 bằng so sánh chuỗi ngày, nhóm theo tháng và cộng Total, làm tròn 2 chữ số, sắp xếp tháng 01 đến 12. Tháng không có hóa đơn sẽ không xuất hiện, nhưng câu hỏi không yêu cầu điền đủ."},
+  {"item": "C117", "verdict": "correct", "score": 9, "reason": "Khoảng ngày từ 2025-01-01 đến trước 2025-04-01 bao đủ quý 1 (tháng 1 đến hết tháng 3), SUM(Total) đúng. Không làm tròn nhưng Total đã là NUMERIC(10,2), chấp nhận được."},
+  {"item": "C060", "verdict": "correct", "score": 9, "reason": "JOIN InvoiceLine đảm bảo chỉ tính bài đã từng bán, COUNT(DISTINCT t.TrackId) tránh đếm trùng khi bài bán nhiều lần. Nhóm theo loại media đúng."},
+  {"item": "C025", "verdict": "incorrect", "score": 2, "reason": "Việc JOIN thêm InvoiceLine làm mỗi hóa đơn được nhân lên theo số dòng hàng, nên SUM(i.Total) bị cộng trùng và doanh thu bị thổi phồng. Cần bỏ JOIN InvoiceLine hoặc tính trên hóa đơn riêng biệt."},
+  {"item": "C051", "verdict": "correct", "score": 9, "reason": "Tổng chi tiêu tính theo từng khách (GROUP BY CustomerId), RANK() theo từng quốc gia giữ tất cả khách hòa điểm ở hạng 1. Lọc quốc gia NULL và làm tròn đúng yêu cầu."},
+  {"item": "C039", "verdict": "correct", "score": 9, "reason": "AVG(Milliseconds)/60000.0 đổi sang phút với số thực (tránh chia nguyên), làm tròn 2 chữ số, sắp xếp giảm dần và LIMIT 3 đúng yêu cầu."}
+]

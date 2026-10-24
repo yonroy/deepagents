@@ -1,0 +1,12 @@
+[
+  {"item": "C043", "verdict": "correct", "score": 9, "reason": "Nối Album-Artist, LEFT JOIN Track và COUNT(t.TrackId) theo AlbumId, lọc đúng nghệ sĩ 'Iron Maiden'; album không có bài vẫn hiện với số 0."},
+  {"item": "C070", "verdict": "correct", "score": 9, "reason": "Lọc hóa đơn năm 2024 bằng strftime trên chuỗi ngày, cộng tổng theo khách, sắp xếp giảm dần và LIMIT 5 đúng yêu cầu."},
+  {"item": "C039", "verdict": "correct", "score": 9, "reason": "AVG(Milliseconds)/60000.0 cho ra phút (không bị chia nguyên), làm tròn 2 chữ số, sắp xếp giảm dần và LIMIT 3 đúng."},
+  {"item": "C101", "verdict": "correct", "score": 9, "reason": "Đếm TrackId trong PlaylistTrack nối với Playlist có tên 'Grunge'; khóa chính của PlaylistTrack ngăn trùng lặp nên kết quả đúng."},
+  {"item": "C053", "verdict": "correct", "score": 9, "reason": "NOT EXISTS qua Album-Track-InvoiceLine đếm đúng nghệ sĩ chưa bán được bài nào, kể cả nghệ sĩ không có album vì subquery trả về rỗng."},
+  {"item": "C064", "verdict": "incorrect", "score": 2, "reason": "HAVING COUNT(*) > 5 loại nước có đúng 5 khách, trong khi câu hỏi yêu cầu 'từ 5 trở lên' (>= 5); cần đổi thành >= 5."},
+  {"item": "C027", "verdict": "incorrect", "score": 1, "reason": "HAVING SUM(Total) >= 20 lọc theo tổng tiền thay vì số hóa đơn; câu hỏi yêu cầu COUNT(*) >= 20 nên kết quả sai."},
+  {"item": "C120", "verdict": "correct", "score": 9, "reason": "Nối Playlist với PlaylistTrack, lọc name='Music' (bao gồm nhiều playlist trùng tên) và COUNT(DISTINCT TrackId) đúng yêu cầu."},
+  {"item": "C051", "verdict": "correct", "score": 8, "reason": "RANK() theo quốc gia trên tổng chi tiêu từng khách, lấy rk=1 nên giữ mọi người hòa; chỉ lo ngại nhỏ về so sánh bằng số thực khi hòa."},
+  {"item": "C112", "verdict": "correct", "score": 9, "reason": "Chuỗi JOIN từ InvoiceLine đến Artist đúng, lọc khách ở Germany và khoảng ngày 2024 có biên đúng, nhóm theo nghệ sĩ, sắp xếp giảm dần và LIMIT 3."}
+]

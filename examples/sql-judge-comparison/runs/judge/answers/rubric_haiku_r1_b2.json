@@ -1,0 +1,12 @@
+[
+  {"item": "C072", "verdict": "correct", "score": 9, "reason": "LEFT JOIN Employee m ON m.EmployeeId = e.ReportsTo giữ nhân viên không có quản lý, và cột quản lý sẽ NULL (trống) đúng như yêu cầu. Tên được ghép đúng cho cả nhân viên và quản lý."},
+  {"item": "C020", "verdict": "correct", "score": 9, "reason": "LEFT JOIN từ Employee sang Customer giữ nhân viên không có khách, COUNT(c.CustomerId) đếm 0 cho họ, GROUP BY theo nhân viên là đúng."},
+  {"item": "C046", "verdict": "correct", "score": 9, "reason": "INTERSECT giữa hai tập CustomerId mua thể loại Rock và Jazz cho đúng giao hai điều kiện ('cả A và B'), rồi COUNT(*) đếm số khách hàng."},
+  {"item": "C017", "verdict": "correct", "score": 9, "reason": "Lọc InvoiceDate từ 2025-01-01 đến trước 2025-04-01 đúng quý 1 năm 2025 và SUM(Total) là tổng doanh thu. Định dạng chuỗi ngày khớp với schema nên so sánh chuỗi hoạt động."},
+  {"item": "C077", "verdict": "incorrect", "score": 1, "reason": "Composer = NULL luôn không xác định (không bao giờ đúng), nên SUM(CASE ...) luôn bằng 0 và điều kiện có bài thiếu Composer không bao giờ thỏa; kết quả sẽ là 0 thay vì số album đúng."},
+  {"item": "C119", "verdict": "incorrect", "score": 2, "reason": "JOIN với InvoiceLine nhân dòng hóa đơn lên theo số dòng hàng, nên SUM(i.Total) bị cộng trùng và doanh thu bị thổi phồng; chú thích trong code nói ngược lại nhưng không đúng."},
+  {"item": "C008", "verdict": "correct", "score": 9, "reason": "Join MediaType-Track-InvoiceLine và COUNT(DISTINCT t.TrackId) theo từng MediaType đếm đúng số bài đã từng được bán ít nhất một lần."},
+  {"item": "C012", "verdict": "incorrect", "score": 1, "reason": "strftime('%d', ...) lấy ngày trong tháng thay vì tháng ('%m'), nên GROUP BY nhóm theo ngày 01-31 và cả năm 2025 bị gộp sai; kết quả không phải doanh thu theo từng tháng."},
+  {"item": "C033", "verdict": "correct", "score": 9, "reason": "Join PlaylistTrack với Playlist, lọc Name = 'Music' (bao gồm mọi playlist trùng tên), và COUNT(DISTINCT TrackId) đếm số bài hát khác nhau là đúng."},
+  {"item": "C088", "verdict": "correct", "score": 9, "reason": "NOT EXISTS với subquery tương quan theo ArtistId đếm đúng nghệ sĩ không có bài nào được bán, bao gồm cả nghệ sĩ không có album nào."}
+]

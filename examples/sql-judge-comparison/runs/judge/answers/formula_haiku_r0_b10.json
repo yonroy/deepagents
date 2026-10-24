@@ -1,0 +1,74 @@
+[
+  {"item": "C115",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ nghệ sĩ có nhiều hơn 10 album (HAVING COUNT > 10)", "s": 1},
+     {"type": "aggregate", "text": "Số album = COUNT(AlbumId)", "s": 1},
+     {"type": "group", "text": "Theo nghệ sĩ", "s": 1},
+     {"type": "output", "text": "Tên nghệ sĩ, số album", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C068",
+   "requirements": [
+     {"type": "aggregate", "text": "Doanh thu = SUM(UnitPrice*Quantity) trên dòng hóa đơn", "s": 1},
+     {"type": "group", "text": "Theo thể loại", "s": 1},
+     {"type": "order", "text": "Giảm dần theo doanh thu", "s": 1},
+     {"type": "limit", "text": "5", "s": 1},
+     {"type": "output", "text": "Tên thể loại, doanh thu", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C071",
+   "requirements": [
+     {"type": "filter", "text": "Total >= 13.86", "s": 1},
+     {"type": "aggregate", "text": "Đếm hóa đơn", "s": 1},
+     {"type": "output", "text": "Một số đếm", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C069",
+   "requirements": [
+     {"type": "filter", "text": "Country = 'Brazil'", "s": 1},
+     {"type": "aggregate", "text": "Đếm khách hàng", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C058",
+   "requirements": [
+     {"type": "filter", "text": "Thể loại có ít nhất một bài hát (JOIN Track)", "s": 1},
+     {"type": "aggregate", "text": "Đếm thể loại khác nhau (COUNT DISTINCT GenreId)", "s": 1},
+     {"type": "output", "text": "Một số đếm", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C007",
+   "requirements": [
+     {"type": "filter", "text": "Title = 'Sales Support Agent'", "s": 1},
+     {"type": "output", "text": "Họ, tên, ngày vào làm", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C061",
+   "requirements": [
+     {"type": "filter", "text": "Chỉ bài có media type 'Protected AAC audio file'; SQL không có điều kiện lọc MediaType.Name, tính trên toàn bộ track", "s": 0},
+     {"type": "aggregate", "text": "Giá trung bình = AVG(UnitPrice)", "s": 1},
+     {"type": "output", "text": "Một giá trị, làm tròn 2 chữ số", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.6667, "penalty": 1, "score": 6.67, "verdict": "incorrect"},
+  {"item": "C066",
+   "requirements": [
+     {"type": "filter", "text": "Nghệ sĩ = 'AC/DC'", "s": 1},
+     {"type": "output", "text": "Tên album", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 1, "penalty": 1, "score": 10, "verdict": "correct"},
+  {"item": "C107",
+   "requirements": [
+     {"type": "order", "text": "Từ dài đến ngắn (DESC theo Milliseconds); SQL dùng ASC nên lấy 10 bài ngắn nhất", "s": 0},
+     {"type": "limit", "text": "10", "s": 1},
+     {"type": "output", "text": "Tên bài, thời lượng (ms)", "s": 1}
+   ],
+   "errors": [],
+   "coverage": 0.6667, "penalty": 1, "score": 6.67, "verdict": "incorrect"}
+]

@@ -1,0 +1,12 @@
+[
+  {"item": "C006", "verdict": "correct", "score": 9, "reason": "Tính đúng công thức (doanh thu 2025 - 2024) / 2024 × 100, làm tròn 2 chữ số. CASE không có ELSE cho NULL nên SUM bỏ qua, và so sánh chuỗi ngày hoạt động đúng với định dạng trong schema."},
+  {"item": "C088", "verdict": "correct", "score": 9, "reason": "NOT EXISTS kiểm tra nghệ sĩ không có album nào có bài hát xuất hiện trong InvoiceLine, nên cả nghệ sĩ không có album cũng được đếm. COUNT(*) trả về đúng số nghệ sĩ."},
+  {"item": "C059", "verdict": "correct", "score": 9, "reason": "JOIN Artist-Album, GROUP BY ArtistId rồi HAVING n>10 đúng yêu cầu nhiều hơn 10 album. Trả về tên và số album như câu hỏi."},
+  {"item": "C003", "verdict": "correct", "score": 9, "reason": "Chuỗi JOIN từ InvoiceLine qua Invoice, Customer, Track, Album đến Artist là đúng. Lọc Customer.Country='Germany' và năm 2024 bằng strftime, nhóm theo nghệ sĩ, sắp xếp giảm dần và LIMIT 3 đúng."},
+  {"item": "C120", "verdict": "correct", "score": 9, "reason": "COUNT(DISTINCT pt.TrackId) trên mọi playlist tên 'Music' đếm đúng số bài hát khác nhau, xử lý được trường hợp trùng tên playlist."},
+  {"item": "C031", "verdict": "correct", "score": 8, "reason": "Đếm dòng PlaylistTrack của playlist 'Grunge' là đúng vì PK đảm bảo không trùng bài trong cùng playlist. Điểm bị trừ nhẹ vì không xử lý trường hợp có nhiều playlist trùng tên, dù câu hỏi không nêu rõ."},
+  {"item": "C068", "verdict": "correct", "score": 9, "reason": "Doanh thu là SUM(UnitPrice×Quantity) theo từng dòng hóa đơn, nhóm theo GenreId qua Track. Sắp xếp giảm dần và LIMIT 5 đúng."},
+  {"item": "C027", "verdict": "incorrect", "score": 2, "reason": "HAVING SUM(Total) >= 20 lọc theo tổng tiền, không phải số hóa đơn. Câu hỏi yêu cầu ít nhất 20 hóa đơn, tức là HAVING COUNT(*) >= 20. Lỗi này làm sai tập quốc gia được trả về."},
+  {"item": "C098", "verdict": "correct", "score": 9, "reason": "COUNT(DISTINCT PlaylistId) theo từng bài, HAVING > 4 và sắp xếp giảm dần đúng yêu cầu. Trả về tên bài và số playlist."},
+  {"item": "C103", "verdict": "correct", "score": 9, "reason": "Lọc hóa đơn năm 2024 bằng biên đúng (>= 2024-01-01 và < 2025-01-01), cộng Total theo CustomerId, ghép họ tên, sắp xếp giảm dần và LIMIT 5 đúng."}
+]

@@ -1,0 +1,12 @@
+[
+  {"item": "C116", "verdict": "incorrect", "score": 2, "reason": "JOIN dùng sai chiều: m.ReportsTo = e.EmployeeId ghép mỗi nhân viên với cấp dưới của họ, không phải quản lý trực tiếp. Kết quả sẽ liệt kê sai cặp người và quản lý."},
+  {"item": "C099", "verdict": "correct", "score": 9, "reason": "LEFT JOIN Customer qua SupportRepId giữ nhân viên không phụ trách khách nào, COUNT(c.CustomerId) cho 0 đúng yêu cầu. GROUP BY theo EmployeeId và các cột được hỏi đầy đủ."},
+  {"item": "C073", "verdict": "correct", "score": 7, "reason": "Lọc năm 2025 bằng strftime trên chuỗi ngày hợp lệ, nhóm theo tháng, SUM và ORDER BY đúng. Có thể thiếu dòng cho tháng không có hóa đơn nếu yêu cầu đủ 12 tháng, nên chỉ đạt 7."},
+  {"item": "C035", "verdict": "incorrect", "score": 2, "reason": "Điều kiện HAVING COUNT(DISTINCT g.Name) >= 1 chỉ cần một thể loại, tức là logic 'Rock HOẶC Jazz'. Câu hỏi yêu cầu 'VÀ' nên phải là = 2."},
+  {"item": "C019", "verdict": "correct", "score": 9, "reason": "Nối Employee, Customer, Invoice theo quan hệ một-nhiều nên không nhân dòng, lọc năm 2023 đúng và nhóm theo nhân viên. Tên và doanh thu được tính đúng."},
+  {"item": "C011", "verdict": "correct", "score": 9, "reason": "Khoảng ngày '>= 2025-01-01' và '< 2025-04-01' bao trọn quý 1 với cột ngày dạng chuỗi có giờ. SUM(Total) đúng phép tổng cần hỏi."},
+  {"item": "C057", "verdict": "incorrect", "score": 2, "reason": "WHERE Composer IS NULL được áp dụng trước GROUP BY nên SUM chỉ cộng các bài thiếu composer, không phải tổng thời lượng của cả album. Điều kiện trên 1 giờ bị tính sai."},
+  {"item": "C008", "verdict": "correct", "score": 9, "reason": "Nối MediaType, Track, InvoiceLine, đếm COUNT(DISTINCT TrackId) cho các bài đã từng được bán. Nhóm theo MediaTypeId và trả về tên loại media."},
+  {"item": "C108", "verdict": "correct", "score": 9, "reason": "Loại trừ Country NULL, nhóm theo quốc gia, HAVING COUNT(*) >= 5 đúng với 'từ 5 khách hàng trở lên'. Trả về cả số khách hàng."},
+  {"item": "C036", "verdict": "correct", "score": 9, "reason": "Đếm COUNT(DISTINCT PlaylistId) theo từng bài, HAVING > 4 đúng với 'nhiều hơn 4 playlist'. Sắp xếp giảm dần theo số playlist."}
+]
