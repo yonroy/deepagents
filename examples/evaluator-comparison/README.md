@@ -75,3 +75,27 @@ Kết quả ghi ra `results/report.md` (bảng tổng hợp + điểm từng b�
   công thức ổn định hơn nhưng chỉ tốt bằng khả năng đếm `C`/`H` của model. Hãy chạy để xác nhận
   với model của bạn, đừng tin kỳ vọng.
 - Muốn thử nhiệm vụ khác: sửa `TICKETS`/`VARIANTS` trong `dataset.py` và hai file trong `judges/`.
+
+## Kết quả đã chạy (Claude Haiku làm giám khảo)
+
+Chạy bằng `external.py`: 16 sub-agent Claude Haiku (2 giám khảo × 2 lần × 4 batch × 10 bài),
+mỗi agent chỉ được dùng Read/Write, tự đọc `judges/*.md` rồi chấm, không chạy code
+(judge công thức phải tự đếm và tự tính). Đáp án thô ở `runs/answers/`, báo cáo đầy đủ ở `runs/report.md`.
+
+| Giám khảo | Spearman ↑ | MAE ↓ | Xếp cặp đúng ↑ | Lệch khi lặp ↓ | Đếm biến đúng (C,H) ↑ | Tính sai ↓ |
+|---|---|---|---|---|---|---|
+| rubric  | 0.84 | 0.87 | 89%  | 0.65 | — | — |
+| formula | **1.00** | **0.08** | **100%** | **0.11** | 96% | 0% |
+
+Nhận xét:
+- **Công thức thắng ở mọi chỉ số, kể cả các chỉ số chỉ xét thứ tự** (Spearman, xếp cặp),
+  nên lợi thế không chỉ đến từ việc gold dùng cùng công thức.
+- Rubric yếu nhất ở **độ dài**: bản `very_verbose` (gold 0) có lúc được 4–6 điểm, còn
+  `verbose` (gold ≈ 4.8) có lúc bị 0 rồi lần sau được 7. Chữ "dài lê thê" để model tự
+  suy diễn, nên mỗi lần chấm một kiểu. Với ý thiếu và chi tiết bịa, rubric chấm khá ổn.
+- Lỗi của công thức đều nằm ở khâu **đo biến** (2/80 lần đếm sai `C`: `T3-miss1` 3.75,
+  `T4-miss1` 10), **không có lỗi tính toán**. Muốn cải thiện thì tập trung vào định nghĩa
+  biến rõ ràng hơn, không cần tool calculator.
+- Giới hạn: mỗi agent chấm 10 bài trong một lượt, nên có thể so sánh chéo các bài với nhau
+  (cả hai giám khảo đều chịu ảnh hưởng này); mẫu nhỏ (40 bài, 1 model); bài tổng hợp
+  "sạch" hơn output thật.
